@@ -11,6 +11,7 @@ void view_matrix(char matrix);
 void prompt_matrix_size(int* row, int* column);
 void prompt_matrix_value(char matrix, int row, int column);
 void add_matrix(char matrix1, char matrix2);
+void subtract_matrix(char matrix1, char matrix2);
 int get_matrix_row(char matrix);
 int get_matrix_column(char matrix);
 
@@ -127,10 +128,6 @@ void define_matrix() {
         printf("> Define matrix %c\n", 'A' + choice - 1);
         prompt_matrix_size(&row, &column);
         prompt_matrix_value('A' + choice - 1, row, column);
-        // for (int i = 0; i < row; i++)
-        //     for (int j = 0; j < column; j++)
-        //         printf("%d", mat.matrixA.matA[i][j]);
-        // printf("\n");
         define_matrix();
     }
     else if (choice == 7) {
@@ -314,7 +311,8 @@ void compute_matrix() {
             add_matrix(matrix1, matrix2);
             break;
         case 2:
-            printf("[2] Subtraction\n");
+            matrix_selection(&matrix1, &matrix2);
+            subtract_matrix(matrix1, matrix2);
             break;
         case 3:
             printf("[3] Multiplication\n");
@@ -575,7 +573,6 @@ void matrix_selection(char* matrix1, char* matrix2) {
     }
 }
 
-
 void add_matrix(char matrix1, char matrix2) {
     int rowMatrix1 = get_matrix_row(matrix1);
     int rowMatrix2 = get_matrix_row(matrix2);
@@ -588,7 +585,7 @@ void add_matrix(char matrix1, char matrix2) {
         for (int i = 0; i < rowMatrix1; i++)
             mat.matrixTemp.matTemp[i] = (int*)malloc(columnMatrix1 * sizeof(int));
         switch (matrix1) {
-            case 'A':
+        case 'A':
                 for (int i = 0; i < rowMatrix1; i++)
                     for (int j = 0; j < columnMatrix1; j++)
                         mat.matrixTemp.matTemp[i][j] = mat.matrixA.matA[i][j];
@@ -665,7 +662,8 @@ void add_matrix(char matrix1, char matrix2) {
     else {
         printf("\nIncompatible matrix dimensions!\n\n");
         system("pause");
-        matrix_selection(&matrix1, &matrix2);
+        system("cls");
+        compute_matrix();
     }
     mat.matrixAns.row = rowMatrix1;
     mat.matrixAns.column = columnMatrix1;
@@ -676,7 +674,126 @@ void add_matrix(char matrix1, char matrix2) {
         for (int j = 0; j < columnMatrix1; j++)
             mat.matrixAns.matAns[i][j] = mat.matrixTemp.matTemp[i][j];
     system("cls");
-    printf("The sum of matrix %c and matrix %c is:\n", matrix1, matrix2);
+    if (matrix2 == 'G')
+        printf("The sum of Matrix %c and Matrix Ans is:\n", matrix1);
+    else
+        printf("The sum of Matrix %c and Matrix %c is:\n", matrix1, matrix2);
+    for (int i = 0; i < rowMatrix1; i++) {
+        for (int j = 0; j < columnMatrix1; j++)
+            printf("%d ", mat.matrixAns.matAns[i][j]);
+        printf("\n");
+    }
+    printf("\n");
+    system("pause");
+    system("cls");
+    compute_matrix();
+}
+
+void subtract_matrix(char matrix1, char matrix2) {
+    int rowMatrix1 = get_matrix_row(matrix1);
+    int rowMatrix2 = get_matrix_row(matrix2);
+    int columnMatrix1 = get_matrix_column(matrix1);
+    int columnMatrix2 = get_matrix_column(matrix2);
+    if ((rowMatrix1 == rowMatrix2) && (columnMatrix1 == columnMatrix2)) {
+        mat.matrixTemp.row = rowMatrix1;
+        mat.matrixTemp.column = columnMatrix1;
+        mat.matrixTemp.matTemp = (int**)malloc(rowMatrix1 * sizeof(int*));
+        for (int i = 0; i < rowMatrix1; i++)
+            mat.matrixTemp.matTemp[i] = (int*)malloc(columnMatrix1 * sizeof(int));
+        switch (matrix1) {
+            case 'A':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix1; j++)
+                        mat.matrixTemp.matTemp[i][j] = mat.matrixA.matA[i][j];
+                break;
+            case 'B':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix1; j++)
+                        mat.matrixTemp.matTemp[i][j] = mat.matrixB.matB[i][j];
+                break;
+            case 'C':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix1; j++)
+                        mat.matrixTemp.matTemp[i][j] = mat.matrixC.matC[i][j];
+                break;
+            case 'D':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix1; j++)
+                        mat.matrixTemp.matTemp[i][j] = mat.matrixD.matD[i][j];
+                break;
+            case 'E':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix1; j++)
+                        mat.matrixTemp.matTemp[i][j] = mat.matrixE.matE[i][j];
+                break;
+            case 'F':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix1; j++)
+                        mat.matrixTemp.matTemp[i][j] = mat.matrixF.matF[i][j];
+                break;
+            case 'G':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix1; j++)
+                        mat.matrixTemp.matTemp[i][j] = mat.matrixAns.matAns[i][j];
+                break;
+        }
+        switch (matrix2) {
+            case 'A':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix1; j++)
+                        mat.matrixTemp.matTemp[i][j] -= mat.matrixA.matA[i][j];
+                break;
+            case 'B':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix1; j++)
+                        mat.matrixTemp.matTemp[i][j] -= mat.matrixB.matB[i][j];
+                break;
+            case 'C':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix1; j++)
+                        mat.matrixTemp.matTemp[i][j] -= mat.matrixC.matC[i][j];
+                break;
+            case 'D':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix1; j++)
+                        mat.matrixTemp.matTemp[i][j] -= mat.matrixD.matD[i][j];
+                break;
+            case 'E':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix1; j++)
+                        mat.matrixTemp.matTemp[i][j] -= mat.matrixE.matE[i][j];
+                break;
+            case 'F':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix1; j++)
+                        mat.matrixTemp.matTemp[i][j] -= mat.matrixF.matF[i][j];
+                break;
+            case 'G':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix1; j++)
+                        mat.matrixTemp.matTemp[i][j] -= mat.matrixAns.matAns[i][j];
+                break;
+        }
+    }
+    else {
+        printf("\nIncompatible matrix dimensions!\n\n");
+        system("pause");
+        system("cls");
+        compute_matrix();
+    }
+    mat.matrixAns.row = rowMatrix1;
+    mat.matrixAns.column = columnMatrix1;
+    mat.matrixAns.matAns = (int**)malloc(rowMatrix1 * sizeof(int*));
+    for (int i = 0; i < rowMatrix1; i++)
+        mat.matrixAns.matAns[i] = (int*)malloc(columnMatrix1 * sizeof(int));
+    for (int i = 0; i < rowMatrix1; i++)
+        for (int j = 0; j < columnMatrix1; j++)
+            mat.matrixAns.matAns[i][j] = mat.matrixTemp.matTemp[i][j];
+    system("cls");
+    if (matrix2 == 'G')
+        printf("The difference between Matrix %c and Matrix Ans is:\n", matrix1);
+    else
+        printf("The difference between Matrix %c and Matrix %c is:\n", matrix1, matrix2);
     for (int i = 0; i < rowMatrix1; i++) {
         for (int j = 0; j < columnMatrix1; j++)
             printf("%d ", mat.matrixAns.matAns[i][j]);

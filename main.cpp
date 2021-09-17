@@ -57,6 +57,12 @@ struct matrix_Ans {
     int column;
 };
 
+struct matrix_Temp {
+    int** matTemp;
+    int row;
+    int column;
+};
+
 struct matrix_list {
     struct matrix_A matrixA;
     struct matrix_B matrixB;
@@ -65,6 +71,7 @@ struct matrix_list {
     struct matrix_E matrixE;
     struct matrix_F matrixF;
     struct matrix_Ans matrixAns;
+    struct matrix_Temp matrixTemp;
 } mat;
 
 // Main Program
@@ -575,83 +582,83 @@ void add_matrix(char matrix1, char matrix2) {
     int columnMatrix1 = get_matrix_column(matrix1);
     int columnMatrix2 = get_matrix_column(matrix2);
     if ((rowMatrix1 == rowMatrix2) && (columnMatrix1 == columnMatrix2)) {
-        mat.matrixAns.row = rowMatrix1;
-        mat.matrixAns.column = columnMatrix1;
-        mat.matrixAns.matAns = (int**)malloc(rowMatrix1 * sizeof(int*));
+        mat.matrixTemp.row = rowMatrix1;
+        mat.matrixTemp.column = columnMatrix1;
+        mat.matrixTemp.matTemp = (int**)malloc(rowMatrix1 * sizeof(int*));
         for (int i = 0; i < rowMatrix1; i++)
-            mat.matrixAns.matAns[i] = (int*)malloc(columnMatrix1 * sizeof(int));
+            mat.matrixTemp.matTemp[i] = (int*)malloc(columnMatrix1 * sizeof(int));
         switch (matrix1) {
             case 'A':
                 for (int i = 0; i < rowMatrix1; i++)
                     for (int j = 0; j < columnMatrix1; j++)
-                        mat.matrixAns.matAns[i][j] = mat.matrixA.matA[i][j];
+                        mat.matrixTemp.matTemp[i][j] = mat.matrixA.matA[i][j];
                 break;
             case 'B':
                 for (int i = 0; i < rowMatrix1; i++)
                     for (int j = 0; j < columnMatrix1; j++)
-                        mat.matrixAns.matAns[i][j] = mat.matrixB.matB[i][j];
+                        mat.matrixTemp.matTemp[i][j] = mat.matrixB.matB[i][j];
                 break;
             case 'C':
                 for (int i = 0; i < rowMatrix1; i++)
                     for (int j = 0; j < columnMatrix1; j++)
-                        mat.matrixAns.matAns[i][j] = mat.matrixC.matC[i][j];
+                        mat.matrixTemp.matTemp[i][j] = mat.matrixC.matC[i][j];
                 break;
             case 'D':
                 for (int i = 0; i < rowMatrix1; i++)
                     for (int j = 0; j < columnMatrix1; j++)
-                        mat.matrixAns.matAns[i][j] = mat.matrixD.matD[i][j];
+                        mat.matrixTemp.matTemp[i][j] = mat.matrixD.matD[i][j];
                 break;
             case 'E':
                 for (int i = 0; i < rowMatrix1; i++)
                     for (int j = 0; j < columnMatrix1; j++)
-                        mat.matrixAns.matAns[i][j] = mat.matrixE.matE[i][j];
+                        mat.matrixTemp.matTemp[i][j] = mat.matrixE.matE[i][j];
                 break;
             case 'F':
                 for (int i = 0; i < rowMatrix1; i++)
                     for (int j = 0; j < columnMatrix1; j++)
-                        mat.matrixAns.matAns[i][j] = mat.matrixF.matF[i][j];
+                        mat.matrixTemp.matTemp[i][j] = mat.matrixF.matF[i][j];
                 break;
             case 'G':
                 for (int i = 0; i < rowMatrix1; i++)
                     for (int j = 0; j < columnMatrix1; j++)
-                        mat.matrixAns.matAns[i][j] = mat.matrixAns.matAns[i][j];
+                        mat.matrixTemp.matTemp[i][j] = mat.matrixAns.matAns[i][j];
                 break;
         }
         switch (matrix2) {
             case 'A':
                 for (int i = 0; i < rowMatrix1; i++)
                     for (int j = 0; j < columnMatrix1; j++)
-                        mat.matrixAns.matAns[i][j] += mat.matrixA.matA[i][j];
+                        mat.matrixTemp.matTemp[i][j] += mat.matrixA.matA[i][j];
                 break;
             case 'B':
                 for (int i = 0; i < rowMatrix1; i++)
                     for (int j = 0; j < columnMatrix1; j++)
-                        mat.matrixAns.matAns[i][j] += mat.matrixB.matB[i][j];
+                        mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[i][j];
                 break;
             case 'C':
                 for (int i = 0; i < rowMatrix1; i++)
                     for (int j = 0; j < columnMatrix1; j++)
-                        mat.matrixAns.matAns[i][j] += mat.matrixC.matC[i][j];
+                        mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[i][j];
                 break;
             case 'D':
                 for (int i = 0; i < rowMatrix1; i++)
                     for (int j = 0; j < columnMatrix1; j++)
-                        mat.matrixAns.matAns[i][j] += mat.matrixD.matD[i][j];
+                        mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[i][j];
                 break;
             case 'E':
                 for (int i = 0; i < rowMatrix1; i++)
                     for (int j = 0; j < columnMatrix1; j++)
-                        mat.matrixAns.matAns[i][j] += mat.matrixE.matE[i][j];
+                        mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[i][j];
                 break;
             case 'F':
                 for (int i = 0; i < rowMatrix1; i++)
                     for (int j = 0; j < columnMatrix1; j++)
-                        mat.matrixAns.matAns[i][j] += mat.matrixF.matF[i][j];
+                        mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[i][j];
                 break;
             case 'G':
                 for (int i = 0; i < rowMatrix1; i++)
                     for (int j = 0; j < columnMatrix1; j++)
-                        mat.matrixAns.matAns[i][j] += mat.matrixAns.matAns[i][j];
+                        mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[i][j];
                 break;
         }
     }
@@ -660,6 +667,14 @@ void add_matrix(char matrix1, char matrix2) {
         system("pause");
         matrix_selection(&matrix1, &matrix2);
     }
+    mat.matrixAns.row = rowMatrix1;
+    mat.matrixAns.column = columnMatrix1;
+    mat.matrixAns.matAns = (int**)malloc(rowMatrix1 * sizeof(int*));
+    for (int i = 0; i < rowMatrix1; i++)
+        mat.matrixAns.matAns[i] = (int*)malloc(columnMatrix1 * sizeof(int));
+    for (int i = 0; i < rowMatrix1; i++)
+        for (int j = 0; j < columnMatrix1; j++)
+            mat.matrixAns.matAns[i][j] = mat.matrixTemp.matTemp[i][j];
     system("cls");
     printf("The sum of matrix %c and matrix %c is:\n", matrix1, matrix2);
     for (int i = 0; i < rowMatrix1; i++) {

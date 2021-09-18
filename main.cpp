@@ -846,19 +846,19 @@ void multiply_matrix(char matrix1, char matrix2) {
                     for (int j = 0; j < columnMatrix2; j++) {
                         for (int k = 0; k < columnMatrix1; k++) {
                             if (matrix2 == 'A')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[k][j] * mat.matrixA.matA[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[i][k] * mat.matrixA.matA[k][j];
                             else if (matrix2 == 'B')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[k][j] * mat.matrixB.matB[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[i][k] * mat.matrixB.matB[k][j];
                             else if (matrix2 == 'C')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[k][j] * mat.matrixC.matC[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[i][k] * mat.matrixC.matC[k][j];
                             else if (matrix2 == 'D')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[k][j] * mat.matrixD.matD[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[i][k] * mat.matrixD.matD[k][j];
                             else if (matrix2 == 'E')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[k][j] * mat.matrixE.matE[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[i][k] * mat.matrixE.matE[k][j];
                             else if (matrix2 == 'F')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[k][j] * mat.matrixF.matF[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[i][k] * mat.matrixF.matF[k][j];
                             else if (matrix2 == 'G')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[k][j] * mat.matrixAns.matAns[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[i][k] * mat.matrixAns.matAns[k][j];
                         }
                     }
                 break;
@@ -867,19 +867,19 @@ void multiply_matrix(char matrix1, char matrix2) {
                     for (int j = 0; j < columnMatrix2; j++) {
                         for (int k = 0; k < columnMatrix1; k++) {
                             if (matrix2 == 'A')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[k][j] * mat.matrixA.matA[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[i][k] * mat.matrixA.matA[k][j];
                             else if (matrix2 == 'B')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[k][j] * mat.matrixB.matB[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[i][k] * mat.matrixB.matB[k][j];
                             else if (matrix2 == 'C')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[k][j] * mat.matrixC.matC[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[i][k] * mat.matrixC.matC[k][j];
                             else if (matrix2 == 'D')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[k][j] * mat.matrixD.matD[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[i][k] * mat.matrixD.matD[k][j];
                             else if (matrix2 == 'E')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[k][j] * mat.matrixE.matE[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[i][k] * mat.matrixE.matE[k][j];
                             else if (matrix2 == 'F')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[k][j] * mat.matrixF.matF[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[i][k] * mat.matrixF.matF[k][j];
                             else if (matrix2 == 'G')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[k][j] * mat.matrixAns.matAns[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[i][k] * mat.matrixAns.matAns[k][j];
                         }
                     }
                 break;
@@ -888,19 +888,19 @@ void multiply_matrix(char matrix1, char matrix2) {
                     for (int j = 0; j < columnMatrix2; j++) {
                         for (int k = 0; k < columnMatrix1; k++) {
                             if (matrix2 == 'A')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[k][j] * mat.matrixA.matA[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[i][k] * mat.matrixA.matA[k][j];
                             else if (matrix2 == 'B')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[k][j] * mat.matrixB.matB[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[i][k] * mat.matrixB.matB[k][j];
                             else if (matrix2 == 'C')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[k][j] * mat.matrixC.matC[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[i][k] * mat.matrixC.matC[k][j];
                             else if (matrix2 == 'D')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[k][j] * mat.matrixD.matD[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[i][k] * mat.matrixD.matD[k][j];
                             else if (matrix2 == 'E')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[k][j] * mat.matrixE.matE[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[i][k] * mat.matrixE.matE[k][j];
                             else if (matrix2 == 'F')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[k][j] * mat.matrixF.matF[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[i][k] * mat.matrixF.matF[k][j];
                             else if (matrix2 == 'G')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[k][j] * mat.matrixAns.matAns[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[i][k] * mat.matrixAns.matAns[k][j];
                         }
                     }
                 break;
@@ -909,19 +909,19 @@ void multiply_matrix(char matrix1, char matrix2) {
                     for (int j = 0; j < columnMatrix2; j++) {
                         for (int k = 0; k < columnMatrix1; k++) {
                             if (matrix2 == 'A')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[k][j] * mat.matrixA.matA[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[i][k] * mat.matrixA.matA[k][j];
                             else if (matrix2 == 'B')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[k][j] * mat.matrixB.matB[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[i][k] * mat.matrixB.matB[k][j];
                             else if (matrix2 == 'C')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[k][j] * mat.matrixC.matC[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[i][k] * mat.matrixC.matC[k][j];
                             else if (matrix2 == 'D')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[k][j] * mat.matrixD.matD[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[i][k] * mat.matrixD.matD[k][j];
                             else if (matrix2 == 'E')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[k][j] * mat.matrixE.matE[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[i][k] * mat.matrixE.matE[k][j];
                             else if (matrix2 == 'F')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[k][j] * mat.matrixF.matF[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[i][k] * mat.matrixF.matF[k][j];
                             else if (matrix2 == 'G')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[k][j] * mat.matrixAns.matAns[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[i][k] * mat.matrixAns.matAns[k][j];
                         }
                     }
                 break;
@@ -930,19 +930,19 @@ void multiply_matrix(char matrix1, char matrix2) {
                     for (int j = 0; j < columnMatrix2; j++) {
                         for (int k = 0; k < columnMatrix1; k++) {
                             if (matrix2 == 'A')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[k][j] * mat.matrixA.matA[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[i][k] * mat.matrixA.matA[k][j];
                             else if (matrix2 == 'B')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[k][j] * mat.matrixB.matB[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[i][k] * mat.matrixB.matB[k][j];
                             else if (matrix2 == 'C')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[k][j] * mat.matrixC.matC[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[i][k] * mat.matrixC.matC[k][j];
                             else if (matrix2 == 'D')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[k][j] * mat.matrixD.matD[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[i][k] * mat.matrixD.matD[k][j];
                             else if (matrix2 == 'E')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[k][j] * mat.matrixE.matE[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[i][k] * mat.matrixE.matE[k][j];
                             else if (matrix2 == 'F')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[k][j] * mat.matrixF.matF[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[i][k] * mat.matrixF.matF[k][j];
                             else if (matrix2 == 'G')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[k][j] * mat.matrixAns.matAns[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[i][k] * mat.matrixAns.matAns[k][j];
                         }
                     }
                 break;
@@ -951,19 +951,19 @@ void multiply_matrix(char matrix1, char matrix2) {
                     for (int j = 0; j < columnMatrix2; j++) {
                         for (int k = 0; k < columnMatrix1; k++) {
                             if (matrix2 == 'A')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[k][j] * mat.matrixA.matA[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[i][k] * mat.matrixA.matA[k][j];
                             else if (matrix2 == 'B')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[k][j] * mat.matrixB.matB[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[i][k] * mat.matrixB.matB[k][j];
                             else if (matrix2 == 'C')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[k][j] * mat.matrixC.matC[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[i][k] * mat.matrixC.matC[k][j];
                             else if (matrix2 == 'D')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[k][j] * mat.matrixD.matD[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[i][k] * mat.matrixD.matD[k][j];
                             else if (matrix2 == 'E')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[k][j] * mat.matrixE.matE[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[i][k] * mat.matrixE.matE[k][j];
                             else if (matrix2 == 'F')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[k][j] * mat.matrixF.matF[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[i][k] * mat.matrixF.matF[k][j];
                             else if (matrix2 == 'G')
-                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[k][j] * mat.matrixAns.matAns[k][j];
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[i][k] * mat.matrixAns.matAns[k][j];
                         }
                     }
                 break;
@@ -981,7 +981,7 @@ void multiply_matrix(char matrix1, char matrix2) {
     for (int i = 0; i < rowMatrix1; i++)
         mat.matrixAns.matAns[i] = (int*)malloc(columnMatrix2 * sizeof(int));
     for (int i = 0; i < rowMatrix1; i++)
-        for (int j = 0; j < columnMatrix1; j++)
+        for (int j = 0; j < columnMatrix2; j++)
             mat.matrixAns.matAns[i][j] = mat.matrixTemp.matTemp[i][j];
     system("cls");
     if (matrix2 == 'G')

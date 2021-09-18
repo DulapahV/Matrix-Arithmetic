@@ -862,69 +862,112 @@ void multiply_matrix(char matrix1, char matrix2) {
                         }
                     }
                 break;
-            // case 'C':
-            //     for (int i = 0; i < columnMatrix1; i++)
-            //         for (int j = 0; j < columnMatrix1; j++)
-            //             mat.matrixTemp.matTemp[i][j] = mat.matrixC.matC[i][j];
-            //     break;
-            // case 'D':
-            //     for (int i = 0; i < columnMatrix1; i++)
-            //         for (int j = 0; j < columnMatrix1; j++)
-            //             mat.matrixTemp.matTemp[i][j] = mat.matrixD.matD[i][j];
-            //     break;
-            // case 'E':
-            //     for (int i = 0; i < columnMatrix1; i++)
-            //         for (int j = 0; j < columnMatrix1; j++)
-            //             mat.matrixTemp.matTemp[i][j] = mat.matrixE.matE[i][j];
-            //     break;
-            // case 'F':
-            //     for (int i = 0; i < columnMatrix1; i++)
-            //         for (int j = 0; j < columnMatrix1; j++)
-            //             mat.matrixTemp.matTemp[i][j] = mat.matrixF.matF[i][j];
-            //     break;
-            // case 'G':
-            //     for (int i = 0; i < columnMatrix1; i++)
-            //         for (int j = 0; j < columnMatrix1; j++)
-            //             mat.matrixTemp.matTemp[i][j] = mat.matrixAns.matAns[i][j];
-            //     break;
+            case 'C':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix2; j++) {
+                        for (int k = 0; k < columnMatrix1; k++) {
+                            if (matrix2 == 'A')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[k][j] * mat.matrixA.matA[k][j];
+                            else if (matrix2 == 'B')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[k][j] * mat.matrixB.matB[k][j];
+                            else if (matrix2 == 'C')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[k][j] * mat.matrixC.matC[k][j];
+                            else if (matrix2 == 'D')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[k][j] * mat.matrixD.matD[k][j];
+                            else if (matrix2 == 'E')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[k][j] * mat.matrixE.matE[k][j];
+                            else if (matrix2 == 'F')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[k][j] * mat.matrixF.matF[k][j];
+                            else if (matrix2 == 'G')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixC.matC[k][j] * mat.matrixAns.matAns[k][j];
+                        }
+                    }
+                break;
+            case 'D':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix2; j++) {
+                        for (int k = 0; k < columnMatrix1; k++) {
+                            if (matrix2 == 'A')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[k][j] * mat.matrixA.matA[k][j];
+                            else if (matrix2 == 'B')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[k][j] * mat.matrixB.matB[k][j];
+                            else if (matrix2 == 'C')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[k][j] * mat.matrixC.matC[k][j];
+                            else if (matrix2 == 'D')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[k][j] * mat.matrixD.matD[k][j];
+                            else if (matrix2 == 'E')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[k][j] * mat.matrixE.matE[k][j];
+                            else if (matrix2 == 'F')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[k][j] * mat.matrixF.matF[k][j];
+                            else if (matrix2 == 'G')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixD.matD[k][j] * mat.matrixAns.matAns[k][j];
+                        }
+                    }
+                break;
+            case 'E':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix2; j++) {
+                        for (int k = 0; k < columnMatrix1; k++) {
+                            if (matrix2 == 'A')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[k][j] * mat.matrixA.matA[k][j];
+                            else if (matrix2 == 'B')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[k][j] * mat.matrixB.matB[k][j];
+                            else if (matrix2 == 'C')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[k][j] * mat.matrixC.matC[k][j];
+                            else if (matrix2 == 'D')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[k][j] * mat.matrixD.matD[k][j];
+                            else if (matrix2 == 'E')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[k][j] * mat.matrixE.matE[k][j];
+                            else if (matrix2 == 'F')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[k][j] * mat.matrixF.matF[k][j];
+                            else if (matrix2 == 'G')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixE.matE[k][j] * mat.matrixAns.matAns[k][j];
+                        }
+                    }
+                break;
+            case 'F':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix2; j++) {
+                        for (int k = 0; k < columnMatrix1; k++) {
+                            if (matrix2 == 'A')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[k][j] * mat.matrixA.matA[k][j];
+                            else if (matrix2 == 'B')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[k][j] * mat.matrixB.matB[k][j];
+                            else if (matrix2 == 'C')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[k][j] * mat.matrixC.matC[k][j];
+                            else if (matrix2 == 'D')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[k][j] * mat.matrixD.matD[k][j];
+                            else if (matrix2 == 'E')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[k][j] * mat.matrixE.matE[k][j];
+                            else if (matrix2 == 'F')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[k][j] * mat.matrixF.matF[k][j];
+                            else if (matrix2 == 'G')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixF.matF[k][j] * mat.matrixAns.matAns[k][j];
+                        }
+                    }
+                break;
+            case 'G':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix2; j++) {
+                        for (int k = 0; k < columnMatrix1; k++) {
+                            if (matrix2 == 'A')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[k][j] * mat.matrixA.matA[k][j];
+                            else if (matrix2 == 'B')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[k][j] * mat.matrixB.matB[k][j];
+                            else if (matrix2 == 'C')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[k][j] * mat.matrixC.matC[k][j];
+                            else if (matrix2 == 'D')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[k][j] * mat.matrixD.matD[k][j];
+                            else if (matrix2 == 'E')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[k][j] * mat.matrixE.matE[k][j];
+                            else if (matrix2 == 'F')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[k][j] * mat.matrixF.matF[k][j];
+                            else if (matrix2 == 'G')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixAns.matAns[k][j] * mat.matrixAns.matAns[k][j];
+                        }
+                    }
+                break;
         }
-        // switch (matrix2) {
-        //     case 'A':
-        //         for (int i = 0; i < rowMatrix2; i++)
-        //             for (int j = 0; j < columnMatrix1; j++)
-        //                 mat.matrixTemp.matTemp[i][j] -= mat.matrixA.matA[i][j];
-        //         break;
-        //     case 'B':
-        //         for (int i = 0; i < rowMatrix2; i++)
-        //             for (int j = 0; j < columnMatrix1; j++)
-        //                 mat.matrixTemp.matTemp[i][j] -= mat.matrixB.matB[i][j];
-        //         break;
-        //     case 'C':
-        //         for (int i = 0; i < rowMatrix2; i++)
-        //             for (int j = 0; j < columnMatrix1; j++)
-        //                 mat.matrixTemp.matTemp[i][j] -= mat.matrixC.matC[i][j];
-        //         break;
-        //     case 'D':
-        //         for (int i = 0; i < rowMatrix2; i++)
-        //             for (int j = 0; j < columnMatrix1; j++)
-        //                 mat.matrixTemp.matTemp[i][j] -= mat.matrixD.matD[i][j];
-        //         break;
-        //     case 'E':
-        //         for (int i = 0; i < rowMatrix2; i++)
-        //             for (int j = 0; j < columnMatrix1; j++)
-        //                 mat.matrixTemp.matTemp[i][j] -= mat.matrixE.matE[i][j];
-        //         break;
-        //     case 'F':
-        //         for (int i = 0; i < rowMatrix2; i++)
-        //             for (int j = 0; j < columnMatrix1; j++)
-        //                 mat.matrixTemp.matTemp[i][j] -= mat.matrixF.matF[i][j];
-        //         break;
-        //     case 'G':
-        //         for (int i = 0; i < rowMatrix2; i++)
-        //             for (int j = 0; j < columnMatrix1; j++)
-        //                 mat.matrixTemp.matTemp[i][j] -= mat.matrixAns.matAns[i][j];
-        //         break;
-        // }
     }
     else {
         printf("\nIncompatible matrix dimensions!\n\n");

@@ -824,15 +824,44 @@ void multiply_matrix(char matrix1, char matrix2) {
                 for (int i = 0; i < rowMatrix1; i++)
                     for (int j = 0; j < columnMatrix2; j++) {
                         for (int k = 0; k < columnMatrix1; k++) {
-                            mat.matrixTemp.matTemp[i][j] += mat.matrixA.matA[i][k] * mat.matrixB.matB[k][j];
+                            if (matrix2 == 'A')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixA.matA[i][k] * mat.matrixA.matA[k][j];
+                            else if (matrix2 == 'B')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixA.matA[i][k] * mat.matrixB.matB[k][j];
+                            else if (matrix2 == 'C')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixA.matA[i][k] * mat.matrixC.matC[k][j];
+                            else if (matrix2 == 'D')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixA.matA[i][k] * mat.matrixD.matD[k][j];
+                            else if (matrix2 == 'E')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixA.matA[i][k] * mat.matrixE.matE[k][j];
+                            else if (matrix2 == 'F')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixA.matA[i][k] * mat.matrixF.matF[k][j];
+                            else if (matrix2 == 'G')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixA.matA[i][k] * mat.matrixAns.matAns[k][j];
                         }
                     }
                 break;
-            // case 'B':
-            //     for (int i = 0; i < columnMatrix1; i++)
-            //         for (int j = 0; j < columnMatrix1; j++)
-            //             mat.matrixTemp.matTemp[i][j] = mat.matrixB.matB[i][j];
-            //     break;
+            case 'B':
+                for (int i = 0; i < rowMatrix1; i++)
+                    for (int j = 0; j < columnMatrix2; j++) {
+                        for (int k = 0; k < columnMatrix1; k++) {
+                            if (matrix2 == 'A')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[k][j] * mat.matrixA.matA[k][j];
+                            else if (matrix2 == 'B')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[k][j] * mat.matrixB.matB[k][j];
+                            else if (matrix2 == 'C')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[k][j] * mat.matrixC.matC[k][j];
+                            else if (matrix2 == 'D')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[k][j] * mat.matrixD.matD[k][j];
+                            else if (matrix2 == 'E')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[k][j] * mat.matrixE.matE[k][j];
+                            else if (matrix2 == 'F')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[k][j] * mat.matrixF.matF[k][j];
+                            else if (matrix2 == 'G')
+                                mat.matrixTemp.matTemp[i][j] += mat.matrixB.matB[k][j] * mat.matrixAns.matAns[k][j];
+                        }
+                    }
+                break;
             // case 'C':
             //     for (int i = 0; i < columnMatrix1; i++)
             //         for (int j = 0; j < columnMatrix1; j++)
@@ -903,9 +932,26 @@ void multiply_matrix(char matrix1, char matrix2) {
         system("cls");
         compute_matrix();
     }
+    mat.matrixAns.row = rowMatrix1;
+    mat.matrixAns.column = columnMatrix2;
+    mat.matrixAns.matAns = (int**)malloc(rowMatrix1 * sizeof(int*));
+    for (int i = 0; i < rowMatrix1; i++)
+        mat.matrixAns.matAns[i] = (int*)malloc(columnMatrix2 * sizeof(int));
+    for (int i = 0; i < rowMatrix1; i++)
+        for (int j = 0; j < columnMatrix1; j++)
+            mat.matrixAns.matAns[i][j] = mat.matrixTemp.matTemp[i][j];
+    system("cls");
+    if (matrix2 == 'G')
+        printf("The product of Matrix %c and Matrix Ans is:\n", matrix1);
+    else
+        printf("The product of Matrix %c and Matrix %c is:\n", matrix1, matrix2);
     for (int i = 0; i < rowMatrix1; i++) {
         for (int j = 0; j < columnMatrix2; j++)
-            printf("%d ", mat.matrixTemp.matTemp[i][j]);
+            printf("%d ", mat.matrixAns.matAns[i][j]);
         printf("\n");
     }
+    printf("\n");
+    system("pause");
+    system("cls");
+    compute_matrix();
 }

@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 // Page
 void main_menu_page();
 void define_matrix_page();
@@ -242,7 +241,7 @@ void compute_matrix_page() {
             printf("> Select the second matrix\n");
             select_matrix(&matrix2, &row2, &column2);
             add_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.matAns, &matAns.row, &matAns.column);
-            printf("> The result is\n");
+            printf("> The sum is\n");
             view_matrix(matAns.matAns, matAns.row, matAns.column);
             system("pause");
             break;
@@ -252,7 +251,7 @@ void compute_matrix_page() {
             printf("> Select the second matrix\n");
             select_matrix(&matrix2, &row2, &column2);
             subtract_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.matAns, &matAns.row, &matAns.column);
-            printf("> The result is\n");
+            printf("> The difference is\n");
             view_matrix(matAns.matAns, matAns.row, matAns.column);
             system("pause");
             break;
@@ -262,14 +261,14 @@ void compute_matrix_page() {
             printf("> Select the second matrix\n");
             select_matrix(&matrix2, &row2, &column2);
             multiply_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.matAns, &matAns.row, &matAns.column);
-            printf("> The result is\n");
+            printf("> The product is\n");
             view_matrix(matAns.matAns, matAns.row, matAns.column);
             system("pause");
             break;
         case 4:
             break;
         case 5:
-            printf("> Select a first matrix\n");
+            printf("> Select a matrix\n");
             select_matrix(&matrix1, &row1, &column1);
             transpose_matrix(matrix1, row1, column1, &matAns.matAns, &matAns.row, &matAns.column);
             printf("> The result is\n");
@@ -289,7 +288,6 @@ void compute_matrix_page() {
     }
     compute_matrix_page();
 }
-
 //---------------------------------------------------------------- Page
 
 
@@ -452,6 +450,13 @@ void multiply_matrix(float** matrix1, int row1, int column1, float** matrix2, in
         for (int i = 0; i < row1; i++)
             for (int j = 0; j < column1; j++)
                 temp[i][j] = matrix1[i][j] * matrix2[0][0];
+    }
+    else if ((row1 == 1 && column1 == 1) && (row2 == 1 && column2 == 1)) {
+        *rowAns = row1;
+        *columnAns = column1;
+        temp = (float**)malloc(sizeof(float*));
+        temp[0] = (float*)malloc(sizeof(float));
+        temp[0][0] = matrix1[0][0] * matrix2[0][0];
     }
     else {
         system("cls");

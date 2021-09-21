@@ -7,17 +7,19 @@ void main_menu_page();
 void define_matrix_page();
 void view_matrix_page();
 void compute_matrix_page();
-void show_answer_page();
 
 // Matrix
 void define_matrix(float*** matrix, int* row, int* column);
 void view_matrix(float** matrix, int row, int column);
-void matrix_select(float*** matrix1, int* row1, int* column1, float*** matrix2, int* row2, int* column2);
+void select_matrix_1(float*** matrix, int* row, int* column);
+void select_matrix_2(float*** matrix1, int* row1, int* column1, float*** matrix2, int* row2, int* column2);
 
 // Matrix Arithmetic
 void add_matrix(float** matrix1, int row1, int column1, float** matrix2, int row2, int column2, float*** matrixAns, int* rowAns, int* columnAns);
 void subtract_matrix(float** matrix1, int row1, int column1, float** matrix2, int row2, int column2, float*** matrixAns, int* rowAns, int* columnAns);
 void multiply_matrix(float** matrix1, int row1, int column1, float** matrix2, int row2, int column2, float*** matrixAns, int* rowAns, int* columnAns);
+// void get_determinant(float** matrix, int row, int column, float*** matrixAns, int* rowAns, int* columnAns);
+void transpose_matrix(float** matrix, int row, int column, float*** matrixAns, int* rowAns, int* columnAns);
 
 // Program Message
 void define_matrix_success_msg(char msg);
@@ -25,7 +27,7 @@ void invalid_choice_msg();
 void incompatible_matrix_msg();
 
 
-// Declaring matrixes
+// Storing Matrixes
 struct matrix_properties {
     int row, column, det;
 };
@@ -79,31 +81,34 @@ int main() {
 
 //---------------------------------------------------------------- Page
 void main_menu_page() {
-    system("cls");
     int choice;
-    printf("> What would you like to do\n");
-    printf("[1] Define Matrix\n");
-    printf("[2] View Matrix\n");
-    printf("[3] Compute Matrix\n");
-    printf("[4] Exit\n");
-    printf("\nChoice--> ");
-    scanf("%d", &choice);
-    switch (choice) {
-        case 1:
-            define_matrix_page();
-            break;
-        case 2:
-            view_matrix_page();
-            break;
-        case 3:
-            compute_matrix_page();
-            break;
-        case 4:
-            exit(0);
-        default:
-            main_menu_page();
-            break;
-    }
+    do {
+        system("cls");
+        printf("> What would you like to do\n");
+        printf("[1] Define Matrix\n");
+        printf("[2] View Matrix\n");
+        printf("[3] Compute Matrix\n");
+        printf("[4] Exit\n");
+        printf("\nChoice--> ");
+        scanf("%d", &choice);
+        system("cls");
+        switch (choice) {
+            case 1:
+                define_matrix_page();
+                break;
+            case 2:
+                view_matrix_page();
+                break;
+            case 3:
+                compute_matrix_page();
+                break;
+            case 4:
+                exit(0);
+            default:
+                invalid_choice_msg();
+                break;
+        }
+    } while (choice != 4);
 }
 
 void define_matrix_page() {
@@ -232,26 +237,34 @@ void compute_matrix_page() {
     int row1, column1, row2, column2;
     switch (choice) {
         case 1:
-            matrix_select(&matrix1, &row1, &column1, &matrix2, &row2, &column2);
+            select_matrix_2(&matrix1, &row1, &column1, &matrix2, &row2, &column2);
             add_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.matAns, &matAns.row, &matAns.column);
-            show_answer_page();
+            printf("> The result is\n");
+            view_matrix(matAns.matAns, matAns.row, matAns.column);
             system("pause");
             break;
         case 2:
-            matrix_select(&matrix1, &row1, &column1, &matrix2, &row2, &column2);
+            select_matrix_2(&matrix1, &row1, &column1, &matrix2, &row2, &column2);
             subtract_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.matAns, &matAns.row, &matAns.column);
-            show_answer_page();
+            printf("> The result is\n");
+            view_matrix(matAns.matAns, matAns.row, matAns.column);
             system("pause");
             break;
         case 3:
-            matrix_select(&matrix1, &row1, &column1, &matrix2, &row2, &column2);
+            select_matrix_2(&matrix1, &row1, &column1, &matrix2, &row2, &column2);
             multiply_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.matAns, &matAns.row, &matAns.column);
-            show_answer_page();
+            printf("> The result is\n");
+            view_matrix(matAns.matAns, matAns.row, matAns.column);
             system("pause");
             break;
         case 4:
             break;
         case 5:
+            select_matrix_1(&matrix1, &row1, &column1);
+            transpose_matrix(matrix1, row1, column1, &matAns.matAns, &matAns.row, &matAns.column);
+            printf("> The result is\n");
+            view_matrix(matAns.matAns, matAns.row, matAns.column);
+            system("pause");
             break;
         case 6:
             break;
@@ -265,17 +278,6 @@ void compute_matrix_page() {
     compute_matrix_page();
 }
 
-void show_answer_page() {
-    system("cls");
-    printf("> The result is\n");
-    for (int i = 0; i < matAns.row; i++) {
-        for (int j = 0; j < matAns.column; j++) {
-            printf("%.2f\t", matAns.matAns[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n");
-}
 //---------------------------------------------------------------- Page
 
 
@@ -298,24 +300,73 @@ void define_matrix(float*** matrix, int* row, int* column) {
 }
 
 void view_matrix(float** matrix, int row, int column) {
-
-    if (row != 0 && column != 0) {
+    if (row != 0 && column != 0)
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++)
                 printf("%.2f\t", matrix[i][j]);
         printf("\n");
         }
-    }
     else
-        printf("\n[Empty]");
+        printf("[Empty]\n");
     printf("\n");
 }
-//---------------------------------------------------------------- Matrix
 
-
-//---------------------------------------------------------------- Matrix Arithmetic
-void matrix_select(float*** matrix1, int* row1, int* column1, float*** matrix2, int* row2, int* column2) {
+void select_matrix_1(float*** matrix, int* row, int* column) {
+    int choice;
+    printf("> Select a matrix\n");
+    for (int i = 0; i < 6; i++)
+        printf("[%d] Matrix %c\n", i + 1, 'A' + i);
+    printf("[7] Matrix Answer\n");
+    printf("[8] Go back\n");
+    printf("\nChoice--> ");
+    scanf("%d", &choice);
     system("cls");
+    switch (choice) {
+        case 1:
+            *matrix = matA.matA;
+            *row = matA.row;
+            *column = matA.column;
+            break;
+        case 2:
+            *matrix = matB.matB;
+            *row = matB.row;
+            *column = matB.column;
+            break;
+        case 3:
+            *matrix = matC.matC;
+            *row = matC.row;
+            *column = matC.column;
+            break;
+        case 4:
+            *matrix = matD.matD;
+            *row = matD.row;
+            *column = matD.column;
+            break;
+        case 5:
+            *matrix = matE.matE;
+            *row = matE.row;
+            *column = matE.column;
+            break;
+        case 6:
+            *matrix = matF.matF;
+            *row = matF.row;
+            *column = matF.column;
+            break;
+        case 7:
+            *matrix = matAns.matAns;
+            *row = matAns.row;
+            *column = matAns.column;
+            break;
+        case 8:
+            compute_matrix_page();
+            break;
+        default:
+            invalid_choice_msg();
+            break;
+    }
+}
+
+void select_matrix_2(float*** matrix1, int* row1, int* column1, float*** matrix2, int* row2, int* column2) {
     int choice;
     printf("> Select the first matrix\n");
     for (int i = 0; i < 6; i++)
@@ -324,6 +375,7 @@ void matrix_select(float*** matrix1, int* row1, int* column1, float*** matrix2, 
     printf("[8] Go back\n");
     printf("\nChoice--> ");
     scanf("%d", &choice);
+    system("cls");
     switch (choice) {
         case 1:
             *matrix1 = matA.matA;
@@ -375,6 +427,7 @@ void matrix_select(float*** matrix1, int* row1, int* column1, float*** matrix2, 
     printf("[8] Go back\n");
     printf("\nChoice--> ");
     scanf("%d", &choice);
+    system("cls");
     switch (choice) {
         case 1:
             *matrix2 = matA.matA;
@@ -419,68 +472,102 @@ void matrix_select(float*** matrix1, int* row1, int* column1, float*** matrix2, 
             break;
     }
 }
+//---------------------------------------------------------------- Matrix
+
+
+//---------------------------------------------------------------- Matrix Arithmetic
 void add_matrix(float** matrix1, int row1, int column1, float** matrix2, int row2, int column2, float*** matrixAns, int* rowAns, int* columnAns) {
+    float** temp;
     if ((row1 == row2) && (column1 == column2)) {
         *rowAns = row1;
         *columnAns = column1;
-        float** temp;
         temp = (float**)malloc(row1 * sizeof(float*));
         for (int i = 0; i < row1; i++)
             temp[i] = (float*)malloc(column1 * sizeof(float));
         for (int i = 0; i < row1; i++)
-            for (int j = 0; j < column1; j++) {
+            for (int j = 0; j < column1; j++)
                 temp[i][j] = matrix1[i][j] + matrix2[i][j];
-                *matrixAns = temp;
-            }
     }
     else {
         system("cls");
         incompatible_matrix_msg();
         compute_matrix_page();
     }
+    *matrixAns = temp;
 }
 
 void subtract_matrix(float** matrix1, int row1, int column1, float** matrix2, int row2, int column2, float*** matrixAns, int* rowAns, int* columnAns) {
+    float** temp;
     if ((row1 == row2) && (column1 == column2)) {
         *rowAns = row1;
         *columnAns = column1;
-        float** temp;
         temp = (float**)malloc(row1 * sizeof(float*));
         for (int i = 0; i < row1; i++)
             temp[i] = (float*)malloc(column1 * sizeof(float));
         for (int i = 0; i < row1; i++)
-            for (int j = 0; j < column1; j++) {
+            for (int j = 0; j < column1; j++)
                 temp[i][j] = matrix1[i][j] - matrix2[i][j];
-                *matrixAns = temp;
-            }
     }
     else {
         system("cls");
         incompatible_matrix_msg();
         compute_matrix_page();
     }
+    *matrixAns = temp;
 }
 
 void multiply_matrix(float** matrix1, int row1, int column1, float** matrix2, int row2, int column2, float*** matrixAns, int* rowAns, int* columnAns) {
+    float** temp;
     if (column1 == row2) {
         *rowAns = row1;
         *columnAns = column2;
-        float** temp;
         temp = (float**)malloc(row1 * sizeof(float*));
         for (int i = 0; i < row1; i++)
             temp[i] = (float*)malloc(column2 * sizeof(float));
         for (int i = 0; i < row1; i++)
             for (int j = 0; j < column2; j++)
-                for (int k = 0; k < column1; k++) {
+                for (int k = 0; k < column1; k++)
                     temp[i][j] += matrix1[i][k] * matrix2[k][j];
-                    *matrixAns = temp;
-                }
+    }
+    else if (row1 == 1 && column1 == 1) {
+        *rowAns = row2;
+        *columnAns = column2;
+        temp = (float**)malloc(row2 * sizeof(float*));
+        for (int i = 0; i < row2; i++)
+            temp[i] = (float*)malloc(column2 * sizeof(float));
+        for (int i = 0; i < row2; i++)
+            for (int j = 0; j < column2; j++)
+                temp[i][j] = matrix1[0][0] * matrix2[i][j];
+    }
+    else if (row2 == 1 && column2 == 1) {
+        *rowAns = row1;
+        *columnAns = column1;
+        temp = (float**)malloc(row1 * sizeof(float*));
+        for (int i = 0; i < row1; i++)
+            temp[i] = (float*)malloc(column1 * sizeof(float));
+        for (int i = 0; i < row1; i++)
+            for (int j = 0; j < column1; j++)
+                temp[i][j] = matrix1[i][j] * matrix2[0][0];
     }
     else {
         system("cls");
         incompatible_matrix_msg();
         compute_matrix_page();
     }
+    *matrixAns = temp;
+}
+
+void transpose_matrix(float** matrix, int row, int column, float*** matrixAns, int* rowAns, int* columnAns) {
+    float** temp;
+    *rowAns = column;
+    *columnAns = row;
+    temp = (float**)malloc(column * sizeof(float*));
+        for (int i = 0; i < column; i++)
+            temp[i] = (float*)malloc(row * sizeof(float));
+        for (int i = 0; i < row; i++)
+            for (int j = 0; j < column; j++)
+                temp[j][i] = matrix[i][j];
+    *matrixAns = temp;
 }
 //---------------------------------------------------------------- Matrix Arithmetic
 
@@ -497,7 +584,7 @@ void invalid_choice_msg() {
 }
 
 void incompatible_matrix_msg() {
-    printf("\nIncompatible matrix dimensions!\n\n");
+    printf("Incompatible matrix!\n\n");
     system("pause");
 }
 //---------------------------------------------------------------- Program Message

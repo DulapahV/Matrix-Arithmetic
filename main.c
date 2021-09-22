@@ -10,16 +10,16 @@ void view_matrix_page();
 void compute_matrix_page();
 
 // Matrix
-void define_matrix(float*** matrix, int* row, int* column);
-void view_matrix(float** matrix, int row, int column);
-void select_matrix(float*** matrix, int* row, int* column);
+void define_matrix(double*** matrix, int* row, int* column);
+void view_matrix(double** matrix, int row, int column);
+void select_matrix(double*** matrix, int* row, int* column);
 
 // Matrix Arithmetic
-void add_matrix(float** matrix1, int row1, int column1, float** matrix2, int row2, int column2, float*** matrixAns, int* rowAns, int* columnAns);
-void subtract_matrix(float** matrix1, int row1, int column1, float** matrix2, int row2, int column2, float*** matrixAns, int* rowAns, int* columnAns);
-void multiply_matrix(float** matrix1, int row1, int column1, float** matrix2, int row2, int column2, float*** matrixAns, int* rowAns, int* columnAns);
-// void get_determinant(float** matrix, int row, int column, float*** matrixAns, int* rowAns, int* columnAns);
-void transpose_matrix(float** matrix, int row, int column, float*** matrixAns, int* rowAns, int* columnAns);
+void add_matrix(double** matrix1, int row1, int column1, double** matrix2, int row2, int column2, double*** matrixAns, int* rowAns, int* columnAns);
+void subtract_matrix(double** matrix1, int row1, int column1, double** matrix2, int row2, int column2, double*** matrixAns, int* rowAns, int* columnAns);
+void multiply_matrix(double** matrix1, int row1, int column1, double** matrix2, int row2, int column2, double*** matrixAns, int* rowAns, int* columnAns);
+// void get_determinant(double** matrix, int row, int column, double*** matrixAns, int* rowAns, int* columnAns);
+void transpose_matrix(double** matrix, int row, int column, double*** matrixAns, int* rowAns, int* columnAns);
 
 // Program Message
 void define_matrix_success_msg(char msg);
@@ -33,42 +33,42 @@ struct matrix_properties {
 };
 
 struct matrix_A {
-    float** matA;
+    double** matA;
     struct matrix_properties;
 } matA;
 
 struct matrix_B {
-    float** matB;
+    double** matB;
     struct matrix_properties;
 } matB;
 
 struct matrix_C {
-    float** matC;
+    double** matC;
     struct matrix_properties;
 } matC;
 
 struct matrix_D {
-    float** matD;
+    double** matD;
     struct matrix_properties;
 } matD;
 
 struct matrix_E {
-    float** matE;
+    double** matE;
     struct matrix_properties;
 } matE;
 
 struct matrix_F {
-    float** matF;
+    double** matF;
     struct matrix_properties;
 } matF;
 
 struct matrix_Ans {
-    float** matAns;
+    double** matAns;
     struct matrix_properties;
 } matAns;
 
 struct matrix_Temp {
-    float** matTemp;
+    double** matTemp;
     struct matrix_properties;
 } matTemp;
 
@@ -234,7 +234,7 @@ void compute_matrix_page() {
     printf("\nChoice--> ");
     scanf("%d", &choice);
     system("cls");
-    float** matrix1, **matrix2;
+    double** matrix1, **matrix2;
     int row1, column1, row2, column2;
     switch (choice) {
         case 1:
@@ -294,28 +294,28 @@ void compute_matrix_page() {
 
 
 //---------------------------------------------------------------- Matrix
-void define_matrix(float*** matrix, int* row, int* column) {
+void define_matrix(double*** matrix, int* row, int* column) {
     printf("Number of Rows: ");
     scanf("%d", row);
     printf("Number of Columns: ");
     scanf("%d", column);
     printf("Enter value: \n");
-    float** temp;
-    temp = MEM_ALLOCATE(float*, *row);
+    double** temp;
+    temp = MEM_ALLOCATE(double*, *row);
     for (int i = 0; i < *row; i++)
-        temp[i] = MEM_ALLOCATE(float, *column);
+        temp[i] = MEM_ALLOCATE(double, *column);
     for (int i = 0; i < *row; i++)
         for (int j = 0; j < *column; j++) {
-            scanf("%f", &temp[i][j]);
+            scanf("%lf", &temp[i][j]);
             *matrix = temp;
         }
 }
 
-void view_matrix(float** matrix, int row, int column) {
+void view_matrix(double** matrix, int row, int column) {
     if (row != 0 && column != 0)
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++)
-                printf("%.2f\t", matrix[i][j]);
+                printf("%.2lf\t", matrix[i][j]);
         printf("\n");
         }
     else
@@ -323,7 +323,7 @@ void view_matrix(float** matrix, int row, int column) {
     printf("\n");
 }
 
-void select_matrix(float*** matrix, int* row, int* column) {
+void select_matrix(double*** matrix, int* row, int* column) {
     int choice;
     for (int i = 0; i < 6; i++)
         printf("[%d] Matrix %c\n", i + 1, 'A' + i);
@@ -380,14 +380,14 @@ void select_matrix(float*** matrix, int* row, int* column) {
 
 
 //---------------------------------------------------------------- Matrix Arithmetic
-void add_matrix(float** matrix1, int row1, int column1, float** matrix2, int row2, int column2, float*** matrixAns, int* rowAns, int* columnAns) {
-    float** temp;
+void add_matrix(double** matrix1, int row1, int column1, double** matrix2, int row2, int column2, double*** matrixAns, int* rowAns, int* columnAns) {
+    double** temp;
     if ((row1 == row2) && (column1 == column2)) {
         *rowAns = row1;
         *columnAns = column1;
-        temp = MEM_ALLOCATE(float*, row1);
+        temp = MEM_ALLOCATE(double*, row1);
         for (int i = 0; i < row1; i++)
-            temp[i] = MEM_ALLOCATE(float, column1);
+            temp[i] = MEM_ALLOCATE(double, column1);
         for (int i = 0; i < row1; i++)
             for (int j = 0; j < column1; j++)
                 temp[i][j] = matrix1[i][j] + matrix2[i][j];
@@ -400,14 +400,14 @@ void add_matrix(float** matrix1, int row1, int column1, float** matrix2, int row
     *matrixAns = temp;
 }
 
-void subtract_matrix(float** matrix1, int row1, int column1, float** matrix2, int row2, int column2, float*** matrixAns, int* rowAns, int* columnAns) {
-    float** temp;
+void subtract_matrix(double** matrix1, int row1, int column1, double** matrix2, int row2, int column2, double*** matrixAns, int* rowAns, int* columnAns) {
+    double** temp;
     if ((row1 == row2) && (column1 == column2)) {
         *rowAns = row1;
         *columnAns = column1;
-        temp = MEM_ALLOCATE(float*, row1);
+        temp = MEM_ALLOCATE(double*, row1);
         for (int i = 0; i < row1; i++)
-            temp[i] = MEM_ALLOCATE(float, column1);
+            temp[i] = MEM_ALLOCATE(double, column1);
         for (int i = 0; i < row1; i++)
             for (int j = 0; j < column1; j++)
                 temp[i][j] = matrix1[i][j] - matrix2[i][j];
@@ -420,14 +420,14 @@ void subtract_matrix(float** matrix1, int row1, int column1, float** matrix2, in
     *matrixAns = temp;
 }
 
-void multiply_matrix(float** matrix1, int row1, int column1, float** matrix2, int row2, int column2, float*** matrixAns, int* rowAns, int* columnAns) {
-    float** temp;
+void multiply_matrix(double** matrix1, int row1, int column1, double** matrix2, int row2, int column2, double*** matrixAns, int* rowAns, int* columnAns) {
+    double** temp;
     if (column1 == row2) {
         *rowAns = row1;
         *columnAns = column2;
-        temp = MEM_ALLOCATE(float*, row1);
+        temp = MEM_ALLOCATE(double*, row1);
         for (int i = 0; i < row1; i++)
-            temp[i] = MEM_ALLOCATE(float, column2);
+            temp[i] = MEM_ALLOCATE(double, column2);
         for (int i = 0; i < row1; i++)
             for (int j = 0; j < column2; j++)
                 for (int k = 0; k < column1; k++)
@@ -436,9 +436,9 @@ void multiply_matrix(float** matrix1, int row1, int column1, float** matrix2, in
     else if (row1 == 1 && column1 == 1) {
         *rowAns = row2;
         *columnAns = column2;
-        temp = MEM_ALLOCATE(float*, row2);
+        temp = MEM_ALLOCATE(double*, row2);
         for (int i = 0; i < row2; i++)
-            temp[i] = MEM_ALLOCATE(float, column2);
+            temp[i] = MEM_ALLOCATE(double, column2);
         for (int i = 0; i < row2; i++)
             for (int j = 0; j < column2; j++)
                 temp[i][j] = matrix1[0][0] * matrix2[i][j];
@@ -446,9 +446,9 @@ void multiply_matrix(float** matrix1, int row1, int column1, float** matrix2, in
     else if (row2 == 1 && column2 == 1) {
         *rowAns = row1;
         *columnAns = column1;
-        temp = MEM_ALLOCATE(float*, row1);
+        temp = MEM_ALLOCATE(double*, row1);
         for (int i = 0; i < row1; i++)
-            temp[i] = MEM_ALLOCATE(float, column1);
+            temp[i] = MEM_ALLOCATE(double, column1);
         for (int i = 0; i < row1; i++)
             for (int j = 0; j < column1; j++)
                 temp[i][j] = matrix1[i][j] * matrix2[0][0];
@@ -456,8 +456,8 @@ void multiply_matrix(float** matrix1, int row1, int column1, float** matrix2, in
     else if ((row1 == 1 && column1 == 1) && (row2 == 1 && column2 == 1)) {
         *rowAns = row1;
         *columnAns = column1;
-        temp = MEM_ALLOCATE(float*, 1);
-        temp[0] = MEM_ALLOCATE(float, 1);
+        temp = MEM_ALLOCATE(double*, 1);
+        temp[0] = MEM_ALLOCATE(double, 1);
         temp[0][0] = matrix1[0][0] * matrix2[0][0];
     }
     else {
@@ -468,13 +468,13 @@ void multiply_matrix(float** matrix1, int row1, int column1, float** matrix2, in
     *matrixAns = temp;
 }
 
-void transpose_matrix(float** matrix, int row, int column, float*** matrixAns, int* rowAns, int* columnAns) {
-    float** temp;
+void transpose_matrix(double** matrix, int row, int column, double*** matrixAns, int* rowAns, int* columnAns) {
+    double** temp;
     *rowAns = column;
     *columnAns = row;
-    temp = MEM_ALLOCATE(float*, column);
+    temp = MEM_ALLOCATE(double*, column);
         for (int i = 0; i < column; i++)
-            temp[i] = MEM_ALLOCATE(float, row);
+            temp[i] = MEM_ALLOCATE(double, row);
         for (int i = 0; i < row; i++)
             for (int j = 0; j < column; j++)
                 temp[j][i] = matrix[i][j];

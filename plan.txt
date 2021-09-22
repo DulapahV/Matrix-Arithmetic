@@ -1,14 +1,14 @@
 Program Detail:
 1. Support 
-    - Addition (Done)
-    - Subtraction (Done)
-    - Multiplication (including multiplication of integer and matrixes) (Done)
+    - *Addition (Done)
+    - *Subtraction (Done)
+    - *Multiplication (including multiplication of integer and matrixes) (Done)
     - Determinant (Working on it)
     - Transposition (Done)
     - Inverse (Planning)
     - Adjoint (Planning)
 
-    * Also detects matrixes compatibility when performing operation
+    * Also detects matrix compatibility when performing operation
 
 2. Answer are automatically stored in 'Matrix Answer' so that it can be used to compute or perform further operation later on
 

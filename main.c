@@ -458,7 +458,7 @@ void transpose_matrix(double** matrix, int row, int column, double*** matrixAns,
 
 //---------------------------------------------------------------- Program Message
 void define_matrix_success_msg(char msg) {
-    printf("\nMatrix %c successfully defined!\n\n, msg");
+    printf("\nMatrix %c successfully defined!\n\n", msg);
 }
 
 void invalid_choice_msg() {

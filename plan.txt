@@ -1,4 +1,25 @@
-Program flow:
+Program Detail:
+1. Support 
+    - Addition (Done)
+    - Subtraction (Done)
+    - Multiplication (including multiplication of integer and matrixes) (Done)
+    - Determinant (Working on it)
+    - Transposition (Done)
+    - Inverse (Planning)
+    - Adjoint (Planning)
+
+    * Also detects matrixes compatibility when performing operation
+
+2. Answer are automatically stored in 'Matrix Answer' so that it can be used to compute or perform further operation later on
+
+3. User can view each stored matrix value (max stored matrix is 7)
+
+4. Selected matrix and answer are automatically output in the 'output.txt' with proper formatting (Planning)
+
+5. User has an option to clear selected/all matrix value (Planning)
+
+
+Program Flow:
 
 > What would you like to do
 [1] Define Matrix

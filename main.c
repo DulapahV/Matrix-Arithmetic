@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MEM_ALLOCATE(dataType, length) (dataType*)malloc((length) * sizeof(dataType))
+
 // Page
 void main_menu_page();
 void define_matrix_page();
@@ -299,9 +301,9 @@ void define_matrix(float*** matrix, int* row, int* column) {
     scanf("%d", column);
     printf("Enter value: \n");
     float** temp;
-    temp = (float**)malloc(*row * sizeof(float*));
+    temp = MEM_ALLOCATE(float*, *row);
     for (int i = 0; i < *row; i++)
-        temp[i] = (float*)malloc(*column * sizeof(float));
+        temp[i] = MEM_ALLOCATE(float, *column);
     for (int i = 0; i < *row; i++)
         for (int j = 0; j < *column; j++) {
             scanf("%f", &temp[i][j]);
@@ -383,9 +385,9 @@ void add_matrix(float** matrix1, int row1, int column1, float** matrix2, int row
     if ((row1 == row2) && (column1 == column2)) {
         *rowAns = row1;
         *columnAns = column1;
-        temp = (float**)malloc(row1 * sizeof(float*));
+        temp = MEM_ALLOCATE(float*, row1);
         for (int i = 0; i < row1; i++)
-            temp[i] = (float*)malloc(column1 * sizeof(float));
+            temp[i] = MEM_ALLOCATE(float, column1);
         for (int i = 0; i < row1; i++)
             for (int j = 0; j < column1; j++)
                 temp[i][j] = matrix1[i][j] + matrix2[i][j];
@@ -403,9 +405,9 @@ void subtract_matrix(float** matrix1, int row1, int column1, float** matrix2, in
     if ((row1 == row2) && (column1 == column2)) {
         *rowAns = row1;
         *columnAns = column1;
-        temp = (float**)malloc(row1 * sizeof(float*));
+        temp = MEM_ALLOCATE(float*, row1);
         for (int i = 0; i < row1; i++)
-            temp[i] = (float*)malloc(column1 * sizeof(float));
+            temp[i] = MEM_ALLOCATE(float, column1);
         for (int i = 0; i < row1; i++)
             for (int j = 0; j < column1; j++)
                 temp[i][j] = matrix1[i][j] - matrix2[i][j];
@@ -423,9 +425,9 @@ void multiply_matrix(float** matrix1, int row1, int column1, float** matrix2, in
     if (column1 == row2) {
         *rowAns = row1;
         *columnAns = column2;
-        temp = (float**)malloc(row1 * sizeof(float*));
+        temp = MEM_ALLOCATE(float*, row1);
         for (int i = 0; i < row1; i++)
-            temp[i] = (float*)malloc(column2 * sizeof(float));
+            temp[i] = MEM_ALLOCATE(float, column2);
         for (int i = 0; i < row1; i++)
             for (int j = 0; j < column2; j++)
                 for (int k = 0; k < column1; k++)
@@ -434,9 +436,9 @@ void multiply_matrix(float** matrix1, int row1, int column1, float** matrix2, in
     else if (row1 == 1 && column1 == 1) {
         *rowAns = row2;
         *columnAns = column2;
-        temp = (float**)malloc(row2 * sizeof(float*));
+        temp = MEM_ALLOCATE(float*, row2);
         for (int i = 0; i < row2; i++)
-            temp[i] = (float*)malloc(column2 * sizeof(float));
+            temp[i] = MEM_ALLOCATE(float, column2);
         for (int i = 0; i < row2; i++)
             for (int j = 0; j < column2; j++)
                 temp[i][j] = matrix1[0][0] * matrix2[i][j];
@@ -444,9 +446,9 @@ void multiply_matrix(float** matrix1, int row1, int column1, float** matrix2, in
     else if (row2 == 1 && column2 == 1) {
         *rowAns = row1;
         *columnAns = column1;
-        temp = (float**)malloc(row1 * sizeof(float*));
+        temp = MEM_ALLOCATE(float*, row1);
         for (int i = 0; i < row1; i++)
-            temp[i] = (float*)malloc(column1 * sizeof(float));
+            temp[i] = MEM_ALLOCATE(float, column1);
         for (int i = 0; i < row1; i++)
             for (int j = 0; j < column1; j++)
                 temp[i][j] = matrix1[i][j] * matrix2[0][0];
@@ -454,8 +456,8 @@ void multiply_matrix(float** matrix1, int row1, int column1, float** matrix2, in
     else if ((row1 == 1 && column1 == 1) && (row2 == 1 && column2 == 1)) {
         *rowAns = row1;
         *columnAns = column1;
-        temp = (float**)malloc(sizeof(float*));
-        temp[0] = (float*)malloc(sizeof(float));
+        temp = MEM_ALLOCATE(float*, 1);
+        temp[0] = MEM_ALLOCATE(float, 1);
         temp[0][0] = matrix1[0][0] * matrix2[0][0];
     }
     else {
@@ -470,9 +472,9 @@ void transpose_matrix(float** matrix, int row, int column, float*** matrixAns, i
     float** temp;
     *rowAns = column;
     *columnAns = row;
-    temp = (float**)malloc(column * sizeof(float*));
+    temp = MEM_ALLOCATE(float*, column);
         for (int i = 0; i < column; i++)
-            temp[i] = (float*)malloc(row * sizeof(float));
+            temp[i] = MEM_ALLOCATE(float, row);
         for (int i = 0; i < row; i++)
             for (int j = 0; j < column; j++)
                 temp[j][i] = matrix[i][j];

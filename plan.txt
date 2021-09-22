@@ -1,71 +1,103 @@
-Prompt user to 
-1. Define Matrix
-    1.1 MatA
-    1.2 MatB
-    1.3 MatC
-    1.4 MatD
-    1.5 MatE
-    1.6 MatF
-        1.1.1 Number of Rows: 2 
-        1.1.2 Number of Columns: 2
-            1.1.1.1 _  _
-                    _  _
-                    Enter value for position 1x1: 2
-            1.1.1.1 2  __
-                    __  __
-                    Enter value for position 1x2: 3
-2. Edit Matrix
-    2.1 MatA
-    2.2 MatB
-    2.3 MatC
-    2.4 MatD
-    2.5 MatE
-    2.6 MatF
-    2.7 MatAns
-        2.1.1   2 3
-                4 5
-                Enter position you want to change (i.e. 1x1) or type "back" to go back: 1x1
-                Enter value for position 1x1: 9
-        2.1.1   9 3
-                4 5
-                Enter position you want to change (i.e. 1x1): back
-3. Compute Matrix
-    3.1 Addition
-        3.1.1 Select the first matrix that you want to add
-            3.1.1 MatA
-            3.1.2 MatB
-            3.1.3 MatC
-            3.1.4 MatD
-            3.1.5 MatE
-            3.1.6 MatF
-            3.1.7 MatAns
-        3.2.1 Select the second matrix that you want to add
-            3.2.1 MatA
-            3.2.2 MatB
-            3.2.3 MatC
-            3.2.4 MatD
-            3.2.5 MatE
-            3.2.6 MatF
-            3.2.7 MatAns
-        3.2.3 The sum of MatA and MatB is:
-                _ _
-                _ _
-              Would you like to save this answer into MatAns for future use? (yes/no):
-    3.2 Subtraction
-    3.3 Multiplication
-    3.4 Division
-    3.5 Determinant
-        3.5.1 Select the matrix that you want to find determinant
-            3.5.1 MatA
-            3.5.2 MatB
-            3.5.3 MatC
-            3.5.4 MatD
-            3.5.5 MatE
-            3.5.6 MatF
-            3.5.7 MatAns
-        3.5.2 The determinant of MatA is:
-                63
-              Would you like to save this answer into MatAns for future use? (yes/no):
-    3.6 Transposition
-    3.7 Inverse
-4. Exit
+Program flow:
+
+> What would you like to do
+[1] Define Matrix
+    > Select a matrix to define
+    [1] Matrix A
+
+        Number of Rows: 2 
+        Number of Columns: 2
+        Enter value:
+            1 2 3
+            4 5 6
+            7 8 9
+
+        Matrix [selected matrix] successfully defined
+
+        Press any key to continue...
+
+    [2] Matrix B
+    [3] Matrix C
+    [4] Matrix D
+    [5] Matrix E
+    [6] Matrix F
+    [7] Go back
+
+
+[2] View Matrix
+    > Select a matrix to view
+    [1] Matrix A
+    [2] Matrix B
+    [3] Matrix C
+    [4] Matrix D
+    [5] Matrix E
+    [6] Matrix F
+    [7] Matrix Answer
+    [8] Go back
+
+        (If selected matrix is not empty)
+        Value:
+        1.00    2.00    3.00
+        4.00    5.00    6.00
+        7.00    8.00    9.00
+        
+        Press any key to continue...
+
+        (If selected matrix is empty)
+        Value:
+        [Empty]
+        
+        Press any key to continue...
+
+
+[3] Compute Matrix
+    > What operation would you like to perform
+    [1] Addition
+        > Select matrixes to add
+        [1] Matrix A
+        [2] Matrix B
+        [3] Matrix C
+        [4] Matrix D
+        [5] Matrix E
+        [6] Matrix F
+        [7] Matrix Answer
+        [8] Go back
+
+        Choice--> 1
+
+        [1] Matrix A
+        [2] Matrix B
+        [3] Matrix C
+        [4] Matrix D
+        [5] Matrix E
+        [6] Matrix F
+        [7] Matrix Answer
+        [8] Go back
+
+        Choice--> 1
+
+            (If matrixes are compatible)
+            > The sum is
+            2.00    4.00    6.00
+            8.00    10.00   12.00
+            14.00   16.00   18.00
+
+            Press any key to continue...
+
+            (If matrixes are incompatible)
+            Incompatible matrixes!
+
+            Press any key to continue...
+
+    [2] Subtraction
+    [3] Multiplication
+    [4] Determinant
+    [5] Transposition
+    [6] Inverse
+    [7] Adjoint
+    [8] Go back
+
+
+[4] Exit
+
+Choice-->

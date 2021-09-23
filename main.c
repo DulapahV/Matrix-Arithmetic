@@ -271,7 +271,7 @@ void compute_matrix_page() {
             system("pause");
             break;
         case 6:
-            printf("> Select a matrix to find adjoint\n");
+            printf("> Select a matrix to find inverse\n");
             if (select_matrix(&matrix1, &row1, &column1) != -1) {
                 if (row1 == column1) {
                     if (get_inverse(matrix1, row1, &matAns.matAns, &matAns.row, &matAns.column) != -1) {
@@ -561,7 +561,11 @@ void get_adjoint(double** matrix, int dimension, double*** matrixAns, int* rowAn
             for (int j = 0; j < dimension; j++) {
                 get_coFactor(matrix, coFactor, i, j, dimension);
                 sign = ((i + j) % 2 == 0)? 1: -1;
-                tempAns[j][i] = sign * (get_determinant(coFactor, dimension - 1)); 
+                double det = get_determinant(coFactor, dimension - 1);
+                if (det == 0 && sign == -1)
+                    tempAns[j][i] = det;
+                else
+                    tempAns[j][i] = sign * det;
             }
     }
     *matrixAns = tempAns;
@@ -569,9 +573,10 @@ void get_adjoint(double** matrix, int dimension, double*** matrixAns, int* rowAn
 
 int get_inverse(double** matrix, int dimension, double*** matrixAns, int* rowAns, int* columnAns) {
     double** tempAns, **coFactor;
+    double det = get_determinant(matrix, dimension);
     *rowAns = dimension;
     *columnAns = dimension;
-    if (get_determinant(matrix, dimension) != 0) {
+    if (det != 0) {
         coFactor = MEM_ALLOCATE(double*, dimension);
         tempAns = MEM_ALLOCATE(double*, dimension);
         for (int i = 0; i < dimension; i++) {
@@ -580,8 +585,13 @@ int get_inverse(double** matrix, int dimension, double*** matrixAns, int* rowAns
         }
         get_adjoint(matrix, dimension, &coFactor, rowAns, columnAns);
         for (int i = 0; i < dimension; i++)
-            for (int j = 0; j < dimension; j++)
-                tempAns[i][j] = coFactor[i][j] / get_determinant(matrix, dimension);
+            for (int j = 0; j < dimension; j++) {
+                double inverse = coFactor[i][j] / det;
+                if (inverse == -0)
+                    tempAns[i][j] = 0;
+                else
+                    tempAns[i][j] = inverse;
+            }
     }
     else
         return -1;
@@ -609,6 +619,6 @@ void unequal_dimension_error() {
 }
 
 void det_equal_zero_error() {
-    printf("Can't find inverse of singular matrix!\n\n");
+    printf("Cannot find inverse of singular matrix!\n\n");
 }
 //---------------------------------------------------------------- Program Message

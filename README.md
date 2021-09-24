@@ -5,7 +5,7 @@ Created by **Dulapah Vibulsanti (64011388)**
 
 # Project Description
 This project aims to create a matrix computing program that runs in the terminal. The key features are:
- 1. Wide varitety of operation
+ 1. Wide variety of operations
 	 - Addition
 	 - Subtraction
 	 - Multiplication

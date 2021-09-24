@@ -4,7 +4,7 @@
 #define MEM_ALLOCATE(dataType, length) (dataType*)malloc((length) * sizeof(dataType))
 
 // Page
-void main_menu_page();
+int main_menu_page();
 void define_matrix_page();
 void view_matrix_page();
 void compute_matrix_page();
@@ -81,11 +81,12 @@ struct matrix_Temp {
 // Main Program
 int main() {
     main_menu_page();
+    free_matrix();
     return 0;
 }
 
 //---------------------------------------------------------------- Page
-void main_menu_page() {
+int main_menu_page() {
     int choice;
     do {
         system("cls");
@@ -108,8 +109,7 @@ void main_menu_page() {
                 compute_matrix_page();
                 break;
             case 4:
-                free_matrix();
-                exit(0);
+                return 0;
             default:
                 invalid_choice_error();
                 system("pause");
@@ -233,9 +233,9 @@ void compute_matrix_page() {
             break;
         case 3:
             printf("> Select matrixes to multiply\n");
-            if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
-                compute_matrix_page();
             if ((choice = select_matrix(&matrix2, &row2, &column2)) == -1 || choice == -2)
+                compute_matrix_page();
+            if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
                 compute_matrix_page();
             if (multiply_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.matAns, &matAns.row, &matAns.column) != -1) {
                     printf("> The product is\n");
@@ -454,9 +454,11 @@ int multiply_matrix(double** matrix1, int row1, int column1, double** matrix2, i
         for (int i = 0; i < row1; i++)
             tempAns[i] = MEM_ALLOCATE(double, column2);
         for (int i = 0; i < row1; i++)
-            for (int j = 0; j < column2; j++)
+            for (int j = 0; j < column2; j++) {
+                tempAns[i][j] = 0;
                 for (int k = 0; k < column1; k++)
                     tempAns[i][j] += matrix1[i][k] * matrix2[k][j];
+            }
     }
     else if (row1 == 1 && column1 == 1) {
         *rowAns = row2;
@@ -489,6 +491,7 @@ int multiply_matrix(double** matrix1, int row1, int column1, double** matrix2, i
         return -1;
     *matrixAns = tempAns;
     return 0;
+    
 }
 
 double get_determinant(double** matrix, int dimension) {

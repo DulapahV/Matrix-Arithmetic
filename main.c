@@ -81,41 +81,39 @@ struct matrix_Temp {
 // Main Program
 int main() {
     main_menu_page();
-    free_matrix();
     return 0;
 }
 
 //---------------------------------------------------------------- Page
 int main_menu_page() {
     int choice;
-    do {
-        system("cls");
-        printf("> What would you like to do\n");
-        printf("[1] Define Matrix\n");
-        printf("[2] View Matrix\n");
-        printf("[3] Compute Matrix\n");
-        printf("[4] Exit\n");
-        printf("\nChoice--> ");
-        scanf("%d", &choice);
-        system("cls");
-        switch (choice) {
-            case 1:
-                define_matrix_page();
-                break;
-            case 2:
-                view_matrix_page();
-                break;
-            case 3:
-                compute_matrix_page();
-                break;
-            case 4:
-                return 0;
-            default:
-                invalid_choice_error();
-                system("pause");
-                break;
+    system("cls");
+    printf("> What would you like to do\n");
+    printf("[1] Define Matrix\n");
+    printf("[2] View Matrix\n");
+    printf("[3] Compute Matrix\n");
+    printf("[4] Exit\n");
+    printf("\nChoice--> ");
+    scanf("%d", &choice);
+    system("cls");
+    switch (choice) {
+        case 1:
+            define_matrix_page();
+            break;
+        case 2:
+            view_matrix_page();
+            break;
+        case 3:
+            compute_matrix_page();
+            break;
+        case 4:
+            free_matrix();
+            exit(0);
+        default:
+            invalid_choice_error();
+            system("pause");
+            break;
         }
-    } while (choice != 4);
 }
 
 void define_matrix_page() {

@@ -1,12 +1,12 @@
 Program Detail:
 1. Support 
-    - *Addition (Done)
-    - *Subtraction (Done)
-    - *Multiplication (including multiplication of integer and matrixes) (Done)
-    - Determinant (Working on it)
-    - Transposition (Done)
-    - Inverse (Planning)
-    - Adjoint (Planning)
+    - *Addition
+    - *Subtraction
+    - *Multiplication (including multiplication of integer and matrixes)
+    - Determinant
+    - Transposition
+    - Inverse
+    - Adjoint
 
     * Also detects matrix compatibility when performing operation
 
@@ -20,7 +20,6 @@ Program Detail:
 
 
 Program Flow:
-
 > What would you like to do
 [1] Define Matrix
     > Select a matrix to define
@@ -118,7 +117,8 @@ Program Flow:
     [7] Adjoint
     [8] Go back
 
+[4] Solve simultaneous equations (planning)
 
-[4] Exit
+[5] Exit
 
 Choice-->

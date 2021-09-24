@@ -114,6 +114,7 @@ int main_menu_page() {
             system("pause");
             break;
         }
+    main_menu_page();
 }
 
 void define_matrix_page() {

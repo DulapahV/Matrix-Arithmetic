@@ -511,7 +511,7 @@ double get_determinant(double** matrix, int dimension) {
         ans += sign * matrix[0][i] * get_determinant(coFactor, dimension - 1);
         sign = -sign;
     }
-    return (ans == -0) ? 0 : 0;
+    return (ans == -0) ? 0 : ans;
 }
 
 void get_coFactor(double** matrix, double** matrixTemp, int posX, int posY, int dimension) {

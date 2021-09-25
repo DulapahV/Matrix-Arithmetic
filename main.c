@@ -34,7 +34,7 @@ void det_equal_zero_error();
 
 // Storing Matrixes
 struct matrix_properties {
-    int row, column, det;
+    int row, column;
 };
 
 struct matrix_A {

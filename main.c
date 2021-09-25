@@ -4,7 +4,7 @@
 #define MEM_ALLOCATE(dataType, length) (dataType*)malloc((length) * sizeof(dataType))
 
 // Page
-int main_menu_page();
+void main_menu_page();
 void define_matrix_page();
 void view_matrix_page();
 void compute_matrix_page();
@@ -85,7 +85,7 @@ int main() {
 }
 
 //---------------------------------------------------------------- Page
-int main_menu_page() {
+void main_menu_page() {
     int choice;
     system("cls");
     printf("> What would you like to do\n");

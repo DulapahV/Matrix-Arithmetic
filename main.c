@@ -99,7 +99,6 @@ void main_menu_page() {
     printf("[4] Exit\n");
     printf("\nChoice--> ");
     scanf("%d", &choice);
-    system("cls");
     switch (choice) {
         case 1:
             define_matrix_page();
@@ -114,6 +113,7 @@ void main_menu_page() {
             free_matrix();
             exit(0);
         default:
+            printf("\n");
             invalid_choice_error();
             system("pause");
             break;
@@ -204,9 +204,9 @@ void compute_matrix_page() {
     printf("[8] Go back\n");
     printf("\nChoice--> ");
     scanf("%d", &choice);
-    system("cls");
     switch (choice) {
         case 1:
+            system("cls");
             printf("> Select matrixes to add\n");
             if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
                 compute_matrix_page();
@@ -221,6 +221,7 @@ void compute_matrix_page() {
             system("pause");
             break;
         case 2:
+            system("cls");
             printf("> Select matrixes to subtract\n");
             if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
                 compute_matrix_page();
@@ -235,6 +236,7 @@ void compute_matrix_page() {
             system("pause");
             break;
         case 3:
+            system("cls");
             printf("> Select matrixes to multiply\n");
             if ((choice = select_matrix(&matrix2, &row2, &column2)) == -1 || choice == -2)
                 compute_matrix_page();
@@ -249,6 +251,7 @@ void compute_matrix_page() {
             system("pause");
             break;
         case 4:
+            system("cls");
             printf("> Select a matrix to find determinant\n");
             if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
                 compute_matrix_page();
@@ -265,6 +268,7 @@ void compute_matrix_page() {
             system("pause");
             break;
         case 5:
+            system("cls");
             printf("> Select a matrix to transpose\n");
             if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
                 compute_matrix_page();
@@ -274,6 +278,7 @@ void compute_matrix_page() {
             system("pause");
             break;
         case 6:
+            system("cls");
             printf("> Select a matrix to find inverse\n");
             if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
                 compute_matrix_page();
@@ -290,6 +295,7 @@ void compute_matrix_page() {
             system("pause");
             break;
         case 7:
+            system("cls");
             printf("> Select a matrix to find adjoint\n");
             if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
                 compute_matrix_page();
@@ -306,6 +312,7 @@ void compute_matrix_page() {
             main_menu_page();
             break;
         default:
+            printf("\n");
             invalid_choice_error();
             system("pause");
             break;

@@ -511,7 +511,7 @@ double get_determinant(double** matrix, int dimension) {
         ans += sign * matrix[0][i] * get_determinant(coFactor, dimension - 1);
         sign = -sign;
     }
-    return ans;
+    return (ans == -0) ? 0 : 0;
 }
 
 void get_coFactor(double** matrix, double** matrixTemp, int posX, int posY, int dimension) {
@@ -560,7 +560,7 @@ void get_adjoint(double** matrix, int dimension, double*** matrixAns, int* rowAn
         for (int i = 0; i < dimension; i++)
             for (int j = 0; j < dimension; j++) {
                 get_coFactor(matrix, coFactor, i, j, dimension);
-                sign = ((i + j) % 2 == 0)? 1: -1;
+                sign = ((i + j) % 2 == 0) ? 1 : -1;
                 double det = get_determinant(coFactor, dimension - 1);
                 if (det == 0 && sign == -1)
                     tempAns[j][i] = det;

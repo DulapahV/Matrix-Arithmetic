@@ -75,13 +75,6 @@ struct matrix_Ans {
     int column;
 } matAns;
 
-struct matrix_Temp {
-    double** matTemp;
-    int row;
-    int column;
-} matTemp;
-
-
 // Main Program
 int main() {
     main_menu_page();

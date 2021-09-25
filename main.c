@@ -33,48 +33,52 @@ void unequal_dimension_error();
 void det_equal_zero_error();
 
 // Storing Matrixes
-struct matrix_properties {
-    int row, column;
-};
-
 struct matrix_A {
     double** matA;
-    struct matrix_properties;
+    int row;
+    int column;
 } matA;
 
 struct matrix_B {
     double** matB;
-    struct matrix_properties;
+    int row;
+    int column;
 } matB;
 
 struct matrix_C {
     double** matC;
-    struct matrix_properties;
+    int row;
+    int column;
 } matC;
 
 struct matrix_D {
     double** matD;
-    struct matrix_properties;
+    int row;
+    int column;
 } matD;
 
 struct matrix_E {
     double** matE;
-    struct matrix_properties;
+    int row;
+    int column;
 } matE;
 
 struct matrix_F {
     double** matF;
-    struct matrix_properties;
+    int row;
+    int column;
 } matF;
 
 struct matrix_Ans {
     double** matAns;
-    struct matrix_properties;
+    int row;
+    int column;
 } matAns;
 
 struct matrix_Temp {
     double** matTemp;
-    struct matrix_properties;
+    int row;
+    int column;
 } matTemp;
 
 

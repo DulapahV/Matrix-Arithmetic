@@ -178,8 +178,8 @@ Finding adjoint of *matrix A* must give out
 
 Multiplying *1/det(A)* with the adjoint of *matrix A* must give out the inverse of *matrix A*
 
-    0.44    -0.38
-    -0.13   0.25
+    0.60    -0.70
+    -0.20   0.40
 
 ### Fourth Test (Testing Incompatible Matrix)
 Suppose *matrix B* is

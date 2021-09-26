@@ -159,8 +159,8 @@ Multiplying *matrix A* together must give out
     22	61
 Finding the inverse of *matrix A* must give out
 
-    0.44    -0.38
-    -0.13   0.25
+    0.60    -0.70
+    -0.20   0.40
 And multiplying the product of matrix A and the inverse of the matrix must give out *identity matrix*
 
     1	0

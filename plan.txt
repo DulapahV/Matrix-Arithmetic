@@ -124,8 +124,8 @@ This project aims to create a matrix computing program that runs in the terminal
             [7] Adjoint
             [8] Go back
         
-        [4] Solve simultaneous equations (coming soon)
+    [4] Solve simultaneous equations (coming soon)
         
-        [5] Exit
+    [5] Exit
         
-        Choice-->
+    Choice-->

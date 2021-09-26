@@ -470,7 +470,7 @@ int multiply_matrix(double** matrix1, int row1, int column1, double** matrix2, i
                 tempAns[i][j] = matrix1[0][0] * matrix2[i][j];
     }
     else if (row2 == 1 && column2 == 1) {
-        *rowAns = row1, *columnAns = column1;;
+        *rowAns = row1, *columnAns = column1;
         tempAns = MEM_ALLOCATE(double*, row1);
         for (int i = 0; i < row1; i++)
             tempAns[i] = MEM_ALLOCATE(double, column1);
@@ -479,7 +479,7 @@ int multiply_matrix(double** matrix1, int row1, int column1, double** matrix2, i
                 tempAns[i][j] = matrix1[i][j] * matrix2[0][0];
     }
     else if ((row1 == 1 && column1 == 1) && (row2 == 1 && column2 == 1)) {
-        *rowAns = row1, *columnAns = column1;;
+        *rowAns = row1, *columnAns = column1;
         tempAns = MEM_ALLOCATE(double*, 1);
         tempAns[0] = MEM_ALLOCATE(double, 1);
         tempAns[0][0] = matrix1[0][0] * matrix2[0][0];
@@ -542,9 +542,12 @@ void get_adjoint(double** matrix, int dimension, double*** matrixAns, int* rowAn
         tempAns[0][0] = 1;
     }
     else {
-        coFactor = tempAns = MEM_ALLOCATE(double*, dimension);
-        for (int i = 0; i < dimension; i++)
-            coFactor[i] = tempAns[i] = MEM_ALLOCATE(double, dimension);    
+        coFactor = MEM_ALLOCATE(double*, dimension);
+        tempAns = MEM_ALLOCATE(double*, dimension);
+        for (int i = 0; i < dimension; i++) {
+            coFactor[i] = MEM_ALLOCATE(double, dimension);
+            tempAns[i] = MEM_ALLOCATE(double, dimension);
+        }       
         for (int i = 0; i < dimension; i++)
             for (int j = 0; j < dimension; j++) {
                 get_coFactor(matrix, coFactor, i, j, dimension);
@@ -560,7 +563,8 @@ int inverse_matrix(double** matrix, int dimension, double*** matrixAns, int* row
     double** tempAns, **coFactor, det = get_determinant(matrix, dimension), inverse;
     *rowAns = dimension, *columnAns = dimension;
     if (det != 0) {
-        coFactor = tempAns = MEM_ALLOCATE(double*, dimension);
+        coFactor = MEM_ALLOCATE(double*, dimension);
+        tempAns = MEM_ALLOCATE(double*, dimension);
         for (int i = 0; i < dimension; i++)
             coFactor[i] = tempAns[i] = MEM_ALLOCATE(double, dimension);
         get_adjoint(matrix, dimension, &coFactor, rowAns, columnAns);

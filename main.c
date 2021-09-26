@@ -158,6 +158,7 @@ void define_matrix_page() {
             define_matrix_page();
             break;
     }
+    printf("\n");
     define_matrix_success_msg('A' + choice - 1);
     system("pause");
     define_matrix_page();
@@ -165,10 +166,9 @@ void define_matrix_page() {
 
 void view_matrix_page() {
     system("cls");
-    double** matrix;
-    int row, column;
     printf("> Select a matrix to view\n");
-    int choice = select_matrix(&matrix, &row, &column);
+    double** matrix;
+    int row, column, choice = select_matrix(&matrix, &row, &column);
     switch (choice) {
         case -2:
             main_menu_page();
@@ -492,8 +492,7 @@ int multiply_matrix(double** matrix1, int row1, int column1, double** matrix2, i
 }
 
 double get_determinant(double** matrix, int dimension) {
-    double** coFactor;
-    double ans = 0;
+    double** coFactor, ans = 0;
     int sign = 1;
     if (dimension == 1)
         return matrix[0][0];
@@ -558,8 +557,7 @@ void get_adjoint(double** matrix, int dimension, double*** matrixAns, int* rowAn
 }
 
 int inverse_matrix(double** matrix, int dimension, double*** matrixAns, int* rowAns, int* columnAns) {
-    double** tempAns, **coFactor;
-    double inverse, det = get_determinant(matrix, dimension);
+    double** tempAns, **coFactor, det = get_determinant(matrix, dimension), inverse;
     *rowAns = dimension, *columnAns = dimension;
     if (det != 0) {
         coFactor = tempAns = MEM_ALLOCATE(double*, dimension);
@@ -580,7 +578,7 @@ int inverse_matrix(double** matrix, int dimension, double*** matrixAns, int* row
 
 //---------------------------------------------------------------- Program Message
 void define_matrix_success_msg(char msg) {
-    printf("\nMatrix %c successfully defined!\n\n", msg);
+    printf("Matrix %c successfully defined!\n\n", msg);
 }
 
 void invalid_choice_error() {

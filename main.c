@@ -565,8 +565,10 @@ int inverse_matrix(double** matrix, int dimension, double*** matrixAns, int* row
     if (det != 0) {
         coFactor = MEM_ALLOCATE(double*, dimension);
         tempAns = MEM_ALLOCATE(double*, dimension);
-        for (int i = 0; i < dimension; i++)
-            coFactor[i] = tempAns[i] = MEM_ALLOCATE(double, dimension);
+        for (int i = 0; i < dimension; i++) {
+            coFactor[i] = MEM_ALLOCATE(double, dimension);
+            tempAns[i] = MEM_ALLOCATE(double, dimension);
+        }
         get_adjoint(matrix, dimension, &coFactor, rowAns, columnAns);
         for (int i = 0; i < dimension; i++)
             for (int j = 0; j < dimension; j++)

@@ -336,7 +336,7 @@ void view_matrix(double** matrix, int row, int column) {
     if (row != 0 && column != 0)
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++)
-                printf("%.2lf\t", matrix[i][j]);
+                (matrix[i][j] == -0) ? printf("0\t") : printf("%.2lf\t", matrix[i][j]);
         printf("\n");
         }
     else
@@ -495,7 +495,7 @@ double get_determinant(double** matrix, int dimension) {
     double** coFactor, ans = 0;
     int sign = 1;
     if (dimension == 1)
-        return matrix[0][0];
+        return (matrix[0][0] == -0) ? 0 : matrix[0][0];
     coFactor = MEM_ALLOCATE(double*, dimension);
     for (int i = 0; i < dimension; i++)
         coFactor[i] = MEM_ALLOCATE(double, dimension);

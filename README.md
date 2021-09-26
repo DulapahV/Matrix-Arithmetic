@@ -138,19 +138,19 @@ This project aims to create a matrix computing program that runs in the terminal
 # Testing Scheme
 Suppose *matrix A* is
 
-    4	6
-    2	7
+    4	7
+    2	6
 
 ### First Test (Adding and Subtracting)
 Adding *matrix A* together must give out
 
-    8	12
-    4	14
+    8	14
+    4	12
 
 And subtracting the result with *matrix A* must give out the original value of *matrix A*
 
-    4	6
-    2	7
+    4	7
+    2	6
 
 ### Second Test (Multiplying and Inverse)
 Multiplying *matrix A* together must give out
@@ -161,6 +161,7 @@ Finding the inverse of *matrix A* must give out
 
     0.60    -0.70
     -0.20   0.40
+
 And multiplying the product of matrix A and the inverse of the matrix must give out *identity matrix*
 
     1	0
@@ -169,17 +170,17 @@ And multiplying the product of matrix A and the inverse of the matrix must give 
 ### Third Test (Determinant and Adjoint)
 Finding the determinant of *matrix A* must give out
 
-    16
+    10
 
 Finding adjoint of *matrix A* must give out
 
-    4	2
-    6	7
+    6	-7
+    -2	4
 
 Multiplying *1/det(A)* with the adjoint of *matrix A* must give out the inverse of *matrix A*
 
-    0.44    -0.38
-    -0.13   0.25
+    0.60    -0.70
+    -0.20   0.40
 
 ### Fourth Test (Testing Incompatible Matrix)
 Suppose *matrix B* is

@@ -13,7 +13,7 @@ This project aims to create a matrix computing program that runs in the terminal
 	 - Transposition
 	 - Inverse
 	 - Adjoint
-	 - Solving simultaneous equations (coming soon)
+	 - Solving simultaneous equations using Cramer's rule (coming soon)
 
 	*Program will also automatically detect matrix compatibility when performing certain operation.
 	

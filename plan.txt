@@ -10,7 +10,7 @@ The README will be separated into 3 parts:
 
 # Project Description
 This project aims to create a matrix computing program that runs in the terminal. The key features are:
- 1. Wide variety of operation
+ 1. Wide variety of operations
 	 - Addition
 	 - Subtraction
 	 - Multiplication
@@ -18,7 +18,7 @@ This project aims to create a matrix computing program that runs in the terminal
 	 - Transposition
 	 - Inverse
 	 - Adjoint
-	 - Solving simultaneous equations (coming soon)
+	 - Solving simultaneous equations using Cramer's rule(coming soon)
 
 	*Program will also automatically detect matrix compatibility when performing certain operations.
 	

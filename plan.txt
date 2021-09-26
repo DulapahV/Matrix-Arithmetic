@@ -192,7 +192,7 @@ Adding/subtracting/multiplying *matrix A* with *matrix B* must give out *incompa
 
     Incompatible matrix dimension!
 
-FInding determinant/inverse of a matrix with unequal row and column must give out *unequal matrix dimension error*
+Finding determinant/inverse of a matrix with unequal row and column must give out *unequal matrix dimension error*
 
     Matrix dimension must be equal!
 

@@ -12,7 +12,7 @@ void compute_matrix_page();
 // Matrix
 void define_matrix(double*** matrix, int* row, int* column);
 void view_matrix(double** matrix, int row, int column);
-int select_matrix(double*** matrix, int* row, int* column); // Return -1 to signal the program to go back to previous page, otherwise 0
+int select_matrix(double*** matrix, int* row, int* column); // Return -2 to signal the program to go back to previous page, otherwise 0
 void free_matrix();
 
 // Matrix Arithmetic (Return 0 if input matrix is valid, otherwise -1)
@@ -88,13 +88,10 @@ void main_menu_page() {
     switch (choice) {
         case 1:
             define_matrix_page();
-            break;
         case 2:
             view_matrix_page();
-            break;
         case 3:
             compute_matrix_page();
-            break;
         case 4:
             free_matrix();
             exit(0);
@@ -102,7 +99,6 @@ void main_menu_page() {
             printf("\n");
             invalid_choice_error();
             system("pause");
-            break;
         }
     main_menu_page();
 }
@@ -143,13 +139,11 @@ void define_matrix_page() {
             break;
         case 7:
             main_menu_page();
-            break;
         default:
             printf("\n");
             invalid_choice_error();
             system("pause");
             define_matrix_page();
-            break;
     }
     printf("\n");
     define_matrix_success_msg('A' + choice - 1);
@@ -301,7 +295,6 @@ void compute_matrix_page() {
             printf("\n");
             invalid_choice_error();
             system("pause");
-            break;
     }
     compute_matrix_page();
 }
@@ -348,39 +341,25 @@ int select_matrix(double*** matrix, int* row, int* column) {
     printf("\n");
     switch (choice) {
         case 1:
-            *matrix = matA.matA;
-            *row = matA.row;
-            *column = matA.column;
+            *matrix = matA.matA, *row = matA.row, *column = matA.column;
             break;
         case 2:
-            *matrix = matB.matB;
-            *row = matB.row;
-            *column = matB.column;
+            *matrix = matB.matB, *row = matB.row, *column = matB.column;
             break;
         case 3:
-            *matrix = matC.matC;
-            *row = matC.row;
-            *column = matC.column;
+            *matrix = matC.matC, *row = matC.row, *column = matC.column;
             break;
         case 4:
-            *matrix = matD.matD;
-            *row = matD.row;
-            *column = matD.column;
+            *matrix = matD.matD, *row = matD.row, *column = matD.column;
             break;
         case 5:
-            *matrix = matE.matE;
-            *row = matE.row;
-            *column = matE.column;
+            *matrix = matE.matE, *row = matE.row, *column = matE.column;
             break;
         case 6:
-            *matrix = matF.matF;
-            *row = matF.row;
-            *column = matF.column;
+            *matrix = matF.matF, *row = matF.row, *column = matF.column;
             break;
         case 7:
-            *matrix = matAns.matAns;
-            *row = matAns.row;
-            *column = matAns.column;
+            *matrix = matAns.matAns, *row = matAns.row, *column = matAns.column;
             break;
         case 8:
             return -2;

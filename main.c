@@ -35,44 +35,37 @@ void det_equal_zero_error();
 // Storing Matrixes
 struct matrix_A {
     double** matA;
-    int row;
-    int column;
+    int row, column;
 } matA;
 
 struct matrix_B {
     double** matB;
-    int row;
-    int column;
+    int row, column;
 } matB;
 
 struct matrix_C {
     double** matC;
-    int row;
-    int column;
+    int row, column;
 } matC;
 
 struct matrix_D {
     double** matD;
-    int row;
-    int column;
+    int row, column;
 } matD;
 
 struct matrix_E {
     double** matE;
-    int row;
-    int column;
+    int row, column;
 } matE;
 
 struct matrix_F {
     double** matF;
-    int row;
-    int column;
+    int row, column;
 } matF;
 
 struct matrix_Ans {
     double** matAns;
-    int row;
-    int column;
+    int row, column;
 } matAns;
 
 // Main Program
@@ -480,8 +473,7 @@ int multiply_matrix(double** matrix1, int row1, int column1, double** matrix2, i
     }
     else if ((row1 == 1 && column1 == 1) && (row2 == 1 && column2 == 1)) {
         *rowAns = row1, *columnAns = column1;
-        tempAns = MEM_ALLOCATE(double*, 1);
-        tempAns[0] = MEM_ALLOCATE(double, 1);
+        tempAns = MEM_ALLOCATE(double*, 1), tempAns[0] = MEM_ALLOCATE(double, 1);
         tempAns[0][0] = matrix1[0][0] * matrix2[0][0];
     }
     else
@@ -537,17 +529,13 @@ void get_adjoint(double** matrix, int dimension, double*** matrixAns, int* rowAn
     int sign = 1;
     *rowAns = dimension, *columnAns = dimension;
     if (dimension == 1) {
-        tempAns = MEM_ALLOCATE(double*, dimension);
-        tempAns[0] = MEM_ALLOCATE(double, dimension);
+        tempAns = MEM_ALLOCATE(double*, dimension), tempAns[0] = MEM_ALLOCATE(double, dimension);
         tempAns[0][0] = 1;
     }
     else {
-        coFactor = MEM_ALLOCATE(double*, dimension);
-        tempAns = MEM_ALLOCATE(double*, dimension);
-        for (int i = 0; i < dimension; i++) {
-            coFactor[i] = MEM_ALLOCATE(double, dimension);
-            tempAns[i] = MEM_ALLOCATE(double, dimension);
-        }       
+        coFactor = MEM_ALLOCATE(double*, dimension), tempAns = MEM_ALLOCATE(double*, dimension);
+        for (int i = 0; i < dimension; i++)
+            coFactor[i] = MEM_ALLOCATE(double, dimension), tempAns[i] = MEM_ALLOCATE(double, dimension); 
         for (int i = 0; i < dimension; i++)
             for (int j = 0; j < dimension; j++) {
                 get_coFactor(matrix, coFactor, i, j, dimension);
@@ -560,15 +548,12 @@ void get_adjoint(double** matrix, int dimension, double*** matrixAns, int* rowAn
 }
 
 int inverse_matrix(double** matrix, int dimension, double*** matrixAns, int* rowAns, int* columnAns) {
-    double** tempAns, **coFactor, det = get_determinant(matrix, dimension), inverse;
+    double** tempAns, **coFactor, inverse, det = get_determinant(matrix, dimension);
     *rowAns = dimension, *columnAns = dimension;
     if (det != 0) {
-        coFactor = MEM_ALLOCATE(double*, dimension);
-        tempAns = MEM_ALLOCATE(double*, dimension);
-        for (int i = 0; i < dimension; i++) {
-            coFactor[i] = MEM_ALLOCATE(double, dimension);
-            tempAns[i] = MEM_ALLOCATE(double, dimension);
-        }
+        coFactor = MEM_ALLOCATE(double*, dimension), tempAns = MEM_ALLOCATE(double*, dimension);
+        for (int i = 0; i < dimension; i++)
+            coFactor[i] = MEM_ALLOCATE(double, dimension), tempAns[i] = MEM_ALLOCATE(double, dimension);
         get_adjoint(matrix, dimension, &coFactor, rowAns, columnAns);
         for (int i = 0; i < dimension; i++)
             for (int j = 0; j < dimension; j++)

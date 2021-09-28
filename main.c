@@ -336,7 +336,7 @@ void view_matrix(double** matrix, int row, int column) {
     if (row != 0 && column != 0)
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++)
-                (matrix[i][j] == -0) ? printf("0\t") : printf("%.2lf\t", matrix[i][j]);
+                (matrix[i][j] == 0) ? printf("0.00\t") : printf("%.2lf\t", matrix[i][j]);
         printf("\n");
         }
     else
@@ -495,7 +495,7 @@ double get_determinant(double** matrix, int dimension) {
     double** coFactor, ans = 0;
     int sign = 1;
     if (dimension == 1)
-        return (matrix[0][0] == -0) ? 0 : matrix[0][0];
+        return matrix[0][0];
     coFactor = MEM_ALLOCATE(double*, dimension);
     for (int i = 0; i < dimension; i++)
         coFactor[i] = MEM_ALLOCATE(double, dimension);
@@ -504,7 +504,7 @@ double get_determinant(double** matrix, int dimension) {
         ans += sign * matrix[0][i] * get_determinant(coFactor, dimension - 1);
         sign = -sign;
     }
-    return (ans == -0) ? 0 : ans;
+    return ans;
 }
 
 void get_coFactor(double** matrix, double** matrixTemp, int posX, int posY, int dimension) {
@@ -572,7 +572,7 @@ int inverse_matrix(double** matrix, int dimension, double*** matrixAns, int* row
         get_adjoint(matrix, dimension, &coFactor, rowAns, columnAns);
         for (int i = 0; i < dimension; i++)
             for (int j = 0; j < dimension; j++)
-                tempAns[i][j] = ((inverse = coFactor[i][j] / det) == -0) ? 0 : inverse;
+                tempAns[i][j] = coFactor[i][j] / det;
     }
     else
         return -1;

@@ -147,22 +147,18 @@ Adding *matrix A* together must give out
     8	14
     4	12
 
-And subtracting the result with *matrix A* must give out the original value of *matrix A*
+And subtracting the *sum of matrix A* with *matrix A* must give out the original value of *matrix A*
 
     4	7
     2	6
 
 ### Second Test (Multiplying and Inverse)
-Multiplying *matrix A* together must give out
-
-    28	66
-    22	61
-Finding the inverse of *matrix A* must give out
+Finding the *inverse of matrix A* must give out
 
     0.60    -0.70
     -0.20   0.40
 
-And multiplying the product of matrix A and the inverse of the matrix must give out *identity matrix*
+And multiplying the the *inverse of matrix A* with *matrix A* must give out *identity matrix*
 
     1	0
     0	1

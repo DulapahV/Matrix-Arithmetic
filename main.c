@@ -322,7 +322,7 @@ void view_matrix(double** matrix, int row, int column) {
     if (row != 0 && column != 0)
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++)
-                (matrix[i][j] == 0) ? printf("0.00\t") : printf("%.2lf\t", matrix[i][j]);
+                (matrix[i][j] == 0) ? printf("%.2lf\t", 0) : printf("%.2lf\t", matrix[i][j]);
         printf("\n");
         }
     else

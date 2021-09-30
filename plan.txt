@@ -5,6 +5,7 @@ Created by **Dulapah Vibulsanti (64011388)**
 
 The README will be separated into 3 parts:
  - Project Description
+ - To Do List
  - Program Flow
  - Testing Scheme
 
@@ -29,6 +30,15 @@ This project aims to create a matrix computing program that runs in the terminal
 4. Answer is automatically output in the 'output.txt' with proper formatting (coming soon)
 
 5. User has an option to clear selected/all matrix values (coming soon)
+
+# To do list
+ - [x] Design UI and program flow 
+ - [x] Implement arithmetics (add, subtract, multiply)
+ - [x] Implement additional features (determinant, transpose, inverse, adjoint)
+ - [ ] Implement simultaneous equation solver using Cramer's rule
+ - [ ] Add proper comments in the code
+ - [ ] Make code easier to read and maintain
+ - [ ] Creating documentation
 
 # Program Flow
     > What would you like to do

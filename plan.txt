@@ -36,6 +36,8 @@ This project aims to create a matrix computing program that runs in the terminal
  - [x] Implement arithmetics (add, subtract, multiply)
  - [x] Implement additional features (determinant, transpose, inverse, adjoint)
  - [ ] Implement simultaneous equation solver using Cramer's rule
+ - [ ] Implement outputting result to a file
+ - [ ] Implement option for user to clear selected/all matrix values
  - [ ] Add proper comments in the code
  - [ ] Make code easier to read and maintain
  - [ ] Creating documentation

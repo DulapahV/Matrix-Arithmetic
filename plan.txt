@@ -40,7 +40,7 @@ This project aims to create a matrix computing program that runs in the terminal
  - [ ] Implement option for user to clear selected/all matrix values
  - [ ] Add proper comments in the code
  - [ ] Make code easier to read and maintain
- - [ ] Creating documentation
+ - [ ] Create documentation
 
 # Program Flow
     > What would you like to do

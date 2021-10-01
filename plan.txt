@@ -19,7 +19,6 @@ This project aims to create a matrix computing program that runs in the terminal
 	 - Transposition
 	 - Inverse
 	 - Adjoint
-	 - Solving simultaneous equations using Cramer's rule (coming soon)
 
 	*Program will also automatically detect matrix compatibility when performing certain operations.
 	
@@ -35,7 +34,6 @@ This project aims to create a matrix computing program that runs in the terminal
  - [x] Design UI and program flow 
  - [x] Implement arithmetics (add, subtract, multiply)
  - [x] Implement additional features (determinant, transpose, inverse, adjoint)
- - [ ] Implement simultaneous equation solver using Cramer's rule
  - [ ] Implement outputting result to a file
  - [ ] Implement option for user to clear selected/all matrix values
  - [ ] Add proper comments in the code

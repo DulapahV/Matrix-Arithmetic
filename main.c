@@ -1,7 +1,12 @@
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-//
+// Project Matrix-Arithmetic                //
+// Written by Dulapah Vibulsanti (64011388) //
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-//
+
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MEM_ALLOCATE(dataType, length) (dataType*)malloc((length) * sizeof(dataType))
+#define MEM_ALLOCATE(dataType, length) (dataType *)malloc((length) * sizeof(dataType))
 
 // Page
 void main_menu_page();
@@ -10,20 +15,20 @@ void view_matrix_page();
 void compute_matrix_page();
 
 // Matrix
-void define_matrix(double*** matrix, int* row, int* column);
-void view_matrix(double** matrix, int row, int column);
-int select_matrix(double*** matrix, int* row, int* column); // Return -2 to signal the program to go back to previous page, otherwise 0
+void define_matrix(double ***matrix, int *row, int *column);
+void view_matrix(double **matrix, int row, int column);
+int select_matrix(double ***matrix, int *row, int *column); // Return -2 to signal the program to go back to previous page, otherwise 0
 void free_matrix();
 
 // Matrix Arithmetic (Return 0 if input matrix is valid, otherwise -1)
-int add_matrix(double** matrix1, int row1, int column1, double** matrix2, int row2, int column2, double*** matrixAns, int* rowAns, int* columnAns);
-int subtract_matrix(double** matrix1, int row1, int column1, double** matrix2, int row2, int column2, double*** matrixAns, int* rowAns, int* columnAns);
-int multiply_matrix(double** matrix1, int row1, int column1, double** matrix2, int row2, int column2, double*** matrixAns, int* rowAns, int* columnAns);
-double get_determinant(double** matrix, int dimension);
-void get_coFactor(double** matrix, double** matrixTemp, int posX, int posY, int dimension);
-void transpose_matrix(double** matrix, int row, int column, double*** matrixAns, int* rowAns, int* columnAns);
-void get_adjoint(double** matrix, int dimension, double*** matrixAns, int* rowAns, int* columnAns);
-int inverse_matrix(double** matrix, int dimension, double*** matrixAns, int* rowAns, int* columnAns);
+int add_matrix(double **matrix1, int row1, int column1, double **matrix2, int row2, int column2, double ***matrixAns, int *rowAns, int *columnAns);
+int subtract_matrix(double **matrix1, int row1, int column1, double **matrix2, int row2, int column2, double ***matrixAns, int *rowAns, int *columnAns);
+int multiply_matrix(double **matrix1, int row1, int column1, double **matrix2, int row2, int column2, double ***matrixAns, int *rowAns, int *columnAns);
+double get_determinant(double **matrix, int dimension);
+void get_coFactor(double **matrix, double **matrixTemp, int posX, int posY, int dimension);
+void transpose_matrix(double **matrix, int row, int column, double ***matrixAns, int *rowAns, int *columnAns);
+void get_adjoint(double **matrix, int dimension, double ***matrixAns, int *rowAns, int *columnAns);
+int inverse_matrix(double **matrix, int dimension, double ***matrixAns, int *rowAns, int *columnAns);
 
 // Program Message/Error
 void define_matrix_success_msg(char msg);
@@ -34,37 +39,37 @@ void det_equal_zero_error();
 
 // Storing Matrixes
 struct matrix_A {
-    double** matA;
+    double **matA;
     int row, column;
 } matA;
 
 struct matrix_B {
-    double** matB;
+    double **matB;
     int row, column;
 } matB;
 
 struct matrix_C {
-    double** matC;
+    double **matC;
     int row, column;
 } matC;
 
 struct matrix_D {
-    double** matD;
+    double **matD;
     int row, column;
 } matD;
 
 struct matrix_E {
-    double** matE;
+    double **matE;
     int row, column;
 } matE;
 
 struct matrix_F {
-    double** matF;
+    double **matF;
     int row, column;
 } matF;
 
 struct matrix_Ans {
-    double** matAns;
+    double **matAns;
     int row, column;
 } matAns;
 
@@ -86,20 +91,20 @@ void main_menu_page() {
     printf("\nChoice--> ");
     scanf("%d", &choice);
     switch (choice) {
-        case 1:
-            define_matrix_page();
-        case 2:
-            view_matrix_page();
-        case 3:
-            compute_matrix_page();
-        case 4:
-            free_matrix();
-            exit(0);
-        default:
-            printf("\n");
-            invalid_choice_error();
-            system("pause");
-        }
+    case 1:
+        define_matrix_page();
+    case 2:
+        view_matrix_page();
+    case 3:
+        compute_matrix_page();
+    case 4:
+        free_matrix();
+        exit(0);
+    default:
+        printf("\n");
+        invalid_choice_error();
+        system("pause");
+    }
     main_menu_page();
 }
 
@@ -113,37 +118,37 @@ void define_matrix_page() {
     printf("\nChoice--> ");
     scanf("%d", &choice);
     switch (choice) {
-        case 1:
-            printf("\n> Define matrix %c\n", 'A' + choice - 1);
-            define_matrix(&matA.matA, &matA.row, &matA.column);
-            break;
-        case 2:
-            printf("\n> Define matrix %c\n", 'A' + choice - 1);
-            define_matrix(&matB.matB, &matB.row, &matB.column);
-            break;
-        case 3:
-            printf("\n> Define matrix %c\n", 'A' + choice - 1);
-            define_matrix(&matC.matC, &matC.row, &matC.column);
-            break;
-        case 4:
-            printf("\n> Define matrix %c\n", 'A' + choice - 1);
-            define_matrix(&matD.matD, &matD.row, &matD.column);
-            break;
-        case 5:
-            printf("\n> Define matrix %c\n", 'A' + choice - 1);
-            define_matrix(&matE.matE, &matE.row, &matE.column);
-            break;
-        case 6:
-            printf("\n> Define matrix %c\n", 'A' + choice - 1);
-            define_matrix(&matF.matF, &matF.row, &matF.column);
-            break;
-        case 7:
-            main_menu_page();
-        default:
-            printf("\n");
-            invalid_choice_error();
-            system("pause");
-            define_matrix_page();
+    case 1:
+        printf("\n> Define matrix %c\n", 'A' + choice - 1);
+        define_matrix(&matA.matA, &matA.row, &matA.column);
+        break;
+    case 2:
+        printf("\n> Define matrix %c\n", 'A' + choice - 1);
+        define_matrix(&matB.matB, &matB.row, &matB.column);
+        break;
+    case 3:
+        printf("\n> Define matrix %c\n", 'A' + choice - 1);
+        define_matrix(&matC.matC, &matC.row, &matC.column);
+        break;
+    case 4:
+        printf("\n> Define matrix %c\n", 'A' + choice - 1);
+        define_matrix(&matD.matD, &matD.row, &matD.column);
+        break;
+    case 5:
+        printf("\n> Define matrix %c\n", 'A' + choice - 1);
+        define_matrix(&matE.matE, &matE.row, &matE.column);
+        break;
+    case 6:
+        printf("\n> Define matrix %c\n", 'A' + choice - 1);
+        define_matrix(&matF.matF, &matF.row, &matF.column);
+        break;
+    case 7:
+        main_menu_page();
+    default:
+        printf("\n");
+        invalid_choice_error();
+        system("pause");
+        define_matrix_page();
     }
     printf("\n");
     define_matrix_success_msg('A' + choice - 1);
@@ -154,16 +159,16 @@ void define_matrix_page() {
 void view_matrix_page() {
     system("cls");
     printf("> Select a matrix to view\n");
-    double** matrix;
+    double **matrix;
     int row, column, choice = select_matrix(&matrix, &row, &column);
     switch (choice) {
-        case -2:
-            main_menu_page();
-        case -1:
-            view_matrix_page();
-        default:
-            printf("Value:\n");
-            view_matrix(matrix, row, column);
+    case -2:
+        main_menu_page();
+    case -1:
+        view_matrix_page();
+    default:
+        printf("Value:\n");
+        view_matrix(matrix, row, column);
     }
     system("pause");
     view_matrix_page();
@@ -171,7 +176,7 @@ void view_matrix_page() {
 
 void compute_matrix_page() {
     system("cls");
-    double** matrix1, **matrix2;
+    double **matrix1, **matrix2;
     int choice, row1, column1, row2, column2;
     printf("> What operation would you like to perform\n");
     printf("[1] Addition\n");
@@ -185,131 +190,130 @@ void compute_matrix_page() {
     printf("\nChoice--> ");
     scanf("%d", &choice);
     switch (choice) {
-        case 1:
-            system("cls");
-            printf("> Select matrixes to add\n");
-            if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
-                compute_matrix_page();
-            if ((choice = select_matrix(&matrix2, &row2, &column2)) == -1 || choice == -2)
-                compute_matrix_page();
-            if (add_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.matAns, &matAns.row, &matAns.column) != -1) {
-                    printf("> The sum is\n");
-                    view_matrix(matAns.matAns, matAns.row, matAns.column);
-            }
-            else
-                incompatible_dimension_error();
-            system("pause");
-            break;
-        case 2:
-            system("cls");
-            printf("> Select matrixes to subtract\n");
-            if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
-                compute_matrix_page();
-            if ((choice = select_matrix(&matrix2, &row2, &column2)) == -1 || choice == -2)
-                compute_matrix_page();
-            if (subtract_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.matAns, &matAns.row, &matAns.column) != -1) {
-                    printf("> The difference is\n");
-                    view_matrix(matAns.matAns, matAns.row, matAns.column);
-            }
-            else
-                incompatible_dimension_error();
-            system("pause");
-            break;
-        case 3:
-            system("cls");
-            printf("> Select matrixes to multiply\n");
-            if ((choice = select_matrix(&matrix2, &row2, &column2)) == -1 || choice == -2)
-                compute_matrix_page();
-            if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
-                compute_matrix_page();
-            if (multiply_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.matAns, &matAns.row, &matAns.column) != -1) {
-                    printf("> The product is\n");
-                    view_matrix(matAns.matAns, matAns.row, matAns.column);
-            }
-            else
-                incompatible_dimension_error();
-            system("pause");
-            break;
-        case 4:
-            system("cls");
-            printf("> Select a matrix to find determinant\n");
-            if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
-                compute_matrix_page();
-            if (row1 == column1) {
-                matAns.row = 1;
-                matAns.column = 1;
-                matAns.matAns = MEM_ALLOCATE(double*, 1);
-                matAns.matAns[0] = MEM_ALLOCATE(double, 1);
-                matAns.matAns[0][0] = get_determinant(matrix1, row1);
-                printf("> The determinant is\n%.2lf\n\n", matAns.matAns[0][0]);
-            }
-            else
-                unequal_dimension_error();
-            system("pause");
-            break;
-        case 5:
-            system("cls");
-            printf("> Select a matrix to transpose\n");
-            if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
-                compute_matrix_page();
-            transpose_matrix(matrix1, row1, column1, &matAns.matAns, &matAns.row, &matAns.column);
-            printf("> The transposition is\n");
+    case 1:
+        system("cls");
+        printf("> Select matrixes to add\n");
+        if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
+            compute_matrix_page();
+        if ((choice = select_matrix(&matrix2, &row2, &column2)) == -1 || choice == -2)
+            compute_matrix_page();
+        if (add_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.matAns, &matAns.row, &matAns.column) != -1) {
+            printf("> The sum is\n");
             view_matrix(matAns.matAns, matAns.row, matAns.column);
-            system("pause");
-            break;
-        case 6:
-            system("cls");
-            printf("> Select a matrix to find inverse\n");
-            if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
-                compute_matrix_page();
-            if (row1 == column1) {
-                if (inverse_matrix(matrix1, row1, &matAns.matAns, &matAns.row, &matAns.column) != -1) {
-                    printf("> The inverse is\n");
-                    view_matrix(matAns.matAns, matAns.row, matAns.column);
-                }
-                else
-                    det_equal_zero_error();
-            }
-            else
-                unequal_dimension_error();
-            system("pause");
-            break;
-        case 7:
-            system("cls");
-            printf("> Select a matrix to find adjoint\n");
-            if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
-                compute_matrix_page();
-            if (row1 == column1) {
-                get_adjoint(matrix1, row1, &matAns.matAns, &matAns.row, &matAns.column);
-                printf("> The adjoint is\n");
+        }
+        else
+            incompatible_dimension_error();
+        system("pause");
+        break;
+    case 2:
+        system("cls");
+        printf("> Select matrixes to subtract\n");
+        if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
+            compute_matrix_page();
+        if ((choice = select_matrix(&matrix2, &row2, &column2)) == -1 || choice == -2)
+            compute_matrix_page();
+        if (subtract_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.matAns, &matAns.row, &matAns.column) != -1) {
+            printf("> The difference is\n");
+            view_matrix(matAns.matAns, matAns.row, matAns.column);
+        }
+        else
+            incompatible_dimension_error();
+        system("pause");
+        break;
+    case 3:
+        system("cls");
+        printf("> Select matrixes to multiply\n");
+        if ((choice = select_matrix(&matrix2, &row2, &column2)) == -1 || choice == -2)
+            compute_matrix_page();
+        if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
+            compute_matrix_page();
+        if (multiply_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.matAns, &matAns.row, &matAns.column) != -1) {
+            printf("> The product is\n");
+            view_matrix(matAns.matAns, matAns.row, matAns.column);
+        }
+        else
+            incompatible_dimension_error();
+        system("pause");
+        break;
+    case 4:
+        system("cls");
+        printf("> Select a matrix to find determinant\n");
+        if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
+            compute_matrix_page();
+        if (row1 == column1) {
+            matAns.row = 1;
+            matAns.column = 1;
+            matAns.matAns = MEM_ALLOCATE(double *, 1);
+            matAns.matAns[0] = MEM_ALLOCATE(double, 1);
+            matAns.matAns[0][0] = get_determinant(matrix1, row1);
+            printf("> The determinant is\n%.2lf\n\n", matAns.matAns[0][0]);
+        }
+        else
+            unequal_dimension_error();
+        system("pause");
+        break;
+    case 5:
+        system("cls");
+        printf("> Select a matrix to transpose\n");
+        if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
+            compute_matrix_page();
+        transpose_matrix(matrix1, row1, column1, &matAns.matAns, &matAns.row, &matAns.column);
+        printf("> The transposition is\n");
+        view_matrix(matAns.matAns, matAns.row, matAns.column);
+        system("pause");
+        break;
+    case 6:
+        system("cls");
+        printf("> Select a matrix to find inverse\n");
+        if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
+            compute_matrix_page();
+        if (row1 == column1) {
+            if (inverse_matrix(matrix1, row1, &matAns.matAns, &matAns.row, &matAns.column) != -1) {
+                printf("> The inverse is\n");
                 view_matrix(matAns.matAns, matAns.row, matAns.column);
             }
             else
-                unequal_dimension_error();
-            system("pause");
-            break;
-        case 8:
-            main_menu_page();
-            break;
-        default:
-            printf("\n");
-            invalid_choice_error();
-            system("pause");
+                det_equal_zero_error();
+        }
+        else
+            unequal_dimension_error();
+        system("pause");
+        break;
+    case 7:
+        system("cls");
+        printf("> Select a matrix to find adjoint\n");
+        if ((choice = select_matrix(&matrix1, &row1, &column1)) == -1 || choice == -2)
+            compute_matrix_page();
+        if (row1 == column1) {
+            get_adjoint(matrix1, row1, &matAns.matAns, &matAns.row, &matAns.column);
+            printf("> The adjoint is\n");
+            view_matrix(matAns.matAns, matAns.row, matAns.column);
+        }
+        else
+            unequal_dimension_error();
+        system("pause");
+        break;
+    case 8:
+        main_menu_page();
+        break;
+    default:
+        printf("\n");
+        invalid_choice_error();
+        system("pause");
     }
     compute_matrix_page();
 }
 //---------------------------------------------------------------- Page
 
-
 //---------------------------------------------------------------- Matrix
-void define_matrix(double*** matrix, int* row, int* column) {
+void define_matrix(double ***matrix, int *row, int *column) {
     printf("Number of Rows: ");
     scanf("%d", row);
     printf("Number of Columns: ");
     scanf("%d", column);
     printf("Enter value: \n");
-    double** tempAns;
-    tempAns = MEM_ALLOCATE(double*, *row);
+    double **tempAns;
+    tempAns = MEM_ALLOCATE(double *, *row);
     for (int i = 0; i < *row; i++)
         tempAns[i] = MEM_ALLOCATE(double, *column);
     for (int i = 0; i < *row; i++)
@@ -318,19 +322,19 @@ void define_matrix(double*** matrix, int* row, int* column) {
     *matrix = tempAns;
 }
 
-void view_matrix(double** matrix, int row, int column) {
+void view_matrix(double **matrix, int row, int column) {
     if (row != 0 && column != 0)
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++)
                 (matrix[i][j] == 0) ? printf("%.2lf\t", 0) : printf("%.2lf\t", matrix[i][j]);
-        printf("\n");
+            printf("\n");
         }
     else
         printf("[Empty]\n");
     printf("\n");
 }
 
-int select_matrix(double*** matrix, int* row, int* column) {
+int select_matrix(double ***matrix, int *row, int *column) {
     int choice;
     for (int i = 0; i < 6; i++)
         printf("[%d] Matrix %c\n", i + 1, 'A' + i);
@@ -340,33 +344,33 @@ int select_matrix(double*** matrix, int* row, int* column) {
     scanf("%d", &choice);
     printf("\n");
     switch (choice) {
-        case 1:
-            *matrix = matA.matA, *row = matA.row, *column = matA.column;
-            break;
-        case 2:
-            *matrix = matB.matB, *row = matB.row, *column = matB.column;
-            break;
-        case 3:
-            *matrix = matC.matC, *row = matC.row, *column = matC.column;
-            break;
-        case 4:
-            *matrix = matD.matD, *row = matD.row, *column = matD.column;
-            break;
-        case 5:
-            *matrix = matE.matE, *row = matE.row, *column = matE.column;
-            break;
-        case 6:
-            *matrix = matF.matF, *row = matF.row, *column = matF.column;
-            break;
-        case 7:
-            *matrix = matAns.matAns, *row = matAns.row, *column = matAns.column;
-            break;
-        case 8:
-            return -2;
-        default:
-            invalid_choice_error();
-            system("pause");
-            return -1;
+    case 1:
+        *matrix = matA.matA, *row = matA.row, *column = matA.column;
+        break;
+    case 2:
+        *matrix = matB.matB, *row = matB.row, *column = matB.column;
+        break;
+    case 3:
+        *matrix = matC.matC, *row = matC.row, *column = matC.column;
+        break;
+    case 4:
+        *matrix = matD.matD, *row = matD.row, *column = matD.column;
+        break;
+    case 5:
+        *matrix = matE.matE, *row = matE.row, *column = matE.column;
+        break;
+    case 6:
+        *matrix = matF.matF, *row = matF.row, *column = matF.column;
+        break;
+    case 7:
+        *matrix = matAns.matAns, *row = matAns.row, *column = matAns.column;
+        break;
+    case 8:
+        return -2;
+    default:
+        invalid_choice_error();
+        system("pause");
+        return -1;
     }
     return 0;
 }
@@ -382,13 +386,12 @@ void free_matrix() {
 }
 //---------------------------------------------------------------- Matrix
 
-
 //---------------------------------------------------------------- Matrix Arithmetic
-int add_matrix(double** matrix1, int row1, int column1, double** matrix2, int row2, int column2, double*** matrixAns, int* rowAns, int* columnAns) {
-    double** tempAns;
+int add_matrix(double **matrix1, int row1, int column1, double **matrix2, int row2, int column2, double ***matrixAns, int *rowAns, int *columnAns) {
+    double **tempAns;
     if ((row1 == row2) && (column1 == column2)) {
         *rowAns = row1, *columnAns = column1;
-        tempAns = MEM_ALLOCATE(double*, row1);
+        tempAns = MEM_ALLOCATE(double *, row1);
         for (int i = 0; i < row1; i++)
             tempAns[i] = MEM_ALLOCATE(double, column1);
         for (int i = 0; i < row1; i++)
@@ -401,11 +404,11 @@ int add_matrix(double** matrix1, int row1, int column1, double** matrix2, int ro
     return 0;
 }
 
-int subtract_matrix(double** matrix1, int row1, int column1, double** matrix2, int row2, int column2, double*** matrixAns, int* rowAns, int* columnAns) {
-    double** tempAns;
+int subtract_matrix(double **matrix1, int row1, int column1, double **matrix2, int row2, int column2, double ***matrixAns, int *rowAns, int *columnAns) {
+    double **tempAns;
     if ((row1 == row2) && (column1 == column2)) {
         *rowAns = row1, *columnAns = column1;
-        tempAns = MEM_ALLOCATE(double*, row1);
+        tempAns = MEM_ALLOCATE(double *, row1);
         for (int i = 0; i < row1; i++)
             tempAns[i] = MEM_ALLOCATE(double, column1);
         for (int i = 0; i < row1; i++)
@@ -418,11 +421,11 @@ int subtract_matrix(double** matrix1, int row1, int column1, double** matrix2, i
     return 0;
 }
 
-int multiply_matrix(double** matrix1, int row1, int column1, double** matrix2, int row2, int column2, double*** matrixAns, int* rowAns, int* columnAns) {
-    double** tempAns;
+int multiply_matrix(double **matrix1, int row1, int column1, double **matrix2, int row2, int column2, double ***matrixAns, int *rowAns, int *columnAns) {
+    double **tempAns;
     if (column1 == row2) {
         *rowAns = row1, *columnAns = column2;
-        tempAns = MEM_ALLOCATE(double*, row1);
+        tempAns = MEM_ALLOCATE(double *, row1);
         for (int i = 0; i < row1; i++)
             tempAns[i] = MEM_ALLOCATE(double, column2);
         for (int i = 0; i < row1; i++)
@@ -434,7 +437,7 @@ int multiply_matrix(double** matrix1, int row1, int column1, double** matrix2, i
     }
     else if (row1 == 1 && column1 == 1) {
         *rowAns = row2, *columnAns = column2;
-        tempAns = MEM_ALLOCATE(double*, row2);
+        tempAns = MEM_ALLOCATE(double *, row2);
         for (int i = 0; i < row2; i++)
             tempAns[i] = MEM_ALLOCATE(double, column2);
         for (int i = 0; i < row2; i++)
@@ -443,7 +446,7 @@ int multiply_matrix(double** matrix1, int row1, int column1, double** matrix2, i
     }
     else if (row2 == 1 && column2 == 1) {
         *rowAns = row1, *columnAns = column1;
-        tempAns = MEM_ALLOCATE(double*, row1);
+        tempAns = MEM_ALLOCATE(double *, row1);
         for (int i = 0; i < row1; i++)
             tempAns[i] = MEM_ALLOCATE(double, column1);
         for (int i = 0; i < row1; i++)
@@ -452,22 +455,21 @@ int multiply_matrix(double** matrix1, int row1, int column1, double** matrix2, i
     }
     else if ((row1 == 1 && column1 == 1) && (row2 == 1 && column2 == 1)) {
         *rowAns = row1, *columnAns = column1;
-        tempAns = MEM_ALLOCATE(double*, 1), tempAns[0] = MEM_ALLOCATE(double, 1);
+        tempAns = MEM_ALLOCATE(double *, 1), tempAns[0] = MEM_ALLOCATE(double, 1);
         tempAns[0][0] = matrix1[0][0] * matrix2[0][0];
     }
     else
         return -1;
     *matrixAns = tempAns;
     return 0;
-    
 }
 
-double get_determinant(double** matrix, int dimension) {
-    double** coFactor, ans = 0;
+double get_determinant(double **matrix, int dimension) {
+    double **coFactor, ans = 0;
     int sign = 1;
     if (dimension == 1)
         return matrix[0][0];
-    coFactor = MEM_ALLOCATE(double*, dimension);
+    coFactor = MEM_ALLOCATE(double *, dimension);
     for (int i = 0; i < dimension; i++)
         coFactor[i] = MEM_ALLOCATE(double, dimension);
     for (int i = 0; i < dimension; i++) {
@@ -478,9 +480,9 @@ double get_determinant(double** matrix, int dimension) {
     return ans;
 }
 
-void get_coFactor(double** matrix, double** matrixTemp, int posX, int posY, int dimension) {
+void get_coFactor(double **matrix, double **matrixTemp, int posX, int posY, int dimension) {
     int i = 0, j = 0;
-    for (int row = 0; row < dimension; row++) 
+    for (int row = 0; row < dimension; row++)
         for (int col = 0; col < dimension; col++)
             if (row != posX && col != posY) {
                 matrixTemp[i][j++] = matrix[row][col];
@@ -491,10 +493,10 @@ void get_coFactor(double** matrix, double** matrixTemp, int posX, int posY, int 
             }
 }
 
-void transpose_matrix(double** matrix, int row, int column, double*** matrixAns, int* rowAns, int* columnAns) {
-    double** tempAns;
+void transpose_matrix(double **matrix, int row, int column, double ***matrixAns, int *rowAns, int *columnAns) {
+    double **tempAns;
     *rowAns = column, *columnAns = row;
-    tempAns = MEM_ALLOCATE(double*, column);
+    tempAns = MEM_ALLOCATE(double *, column);
     for (int i = 0; i < column; i++)
         tempAns[i] = MEM_ALLOCATE(double, row);
     for (int i = 0; i < row; i++)
@@ -503,18 +505,18 @@ void transpose_matrix(double** matrix, int row, int column, double*** matrixAns,
     *matrixAns = tempAns;
 }
 
-void get_adjoint(double** matrix, int dimension, double*** matrixAns, int* rowAns, int* columnAns) {
-    double** coFactor, **tempAns;
+void get_adjoint(double **matrix, int dimension, double ***matrixAns, int *rowAns, int *columnAns) {
+    double **coFactor, **tempAns;
     int sign = 1;
     *rowAns = dimension, *columnAns = dimension;
     if (dimension == 1) {
-        tempAns = MEM_ALLOCATE(double*, dimension), tempAns[0] = MEM_ALLOCATE(double, dimension);
+        tempAns = MEM_ALLOCATE(double *, dimension), tempAns[0] = MEM_ALLOCATE(double, dimension);
         tempAns[0][0] = 1;
     }
     else {
-        coFactor = MEM_ALLOCATE(double*, dimension), tempAns = MEM_ALLOCATE(double*, dimension);
+        coFactor = MEM_ALLOCATE(double *, dimension), tempAns = MEM_ALLOCATE(double *, dimension);
         for (int i = 0; i < dimension; i++)
-            coFactor[i] = MEM_ALLOCATE(double, dimension), tempAns[i] = MEM_ALLOCATE(double, dimension); 
+            coFactor[i] = MEM_ALLOCATE(double, dimension), tempAns[i] = MEM_ALLOCATE(double, dimension);
         for (int i = 0; i < dimension; i++)
             for (int j = 0; j < dimension; j++) {
                 get_coFactor(matrix, coFactor, i, j, dimension);
@@ -526,11 +528,11 @@ void get_adjoint(double** matrix, int dimension, double*** matrixAns, int* rowAn
     *matrixAns = tempAns;
 }
 
-int inverse_matrix(double** matrix, int dimension, double*** matrixAns, int* rowAns, int* columnAns) {
-    double** tempAns, **coFactor, inverse, det = get_determinant(matrix, dimension);
+int inverse_matrix(double **matrix, int dimension, double ***matrixAns, int *rowAns, int *columnAns) {
+    double **tempAns, **coFactor, inverse, det = get_determinant(matrix, dimension);
     *rowAns = dimension, *columnAns = dimension;
     if (det != 0) {
-        coFactor = MEM_ALLOCATE(double*, dimension), tempAns = MEM_ALLOCATE(double*, dimension);
+        coFactor = MEM_ALLOCATE(double *, dimension), tempAns = MEM_ALLOCATE(double *, dimension);
         for (int i = 0; i < dimension; i++)
             coFactor[i] = MEM_ALLOCATE(double, dimension), tempAns[i] = MEM_ALLOCATE(double, dimension);
         get_adjoint(matrix, dimension, &coFactor, rowAns, columnAns);
@@ -544,7 +546,6 @@ int inverse_matrix(double** matrix, int dimension, double*** matrixAns, int* row
     return 0;
 }
 //---------------------------------------------------------------- Matrix Arithmetic
-
 
 //---------------------------------------------------------------- Program Message
 void define_matrix_success_msg(char msg) {

@@ -15,7 +15,7 @@
 
 #define MEM_ALLOCATE(dataType, length) (dataType *)malloc((length) * sizeof(dataType))
 
-//--[Function declaration]---------------------------------------
+//--[Function Declaration]---------------------------------------
 //  - Pages
 //  - Matrix
 //  - Matrix Arithmetic
@@ -51,7 +51,7 @@ void unequal_dimension_error();
 void det_equal_zero_error();
 
 //---------------------------------------------------------------
-// Structure for storing matrixes values and dimensions
+// Structure for Storing Matrixes Values and Dimensions
 //---------------------------------------------------------------
 struct matrix_A {
     double **matA;

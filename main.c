@@ -1,13 +1,13 @@
 /***************************************************************/
-/*  C Programming Individual Project, Year 1, Semester 1       */
+/* C Programming Individual Project, Year 1, Semester 1        */
 /*                                                             */
-/*  Course: 13016235 C Programing Lecture                      */
-/*  University: Software Engineering Program                   */
-/*  Faculty of Engineering, KMITL                              */
+/* Course: 13016235 C Programing Lecture                       */
+/* Program: Software Engineering Program                       */
+/* University: Faculty of Engineering, KMITL                   */
 /*                                                             */
-/*  Project: Matrix-Arithmetic                                 */
-/*  Repository: https://github.com/DulapahV/Matrix-Arithmetic/ */
-/*  Written by: Dulapah Vibulsanti (64011388)                  */
+/* Project: Matrix-Arithmetic                                  */
+/* Repository: https://github.com/DulapahV/Matrix-Arithmetic/  */
+/* Written by: Dulapah Vibulsanti (64011388)                   */
 /***************************************************************/
 
 #include <stdio.h>

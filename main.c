@@ -31,6 +31,7 @@ void compute_matrix_page();
 void define_matrix(double ***matrix, int *row, int *column);
 void view_matrix(double **matrix, int row, int column);
 int select_matrix(double ***matrix, int *row, int *column); // Return -2 if user select 'Go Back', -1 if user select invalid choice, else 0
+int print_matrix(double **matrix, int row, int column); // Return -1 if cannot print, else 0
 void free_matrix();
 
 // Matrix Arithmetic (Return 0 if input matrix is valid, else -1)
@@ -49,6 +50,7 @@ void invalid_choice_error();
 void incompatible_dimension_error();
 void unequal_dimension_error();
 void det_equal_zero_error();
+void cannot_print_error();
 
 //---------------------------------------------------------------
 // Structure for Storing Matrixes Values and Dimensions
@@ -361,6 +363,11 @@ void compute_matrix_page() {
         invalid_choice_error();
         system("pause");
     }
+    if (print_matrix(matAns.matAns, matAns.row, matAns.column) == -1) {
+        printf("\n");
+        cannot_print_error();
+        system("pause");
+    }
     compute_matrix_page();
 }
 
@@ -368,6 +375,7 @@ void compute_matrix_page() {
 //  - Define Matrix
 //  - View Matrix
 //  - Select Matrix
+//  - Print Matrix
 //  - Free Matrix
 //---------------------------------------------------------------
 // Define Matrix
@@ -439,6 +447,74 @@ int select_matrix(double ***matrix, int *row, int *column) {
         system("pause");
         return -1;
     }
+    return 0;
+}
+
+// Print Matrix
+int print_matrix(double **matrix, int row, int column) {
+    FILE *out_file = fopen("output.txt", "w");
+    if (out_file == NULL) {
+        return -1;
+    }
+    else {
+        if (row <= 0 && column <= 0) {
+            fclose(out_file);
+            return 0;
+        }
+        else if (row == 1 && column == 1)
+            fprintf(out_file, "%.2lf", matrix[0][0]);
+        else if (row == 1 &&  column > 1)
+            for (int i = 0; i < column; i++)
+                fprintf(out_file, "%.2lf\t", matrix[0][i]);
+        else if (row > 1 && column == 1)
+            for (int i = 0; i < row; i++)
+                fprintf(out_file, "%.2lf\t\n", matrix[i][0]);
+        else {
+            for (int i = 0; i < row; i++) {
+                for (int j = 0; j < column; j++) {
+                    if (i == 0 && j == 0) {
+                        fprintf(out_file, "⎡\t");
+                        fprintf(out_file, "%.2lf\t", matrix[i][j]);
+                    }
+                    else if (i == 0 && j == column - 1) {
+                        fprintf(out_file, "%.2lf\t", matrix[i][j]);
+                        fprintf(out_file, "⎤");
+                    }
+                    else if (i > 0 && i < row - 1 && j == 0) {
+                        fprintf(out_file, "⎢\t");
+                        fprintf(out_file, "%.2lf\t", matrix[i][j]);
+                    }
+                    else if (i > 0 && i < row - 1 && j == column - 1) {
+                        fprintf(out_file, "%.2lf\t", matrix[i][j]);
+                        fprintf(out_file, "⎥");  
+                    }
+                    else if (i == row - 1 && j == 0) {
+                        fprintf(out_file, "⎣\t");
+                        fprintf(out_file, "%.2lf\t", matrix[i][j]);
+                    }
+                    else if (i == row - 1 && j == column - 1) {
+                        fprintf(out_file, "%.2lf\t", matrix[i][j]);
+                        fprintf(out_file, "⎦");
+                    }
+                    else
+                        fprintf(out_file, "%.2lf\t", matrix[i][j]);
+                }
+                fprintf(out_file, "\n");
+                if (i != row - 1) {
+                    for (int j = 0; j < column; j++) {
+                        if (j == 0)
+                            fprintf(out_file, "⎢\t\t  ");
+                        else if (j == column - 1)
+                            fprintf(out_file, "  \t\t⎥");  
+                        else
+                            fprintf(out_file, "  \t\t");
+                    }
+                    fprintf(out_file, "\n");
+                }    
+            }
+        }
+    }
+    fclose(out_file);
     return 0;
 }
 
@@ -660,4 +736,9 @@ void unequal_dimension_error() {
 // Unequal Dimension Error
 void det_equal_zero_error() {
     printf("Cannot find inverse of singular matrix!\n\n");
+}
+
+// Cannot Print Error
+void cannot_print_error() {
+    printf("Error printing result to a file!\n\n");
 }

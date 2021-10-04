@@ -34,7 +34,7 @@ This project aims to create a matrix computing program that runs in the terminal
  - [x] Design UI and program flow 
  - [x] Implement arithmetics (add, subtract, multiply)
  - [x] Implement additional features (determinant, transpose, inverse, adjoint)
- - [ ] Implement outputting result to a file
+ - [x] Implement outputting result to a file
  - [ ] Implement option for user to clear selected/all matrix values
  - [ ] Add proper comments in the code
  - [ ] Make code easier to read and maintain

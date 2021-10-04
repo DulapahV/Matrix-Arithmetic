@@ -461,12 +461,10 @@ int print_matrix(double **matrix, int row, int column) {
             fclose(out_file);
             return 0;
         }
-        else if (row == 1 && column == 1)
-            fprintf(out_file, "%.2lf", matrix[0][0]);
-        else if (row == 1 &&  column > 1)
+        else if (row == 1 &&  column >= 1)
             for (int i = 0; i < column; i++)
                 fprintf(out_file, "%.2lf\t", matrix[0][i]);
-        else if (row > 1 && column == 1)
+        else if (row >= 1 && column == 1)
             for (int i = 0; i < row; i++)
                 fprintf(out_file, "%.2lf\t\n", matrix[i][0]);
         else {

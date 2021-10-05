@@ -3,7 +3,7 @@ An individual project for KMITL Software Engineering, Year 1, Semester 1
 
 Created by **Dulapah Vibulsanti (64011388)**
 
-This README is separated into 3 parts:
+This README is separated into 4 parts:
  - Project Description
  - To Do List
  - Program Flow

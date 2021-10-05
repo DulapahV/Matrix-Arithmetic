@@ -3,7 +3,7 @@ An individual project for KMITL Software Engineering, Year 1, Semester 1
 
 Created by **Dulapah Vibulsanti (64011388)**
 
-The README will be separated into 3 parts:
+This README is separated into 3 parts:
  - Project Description
  - To Do List
  - Program Flow
@@ -26,7 +26,7 @@ This project aims to create a matrix computing program that runs in the terminal
 
 3. User can view each stored matrix value (max 7)
 
-4. Answer is automatically output in the 'output.txt' with proper formatting (coming soon)
+4. Answer is automatically output in the 'output.txt' with proper formatting
 
 5. User has an option to clear selected/all matrix values (coming soon)
 

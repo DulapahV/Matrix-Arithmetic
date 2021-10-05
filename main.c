@@ -55,40 +55,18 @@ void cannot_print_error();
 //---------------------------------------------------------------
 // Structure for Storing Matrixes Values and Dimensions
 //---------------------------------------------------------------
-struct matrix_A {
-    double **matA;
+struct Matrix {
+    double **value;
     int row, column;
-} matA;
+};
 
-struct matrix_B {
-    double **matB;
-    int row, column;
-} matB;
-
-struct matrix_C {
-    double **matC;
-    int row, column;
-} matC;
-
-struct matrix_D {
-    double **matD;
-    int row, column;
-} matD;
-
-struct matrix_E {
-    double **matE;
-    int row, column;
-} matE;
-
-struct matrix_F {
-    double **matF;
-    int row, column;
-} matF;
-
-struct matrix_Ans {
-    double **matAns;
-    int row, column;
-} matAns;
+struct Matrix matA;
+struct Matrix matB;
+struct Matrix matC;
+struct Matrix matD;
+struct Matrix matE;
+struct Matrix matF;
+struct Matrix matAns;
 
 //---------------------------------------------------------------
 // Program Initialization
@@ -146,27 +124,27 @@ void define_matrix_page() {
     switch (choice) {
     case 1:
         printf("\n> Define matrix %c\n", 'A' + choice - 1);
-        define_matrix(&matA.matA, &matA.row, &matA.column);
+        define_matrix(&matA.value, &matA.row, &matA.column);
         break;
     case 2:
         printf("\n> Define matrix %c\n", 'A' + choice - 1);
-        define_matrix(&matB.matB, &matB.row, &matB.column);
+        define_matrix(&matB.value, &matB.row, &matB.column);
         break;
     case 3:
         printf("\n> Define matrix %c\n", 'A' + choice - 1);
-        define_matrix(&matC.matC, &matC.row, &matC.column);
+        define_matrix(&matC.value, &matC.row, &matC.column);
         break;
     case 4:
         printf("\n> Define matrix %c\n", 'A' + choice - 1);
-        define_matrix(&matD.matD, &matD.row, &matD.column);
+        define_matrix(&matD.value, &matD.row, &matD.column);
         break;
     case 5:
         printf("\n> Define matrix %c\n", 'A' + choice - 1);
-        define_matrix(&matE.matE, &matE.row, &matE.column);
+        define_matrix(&matE.value, &matE.row, &matE.column);
         break;
     case 6:
         printf("\n> Define matrix %c\n", 'A' + choice - 1);
-        define_matrix(&matF.matF, &matF.row, &matF.column);
+        define_matrix(&matF.value, &matF.row, &matF.column);
         break;
     case 7:
         main_menu_page();
@@ -229,9 +207,9 @@ void compute_matrix_page() {
             compute_matrix_page();
         
         // If matrix dimension is compatible (!= 1), print the result. Else, print Incompatible Dimension Error
-        if (add_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.matAns, &matAns.row, &matAns.column) != 1) {
+        if (add_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.value, &matAns.row, &matAns.column) != 1) {
             printf("> The sum is\n");
-            view_matrix(matAns.matAns, matAns.row, matAns.column);
+            view_matrix(matAns.value, matAns.row, matAns.column);
         }
         else
             incompatible_dimension_error();
@@ -249,9 +227,9 @@ void compute_matrix_page() {
             compute_matrix_page();
         
         // If matrix dimension is compatible (!= 1), print the result. Else, print Incompatible Dimension Error
-        if (subtract_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.matAns, &matAns.row, &matAns.column) != 1) {
+        if (subtract_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.value, &matAns.row, &matAns.column) != 1) {
             printf("> The difference is\n");
-            view_matrix(matAns.matAns, matAns.row, matAns.column);
+            view_matrix(matAns.value, matAns.row, matAns.column);
         }
         else
             incompatible_dimension_error();
@@ -269,9 +247,9 @@ void compute_matrix_page() {
             compute_matrix_page();
         
         // If matrix dimension is compatible (!= 1), print the result. Else, print Incompatible Dimension Error
-        if (multiply_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.matAns, &matAns.row, &matAns.column) != 1) {
+        if (multiply_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.value, &matAns.row, &matAns.column) != 1) {
             printf("> The product is\n");
-            view_matrix(matAns.matAns, matAns.row, matAns.column);
+            view_matrix(matAns.value, matAns.row, matAns.column);
         }
         else
             incompatible_dimension_error();
@@ -290,10 +268,10 @@ void compute_matrix_page() {
         if (row1 == column1) {
             matAns.row = 1;
             matAns.column = 1;
-            matAns.matAns = MEM_ALLOCATE(double *, 1);
-            matAns.matAns[0] = MEM_ALLOCATE(double, 1);
-            matAns.matAns[0][0] = get_determinant(matrix1, row1);
-            printf("> The determinant is\n%.2lf\n\n", matAns.matAns[0][0]);
+            matAns.value = MEM_ALLOCATE(double *, 1);
+            matAns.value[0] = MEM_ALLOCATE(double, 1);
+            matAns.value[0][0] = get_determinant(matrix1, row1);
+            printf("> The determinant is\n%.2lf\n\n", matAns.value[0][0]);
         }
         else
             unequal_dimension_error();
@@ -308,9 +286,9 @@ void compute_matrix_page() {
         if ((choice = select_matrix(&matrix1, &row1, &column1)) == 1 || choice == 2)
             compute_matrix_page();
         
-        transpose_matrix(matrix1, row1, column1, &matAns.matAns, &matAns.row, &matAns.column);
+        transpose_matrix(matrix1, row1, column1, &matAns.value, &matAns.row, &matAns.column);
         printf("> The transposition is\n");
-        view_matrix(matAns.matAns, matAns.row, matAns.column);
+        view_matrix(matAns.value, matAns.row, matAns.column);
         system("pause");
         break;
     case 6:
@@ -324,9 +302,9 @@ void compute_matrix_page() {
         // If matrix dimension is equal, print the result. Else, print Unequal Dimension Error
         if (row1 == column1) {
             // If matrix determinant is not 0, print the result. Else, print Det Equal Zero Error
-            if (inverse_matrix(matrix1, row1, &matAns.matAns, &matAns.row, &matAns.column) != 1) {
+            if (inverse_matrix(matrix1, row1, &matAns.value, &matAns.row, &matAns.column) != 1) {
                 printf("> The inverse is\n");
-                view_matrix(matAns.matAns, matAns.row, matAns.column);
+                view_matrix(matAns.value, matAns.row, matAns.column);
             }
             else
                 det_equal_zero_error();
@@ -346,9 +324,9 @@ void compute_matrix_page() {
         
         // If matrix dimension is equal, print the result. Else, print Unequal Dimension Error
         if (row1 == column1) {
-            get_adjoint(matrix1, row1, &matAns.matAns, &matAns.row, &matAns.column);
+            get_adjoint(matrix1, row1, &matAns.value, &matAns.row, &matAns.column);
             printf("> The adjoint is\n");
-            view_matrix(matAns.matAns, matAns.row, matAns.column);
+            view_matrix(matAns.value, matAns.row, matAns.column);
         }
         else
             unequal_dimension_error();
@@ -363,7 +341,7 @@ void compute_matrix_page() {
         invalid_choice_error();
         system("pause");
     }
-    if (print_matrix(matAns.matAns, matAns.row, matAns.column) == 1) {
+    if (print_matrix(matAns.value, matAns.row, matAns.column) == 1) {
         printf("\n");
         cannot_print_error();
         system("pause");
@@ -420,25 +398,25 @@ int select_matrix(double ***matrix, int *row, int *column) {
     printf("\n");
     switch (choice) {
     case 1:
-        *matrix = matA.matA, *row = matA.row, *column = matA.column;
+        *matrix = matA.value, *row = matA.row, *column = matA.column;
         break;
     case 2:
-        *matrix = matB.matB, *row = matB.row, *column = matB.column;
+        *matrix = matB.value, *row = matB.row, *column = matB.column;
         break;
     case 3:
-        *matrix = matC.matC, *row = matC.row, *column = matC.column;
+        *matrix = matC.value, *row = matC.row, *column = matC.column;
         break;
     case 4:
-        *matrix = matD.matD, *row = matD.row, *column = matD.column;
+        *matrix = matD.value, *row = matD.row, *column = matD.column;
         break;
     case 5:
-        *matrix = matE.matE, *row = matE.row, *column = matE.column;
+        *matrix = matE.value, *row = matE.row, *column = matE.column;
         break;
     case 6:
-        *matrix = matF.matF, *row = matF.row, *column = matF.column;
+        *matrix = matF.value, *row = matF.row, *column = matF.column;
         break;
     case 7:
-        *matrix = matAns.matAns, *row = matAns.row, *column = matAns.column;
+        *matrix = matAns.value, *row = matAns.row, *column = matAns.column;
         break;
     case 8:
         return 2;
@@ -453,9 +431,8 @@ int select_matrix(double ***matrix, int *row, int *column) {
 // Print Matrix
 int print_matrix(double **matrix, int row, int column) {
     FILE *out_file = fopen("output.txt", "w");
-    if (out_file == NULL) {
+    if (out_file == NULL)
         return 1;
-    }
     else {
         if (row <= 0 && column <= 0) {
             fclose(out_file);
@@ -518,13 +495,13 @@ int print_matrix(double **matrix, int row, int column) {
 
 // Free Matrix (I know these are incorrect, will rewrite soon)
 void free_matrix() {
-    free(matA.matA);
-    free(matB.matB);
-    free(matC.matC);
-    free(matD.matD);
-    free(matE.matE);
-    free(matF.matF);
-    free(matAns.matAns);
+    free(matA.value);
+    free(matB.value);
+    free(matC.value);
+    free(matD.value);
+    free(matE.value);
+    free(matF.value);
+    free(matAns.value);
 }
 
 //--[Matrix Arithmetic]------------------------------------------

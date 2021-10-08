@@ -31,7 +31,7 @@ void compute_matrix_page();
 void define_matrix(double ***matrix, int *row, int *column);
 void view_matrix(double **matrix, int row, int column);
 int select_matrix(double ***matrix, int *row, int *column); // return 2 if user select 'Go Back', 1 if user select invalid choice, else 0
-int print_matrix(double **matrix, int row, int column); // return 1 if cannot print, else 0
+int output_matrix(double **matrix, int row, int column); // return 1 if cannot print, else 0
 void free_matrix();
 
 // Matrix Arithmetic (Return 0 if input matrix is valid, else 1)
@@ -53,7 +53,7 @@ void det_equal_zero_error();
 void cannot_print_error();
 
 //---------------------------------------------------------------
-// Structure for Storing Matrixes Values and Dimensions
+// Structure for Storing Matrix Values and Dimensions
 //---------------------------------------------------------------
 struct Matrix {
     double **value;
@@ -266,8 +266,7 @@ void compute_matrix_page() {
         
         // If matrix dimension is equal, print the result. Else, print Unequal Dimension Error
         if (row1 == column1) {
-            matAns.row = 1;
-            matAns.column = 1;
+            matAns.row = 1, matAns.column = 1;
             matAns.value = MEM_ALLOCATE(double *, 1);
             matAns.value[0] = MEM_ALLOCATE(double, 1);
             matAns.value[0][0] = get_determinant(matrix1, row1);
@@ -341,7 +340,7 @@ void compute_matrix_page() {
         invalid_choice_error();
         system("pause");
     }
-    if (print_matrix(matAns.value, matAns.row, matAns.column) == 1) {
+    if (output_matrix(matAns.value, matAns.row, matAns.column) == 1) {
         printf("\n");
         cannot_print_error();
         system("pause");
@@ -429,7 +428,7 @@ int select_matrix(double ***matrix, int *row, int *column) {
 }
 
 // Print Matrix
-int print_matrix(double **matrix, int row, int column) {
+int output_matrix(double **matrix, int row, int column) {
     FILE *out_file = fopen("output.txt", "w");
     if (out_file == NULL)
         return 1;
@@ -476,17 +475,19 @@ int print_matrix(double **matrix, int row, int column) {
                 }
                 fprintf(out_file, "\n");
                 if (i != row - 1) {
-                    for (int j = 0; j < column; j++) {
-                        if (j == 0)
-                            fprintf(out_file, "⎢\t\t  ");
-                        else if (j == column - 1)
-                            fprintf(out_file, "  \t\t⎥");  
-                        else
-                            fprintf(out_file, "  \t\t");
-                    }
-                    fprintf(out_file, "\n");
+                    fprintf(out_file, "⎢");
+                    for (int j = 0; j < column + 1; j++)
+                        fprintf(out_file, "\t");
+                    fprintf(out_file, "⎥\n");
                 }    
             }
+            fprintf(out_file, "\nLaTeX:\n\\left[\\begin{matrix}");
+            for (int i = 0; i < row; i++) {
+                for (int j = 0; j < column; j++)
+                    (j != column - 1) ? fprintf(out_file, "%.2lf&", matrix[i][j]) : fprintf(out_file, "%.2lf", matrix[i][j]);
+                fprintf(out_file, "\\\\");
+            }
+            fprintf(out_file, "\\end{matrix}\\right]\n");
         }
     }
     fclose(out_file);
@@ -687,6 +688,7 @@ int inverse_matrix(double **matrix, int dimension, double ***matrixAns, int *row
 //  - Incompatible Dimension Error
 //  - Unequal Dimension Error
 //  - Det Equal Zero Error
+//  - Cannot Print Error
 //---------------------------------------------------------------
 // Define Matrix Success
 void define_matrix_success_msg(char msg) {

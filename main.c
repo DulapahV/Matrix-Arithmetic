@@ -438,11 +438,11 @@ int output_matrix(double **matrix, int row, int column) {
             return 0;
         }
         else if (row == 1 && column == 1)
-            fprintf(out_file, "[\t%.2lf\t]\n", matrix[0][0]);
+            fprintf(out_file, "Answer:\n[\t%.2lf\t]\n", matrix[0][0]);
         else if (row == 1 &&  column >= 1)
             for (int i = 0; i < column; i++)
                 if (i == 0)
-                    fprintf(out_file, "[\t%.2lf\t", matrix[0][i]);
+                    fprintf(out_file, "Answer:\n[\t%.2lf\t", matrix[0][i]);
                 else if (i == column - 1)
                     fprintf(out_file, "%.2lf\t]\n", matrix[0][i]);
                 else
@@ -450,7 +450,7 @@ int output_matrix(double **matrix, int row, int column) {
         else if (row >= 1 && column == 1)
             for (int i = 0; i < row; i++)
                 if (i == 0)
-                    fprintf(out_file, "⎡\t%.2lf\t⎤\n", matrix[i][0]);
+                    fprintf(out_file, "Answer:\n⎡\t%.2lf\t⎤\n", matrix[i][0]);
                 else if (i == row - 1)
                     fprintf(out_file, "⎣\t%.2lf\t⎦\n", matrix[i][0]);
                 else
@@ -459,7 +459,7 @@ int output_matrix(double **matrix, int row, int column) {
             for (int i = 0; i < row; i++) {
                 for (int j = 0; j < column; j++) {
                     if (i == 0 && j == 0) {
-                        fprintf(out_file, "⎡\t");
+                        fprintf(out_file, "Answer:\n⎡\t");
                         fprintf(out_file, "%.2lf\t", matrix[i][j]);
                     }
                     else if (i == 0 && j == column - 1) {

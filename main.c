@@ -437,12 +437,24 @@ int output_matrix(double **matrix, int row, int column) {
             fclose(out_file);
             return 0;
         }
+        else if (row == 1 && column == 1)
+            fprintf(out_file, "[\t%.2lf\t]\n", matrix[0][0]);
         else if (row == 1 &&  column >= 1)
             for (int i = 0; i < column; i++)
-                fprintf(out_file, "%.2lf\t", matrix[0][i]);
+                if (i == 0)
+                    fprintf(out_file, "[\t%.2lf\t", matrix[0][i]);
+                else if (i == column - 1)
+                    fprintf(out_file, "%.2lf\t]\n", matrix[0][i]);
+                else
+                    fprintf(out_file, "%.2lf\t", matrix[0][i]);
         else if (row >= 1 && column == 1)
             for (int i = 0; i < row; i++)
-                fprintf(out_file, "%.2lf\t\n", matrix[i][0]);
+                if (i == 0)
+                    fprintf(out_file, "⎡\t%.2lf\t⎤\n", matrix[i][0]);
+                else if (i == row - 1)
+                    fprintf(out_file, "⎣\t%.2lf\t⎦\n", matrix[i][0]);
+                else
+                    fprintf(out_file, "⎢\t%.2lf\t⎥\n", matrix[i][0]);
         else {
             for (int i = 0; i < row; i++) {
                 for (int j = 0; j < column; j++) {
@@ -481,14 +493,14 @@ int output_matrix(double **matrix, int row, int column) {
                     fprintf(out_file, "⎥\n");
                 }    
             }
-            fprintf(out_file, "\nLaTeX:\n\\left[\\begin{matrix}");
-            for (int i = 0; i < row; i++) {
-                for (int j = 0; j < column; j++)
-                    (j != column - 1) ? fprintf(out_file, "%.2lf&", matrix[i][j]) : fprintf(out_file, "%.2lf", matrix[i][j]);
-                fprintf(out_file, "\\\\");
-            }
-            fprintf(out_file, "\\end{matrix}\\right]\n");
         }
+        fprintf(out_file, "\nLaTeX:\n\\left[\\begin{matrix}");
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++)
+                (j != column - 1) ? fprintf(out_file, "%.2lf&", matrix[i][j]) : fprintf(out_file, "%.2lf", matrix[i][j]);
+            fprintf(out_file, "\\\\");
+        }
+        fprintf(out_file, "\\end{matrix}\\right]\n");
     }
     fclose(out_file);
     return 0;

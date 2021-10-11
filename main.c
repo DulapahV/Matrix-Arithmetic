@@ -339,6 +339,7 @@ void compute_matrix_page() {
         printf("\n");
         invalid_choice_error();
         system("pause");
+        compute_matrix_page();
     }
     if (output_matrix(matAns.value, matAns.row, matAns.column) == 1) {
         printf("\n");

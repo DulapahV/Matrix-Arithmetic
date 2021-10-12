@@ -28,14 +28,12 @@ This project aims to create a matrix computing program that runs in the terminal
 
 4. Answer is automatically output in the 'output.txt' with proper matrix brackets. The program will also generate LaTeX code for user.
 
-6. User has an option to clear selected/all matrix values (coming soon)
 
 # To do list
  - [x] Design UI and program flow 
  - [x] Implement arithmetics (add, subtract, multiply)
  - [x] Implement additional features (determinant, transpose, inverse, adjoint)
  - [x] Implement outputting result to a file
- - [ ] Implement option for user to clear selected/all matrix values
  - [ ] Add proper comments in the code
  - [ ] Make code easier to read and maintain
  - [ ] Create documentation
@@ -139,7 +137,6 @@ This project aims to create a matrix computing program that runs in the terminal
             [7] Adjoint
             [8] Go back
         
-    [4] Solve simultaneous equations (coming soon)
         
     [5] Exit
         

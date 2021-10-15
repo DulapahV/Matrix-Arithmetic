@@ -81,7 +81,7 @@ We just specify the delimiter as a `,` and simply press enter.
 
 ![image](https://user-images.githubusercontent.com/71577909/137521025-e821b81d-6276-4da2-84fd-266551231709.png)
 
-3. Suppose we select `Addition`, then we just select 2 matrixes to be added together and the result will appear. After pressing any key to continue, the result will be outputted into `output.txt` and `output.csv` which we will take a look [here].(#looking-at-output-files) 
+3. Suppose we select `Addition`, then we just select 2 matrixes to be added together and the result will appear. After pressing any key to continue, the result will be outputted into `output.txt` and `output.csv` which we will take a look [here](#looking-at-output-files) 
 
 ![image](https://user-images.githubusercontent.com/71577909/137521209-aabd5fe7-b44e-4891-9562-a4487c46b74c.png)
 

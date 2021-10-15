@@ -12,6 +12,10 @@ This README is separated into 3 parts:
 	 - [Performing arithmetic](#performing-arithmetic)
 	 - [Looking at output files (*output.txt* and *output.csv*)](#looking-at-output-files)
  - [Testing Scheme](#testing-scheme)
+	 - [First Test (Adding and Subtracting)](#first-test-adding-and-subtracting)
+	 - [Second Test (Multiplying and Inverse)](#second-test-multiplying-and-inverse)
+	 - [Third Test (Determinant and Adjoint)](#third-test-determinant-and-adjoint)
+	 - [Fourth Test (Error Messages)](#fourth-test-error-messages)
 
 # Project Description
 This project aims to create a matrix computing program that runs in the terminal. The key features are:
@@ -86,7 +90,7 @@ We just specify the delimiter as a `,` and simply press enter.
 ![image](https://user-images.githubusercontent.com/71577909/137521209-aabd5fe7-b44e-4891-9562-a4487c46b74c.png)
 
 
-### Looking at output files (*output.txt* and *output.csv*)
+### Looking at output files
 In the `output.txt`, there will be an answer with proper matrix brackets and a generated latex code for the answer.
 
 ![image](https://user-images.githubusercontent.com/71577909/137522513-86dfe040-dbd7-4590-b420-6d5088fa8e94.png)
@@ -141,7 +145,7 @@ Multiplying *1/det(A)* with the adjoint of *matrix A* must give out the inverse 
     0.60    -0.70
     -0.20   0.40
 
-### Fourth Test (Testing Incompatible Matrix)
+### Fourth Test (Error Messages)
 Suppose *matrix B* is
 
     1	2	3
@@ -159,3 +163,11 @@ Finding determinant/inverse of a matrix with unequal row and column must give ou
 Finding the inverse of *matrix B* must give out *det equal 0 error* because an inverse of a matrix with *det = 0* does not exist (*singular matrix*)
 
     Cannot find inverse of singular matrix!
+
+Deleting `input.txt` or `input.csv` and reading matrix from it must give out *error accessing input file error*
+
+	Error accessing input file!
+
+Setting `output.txt` or `output.csv` to *read-only* and outputting matrix to it must give out *error accessing output file error*
+
+	Error accessing output file!

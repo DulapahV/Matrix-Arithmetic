@@ -4,7 +4,7 @@ An individual project for C Programing Lecture, KMITL Software Engineering, Year
 
 > Created by **Dulapah Vibulsanti (64011388)**
 
-This README is separated into 4 parts:
+This README is separated into 3 parts:
  - [Project Description](#project-description)
  - [Demo](#demo)
 	 - [Defining matrix through terminal/command line and through file (*input.txt* or *input.csv*)](#defining-matrix-through-terminalcommand-line)

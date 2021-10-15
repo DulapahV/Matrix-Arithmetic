@@ -10,7 +10,7 @@ This README is separated into 4 parts:
 	 - [Defining matrix through terminal/command line and through file (*input.txt* or *input.csv*)](#defining-matrix-through-terminalcommand-line)
 	 - [Viewing stored matrix](#viewing-stored-matrix)
 	 - [Performing arithmetic](#performing-arithmetic)
-	 - [Looking at output files](#looking-at-output-files) (*output.txt* and *output.csv*)
+	 - [Looking at output files (*output.txt* and *output.csv*)](#looking-at-output-files) 
  - [Testing Scheme](#testing-scheme)
 
 # Project Description

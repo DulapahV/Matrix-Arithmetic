@@ -73,7 +73,7 @@ We just specify the delimiter as a `,` and simply press enter.
 
 
 ### Performing arithmetic
-1. Select 'Compute Matrix`
+1. Select `Compute Matrix`
 
 ![image](https://user-images.githubusercontent.com/71577909/137516772-a74e5b9a-f544-404f-a5c9-f946e4dd8da4.png)
 

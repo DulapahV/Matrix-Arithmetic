@@ -1,13 +1,17 @@
+
 # Matrix-Arithmetic
 An individual project for C Programing Lecture, KMITL Software Engineering, Year 1, Semester 1
 
-Created by **Dulapah Vibulsanti (64011388)**
+> Created by **Dulapah Vibulsanti (64011388)**
 
 This README is separated into 4 parts:
- - Project Description
- - To Do List
- - Program Flow
- - Testing Scheme
+ - [Project Description](#project-description)
+ - [Demo](#demo)
+	 - [Defining matrix through terminal/command line and through file (*input.txt* or *input.csv*)](#defining-matrix-through-terminalcommand-line)
+	 - [Viewing stored matrix](#viewing-stored-matrix)
+	 - [Performing arithmetic](#performing-arithmetic)
+	 - [Looking at output files](#looking-at-output-files) (*output.txt* and *output.csv*)
+ - [Testing Scheme](#testing-scheme)
 
 # Project Description
 This project aims to create a matrix computing program that runs in the terminal. The key features are:
@@ -21,127 +25,79 @@ This project aims to create a matrix computing program that runs in the terminal
 	 - Adjoint
 
 	*Program will also automatically detect matrix compatibility when performing certain operations.
-	
-2. Answer is automatically stored in 'Matrix Answer' so that it can be used to compute or perform further operations later on.
 
-3. User can view each stored matrix value (max 7)
+2. User can choose to input matrix through terminal/command line or from an `input.txt` and `input.csv` file with a user-specifiable delimiter.
 
-4. Answer is automatically output in the 'output.txt' with proper matrix brackets. The program will also generate LaTeX code for user.
+3. Answer is automatically output in the `output.txt` file with proper matrix brackets and also generates LaTeX code for the user. The program also outputs answers in the `output.csv` file as a comma-separated value.
+
+4. Answer is automatically stored in 'Matrix Answer' so that it can be used to compute or perform further operations later on.
+
+5. User can view each stored matrix value (max 7)
 
 
-# To do list
- - [x] Design UI and program flow 
- - [x] Implement arithmetics (add, subtract, multiply)
- - [x] Implement additional features (determinant, transpose, inverse, adjoint)
- - [x] Implement outputting result to a file
- - [ ] Add proper comments in the code
- - [ ] Make code easier to read and maintain
- - [ ] Create documentation
+# Demo
+### Defining matrix through terminal/command line
+1. Select `Define Matrix`
 
-# Program Flow
-    > What would you like to do
-    [1] Define Matrix
-        > Select a matrix to define
-        [1] Matrix A
-    
-            Number of Rows: 2 
-            Number of Columns: 2
-            Enter value:
-                1 2 3
-                4 5 6
-                7 8 9
-    
-            Matrix [selected matrix] successfully defined
-    
-            Press any key to continue...
-    
-        [2] Matrix B
-        [3] Matrix C
-        [4] Matrix D
-        [5] Matrix E
-        [6] Matrix F
-        [7] Go back
-    
-    
-    [2] View Matrix
-        > Select a matrix to view
-        [1] Matrix A
-        [2] Matrix B
-        [3] Matrix C
-        [4] Matrix D
-        [5] Matrix E
-        [6] Matrix F
-        [7] Matrix Answer
-        [8] Go back
-    
-            (If selected matrix is not empty)
-            Value:
-            1.00    2.00    3.00
-            4.00    5.00    6.00
-            7.00    8.00    9.00
-            
-            Press any key to continue...
-    
-            (If selected matrix is empty)
-            Value:
-            [Empty]
-            
-            Press any key to continue...
-    
-    
-    [3] Compute Matrix
-    
-            > What operation would you like to perform
-            [1] Addition
-                > Select matrixes to add
-                [1] Matrix A
-                [2] Matrix B
-                [3] Matrix C
-                [4] Matrix D
-                [5] Matrix E
-                [6] Matrix F
-                [7] Matrix Answer
-                [8] Go back
-        
-                Choice--> 1
-        
-                [1] Matrix A
-                [2] Matrix B
-                [3] Matrix C
-                [4] Matrix D
-                [5] Matrix E
-                [6] Matrix F
-                [7] Matrix Answer
-                [8] Go back
-        
-                Choice--> 1
-        
-                    (If matrixes are compatible)
-                    > The sum is
-                    2.00    4.00    6.00
-                    8.00    10.00   12.00
-                    14.00   16.00   18.00
-        
-                    Press any key to continue...
-        
-                    (If matrixes are incompatible)
-                    Incompatible matrixes!
-        
-                    Press any key to continue...
-        
-            [2] Subtraction
-            [3] Multiplication
-            [4] Determinant
-            [5] Transposition
-            [6] Inverse
-            [7] Adjoint
-            [8] Go back
-        
-        
-    [5] Exit
-        
-    Choice-->
-   
+![image](https://user-images.githubusercontent.com/71577909/137516772-a74e5b9a-f544-404f-a5c9-f946e4dd8da4.png)
+
+2. Select a matrix to define.
+
+![image](https://user-images.githubusercontent.com/71577909/137517087-dfb09958-4781-4666-8b7a-c0cdcb9c9e91.png)
+
+To input through the terminal/command line, select the first option. Then specify `rows` and `columns` and `value` of your matrix.
+
+![image](https://user-images.githubusercontent.com/71577909/137517291-7037b65e-a25e-4663-b635-dca2372f8318.png)
+
+To input through a file, select the second option. Make sure there is only 1 input file named `input.txt` or `input.csv` in the program's directory. Then specify the delimiter and the program will automatically preview the matrix it reads from as well as defining it.
+
+*Maximum dimensions for reading matrix from a file is 100 x 100 with a maximum of 255 characters per delimiter*
+
+Suppose we have a file containing comma-separated values
+
+![image](https://user-images.githubusercontent.com/71577909/137518709-9312f2ee-2540-4056-a50b-dc26431b66e4.png)
+
+We just specify the delimiter as a `,` and simply press enter.
+
+![image](https://user-images.githubusercontent.com/71577909/137518814-3051b28a-15cc-41d9-851a-b9f5868095df.png)
+
+
+### Viewing stored matrix
+1. Select `View Matrix`
+
+![image](https://user-images.githubusercontent.com/71577909/137516772-a74e5b9a-f544-404f-a5c9-f946e4dd8da4.png)
+
+2. Select a matrix to view and the value of that matrix will appear.
+
+![image](https://user-images.githubusercontent.com/71577909/137520627-5dbf0bcd-f113-4a5d-aecb-ef159dce897e.png)
+
+
+### Performing arithmetic
+1. Select 'Compute Matrix`
+
+![image](https://user-images.githubusercontent.com/71577909/137516772-a74e5b9a-f544-404f-a5c9-f946e4dd8da4.png)
+
+2. Select an operation you would like to perform.
+
+![image](https://user-images.githubusercontent.com/71577909/137521025-e821b81d-6276-4da2-84fd-266551231709.png)
+
+3. Suppose we select `Addition`, then we just select 2 matrixes to be added together and the result will appear. After pressing any key to continue, the result will be outputted into `output.txt` and `output.csv` which we will take a look [here].(#looking-at-output-files) 
+
+![image](https://user-images.githubusercontent.com/71577909/137521209-aabd5fe7-b44e-4891-9562-a4487c46b74c.png)
+
+
+### Looking at output files
+In the `output.txt`, there will be an answer with proper matrix brackets and a generated latex code for the answer.
+
+![image](https://user-images.githubusercontent.com/71577909/137522513-86dfe040-dbd7-4590-b420-6d5088fa8e94.png)
+
+In the `output.csv`, there will be a comma-separated answer.
+
+![image](https://user-images.githubusercontent.com/71577909/137522612-0b0b6dcd-2a3c-49f1-8133-d625f9393e5b.png)
+
+The `output.csv` file is separated so that it can be imported into other programs right away.
+
+
 # Testing Scheme
 Suppose *matrix A* is
 

@@ -35,13 +35,6 @@ struct Matrix matF;
 struct Matrix matAns;
 
 //--[Matrix]-----------------------------------------------------
-//  - Define Matrix
-//  - View Matrix
-//  - Select Matrix
-//  - Read Matrix
-//  - Print Matrix
-//  - Free Matrix
-//---------------------------------------------------------------
 // Define Matrix
 void define_matrix(double ***matrix, int *row, int *column) {
     printf("\nNumber of Rows: ");

@@ -14,10 +14,16 @@
 #include <stdlib.h>
 #include <string.h> // for reading file
 
-#define INPUT_FILE "input.txt"
+// 1. User can change input and output file name here
+// 2. There should be only 1 input file type in the program's directory. Otherwise, the program will only process INPUT_TXT_FILE
+// 3. Both OUTPUT_TXT_FILE and OUTPUT_CSV_FILE must exist in the program's directory. If there is no OUTPUT_TXT_FILE, the program will also not output OUTPUT_CSV_FILE
+//    However, if there is no OUTPUT_CSV_FILE, the program will still output OUTPUT_TXT_FILE
+// 4. Maximum dimensions for reading matrix from a file is 100 x 100 with a maximum of 255 delimiter characters
+#define INPUT_TXT_FILE "input.txt"
 #define INPUT_CSV_FILE "input.csv"
-#define OUTPUT_FILE "output.txt"
+#define OUTPUT_TXT_FILE "output.txt"
 #define OUTPUT_CSV_FILE "output.csv"
+
 #define MEM_ALLOCATE(dataType, length) (dataType *)malloc((length) * sizeof(dataType))
 
 //--[Function Declaration]---------------------------------------
@@ -28,7 +34,7 @@
 //---------------------------------------------------------------
 // Pages
 void main_menu_page();
-int define_matrix_selection_page(char msg); // return 1 if user choose to input through terminal, 2 through file, else -1 go back
+int define_matrix_selection_page(char msg); // return 1 if user choose to input through terminal, 2 through file, else -1 to go back
 void define_matrix_page();
 void view_matrix_page();
 void compute_matrix_page();
@@ -37,8 +43,9 @@ void compute_matrix_page();
 void define_matrix(double ***matrix, int *row, int *column);
 void view_matrix(double **matrix, int row, int column);
 int select_matrix(double ***matrix, int *row, int *column); // return 2 if user select 'Go Back', 1 if user select invalid choice, else 0
-int read_matrix(const char *filename, const char *filename_csv, const char *delimiter, double ***matrix, int *row, int *column);
+int read_matrix(const char *filename, const char *filename_csv, const char *delimiter, double ***matrix, int *row, int *column); // return 1 if cannot read, else 0
 int output_matrix(const char *filename, const char *filename_csv, double **matrix, int row, int column); // return 1 if cannot print, else 0
+void free_matrix(double **matrix, int row, int column);
 
 // Matrix Arithmetic (Return 0 if input matrix is valid, else 1)
 int add_matrix(double **matrix1, int row1, int column1, double **matrix2, int row2, int column2, double ***matrixAns, int *rowAns, int *columnAns);
@@ -109,9 +116,15 @@ void main_menu_page() {
     case 3:
         compute_matrix_page();
     case 4:
+        free_matrix(matA.value, matA.row, matA.column);
+        free_matrix(matB.value, matB.row, matB.column);
+        free_matrix(matC.value, matC.row, matC.column);
+        free_matrix(matD.value, matD.row, matD.column);
+        free_matrix(matE.value, matE.row, matE.column);
+        free_matrix(matF.value, matF.row, matF.column);
+        free_matrix(matAns.value, matAns.row, matAns.column);
         exit(0);
     default:
-        printf("\n");
         invalid_choice_error();
         system("pause");
     }
@@ -124,7 +137,7 @@ int define_matrix_selection_page(char msg) {
     int choice;
     printf("> How would you like to define matrix %c?\n", msg);
     printf("[1] Input through terminal\n");
-    printf("[2] Input through file (%s or %s)\n", INPUT_FILE, INPUT_CSV_FILE);
+    printf("[2] Input through file (%s or %s)\n", INPUT_TXT_FILE, INPUT_CSV_FILE);
     printf("[3] Go back\n");
     printf("\nChoice--> ");
     scanf("%d", &choice);
@@ -137,7 +150,6 @@ int define_matrix_selection_page(char msg) {
     case 3:
         define_matrix_page();
     default:
-        printf("\n");
         invalid_choice_error();
         system("pause");
         define_matrix_selection_page(msg);
@@ -148,7 +160,7 @@ int define_matrix_selection_page(char msg) {
 void define_matrix_page() {
     system("cls");
     int choice;
-    char delimiter[255];
+    char delimiter[255]; // delimiter is limited to 255 characters
     printf("> Select a matrix to define\n");
     for (int i = 0; i < 6; i++)
         printf("[%d] Matrix %c\n", i + 1, 'A' + i);
@@ -157,16 +169,12 @@ void define_matrix_page() {
     scanf("%d", &choice);
     switch (choice) {
     case 1:
-        if (define_matrix_selection_page('A' + choice - 1) == 1) {
-            printf("\n");
+        if (define_matrix_selection_page('A' + choice - 1) == 1)
             define_matrix(&matA.value, &matA.row, &matA.column);
-            printf("\n");
-        }
         else {
             printf("\nDelimiter: ");
             fgets(delimiter, 255, stdin);
-            if (read_matrix(INPUT_FILE, INPUT_CSV_FILE, delimiter, &matA.value, &matA.row, &matA.column) == 1) {
-                printf("\n");
+            if (read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matA.value, &matA.row, &matA.column) == 1) {
                 cannot_read_error();
                 system("pause");
                 define_matrix_page();
@@ -176,16 +184,12 @@ void define_matrix_page() {
         }
         break;
     case 2:
-        if (define_matrix_selection_page('A' + choice - 1) == 1) {
-            printf("\n");
+        if (define_matrix_selection_page('A' + choice - 1) == 1)
             define_matrix(&matB.value, &matB.row, &matB.column);
-            printf("\n");
-        }
         else {
             printf("\nDelimiter: ");
             fgets(delimiter, 255, stdin);
-            if (read_matrix(INPUT_FILE, INPUT_CSV_FILE, delimiter, &matB.value, &matB.row, &matB.column) == 1) {
-                printf("\n");
+            if (read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matB.value, &matB.row, &matB.column) == 1) {
                 cannot_read_error();
                 system("pause");
                 define_matrix_page();
@@ -195,16 +199,12 @@ void define_matrix_page() {
         }
         break;
     case 3:
-        if (define_matrix_selection_page('A' + choice - 1) == 1) {
-            printf("\n");
+        if (define_matrix_selection_page('A' + choice - 1) == 1)
             define_matrix(&matC.value, &matC.row, &matC.column);
-            printf("\n");
-        }
         else {
             printf("\nDelimiter: ");
             fgets(delimiter, 255, stdin);
-            if (read_matrix(INPUT_FILE, INPUT_CSV_FILE, delimiter, &matC.value, &matC.row, &matC.column) == 1) {
-                printf("\n");
+            if (read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matC.value, &matC.row, &matC.column) == 1) {
                 cannot_read_error();
                 system("pause");
                 define_matrix_page();
@@ -214,16 +214,12 @@ void define_matrix_page() {
         }
         break;
     case 4:
-        if (define_matrix_selection_page('A' + choice - 1) == 1) {
-            printf("\n");
+        if (define_matrix_selection_page('A' + choice - 1) == 1)
             define_matrix(&matD.value, &matD.row, &matD.column);
-            printf("\n");
-        }
         else {
             printf("\nDelimiter: ");
             fgets(delimiter, 255, stdin);
-            if (read_matrix(INPUT_FILE, INPUT_CSV_FILE, delimiter, &matD.value, &matD.row, &matD.column) == 1) {
-                printf("\n");
+            if (read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matD.value, &matD.row, &matD.column) == 1) {
                 cannot_read_error();
                 system("pause");
                 define_matrix_page();
@@ -233,16 +229,12 @@ void define_matrix_page() {
         }
         break;
     case 5:
-        if (define_matrix_selection_page('A' + choice - 1) == 1) {
-            printf("\n");
+        if (define_matrix_selection_page('A' + choice - 1) == 1)
             define_matrix(&matE.value, &matE.row, &matE.column);
-            printf("\n");
-        }
         else {
             printf("\nDelimiter: ");
             fgets(delimiter, 255, stdin);
-            if (read_matrix(INPUT_FILE, INPUT_CSV_FILE, delimiter, &matE.value, &matE.row, &matE.column) == 1) {
-                printf("\n");
+            if (read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matE.value, &matE.row, &matE.column) == 1) {
                 cannot_read_error();
                 system("pause");
                 define_matrix_page();
@@ -252,16 +244,12 @@ void define_matrix_page() {
         }
         break;
     case 6:
-        if (define_matrix_selection_page('A' + choice - 1) == 1) {
-            printf("\n");
+        if (define_matrix_selection_page('A' + choice - 1) == 1)
             define_matrix(&matF.value, &matF.row, &matF.column);
-            printf("\n");
-        }
         else {
             printf("\nDelimiter: ");
             fgets(delimiter, 255, stdin);
-            if (read_matrix(INPUT_FILE, INPUT_CSV_FILE, delimiter, &matF.value, &matF.row, &matF.column) == 1) {
-                printf("\n");
+            if (read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matF.value, &matF.row, &matF.column) == 1) {
                 cannot_read_error();
                 system("pause");
                 define_matrix_page();
@@ -294,7 +282,7 @@ void view_matrix_page() {
     case 1:
         view_matrix_page();
     default:
-        printf("Value:\n");
+        printf("\nValue:\n");
         view_matrix(matrix, row, column);
     }
     system("pause");
@@ -330,7 +318,7 @@ void compute_matrix_page() {
         
         // If matrix dimension is compatible (!= 1), print the result. Else, print Incompatible Dimension Error
         if (add_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.value, &matAns.row, &matAns.column) != 1) {
-            printf("> The sum is\n");
+            printf("\n> The sum is\n");
             view_matrix(matAns.value, matAns.row, matAns.column);
         }
         else
@@ -350,7 +338,7 @@ void compute_matrix_page() {
         
         // If matrix dimension is compatible (!= 1), print the result. Else, print Incompatible Dimension Error
         if (subtract_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.value, &matAns.row, &matAns.column) != 1) {
-            printf("> The difference is\n");
+            printf("\n> The difference is\n");
             view_matrix(matAns.value, matAns.row, matAns.column);
         }
         else
@@ -370,7 +358,7 @@ void compute_matrix_page() {
         
         // If matrix dimension is compatible (!= 1), print the result. Else, print Incompatible Dimension Error
         if (multiply_matrix(matrix1, row1, column1, matrix2, row2, column2, &matAns.value, &matAns.row, &matAns.column) != 1) {
-            printf("> The product is\n");
+            printf("\n> The product is\n");
             view_matrix(matAns.value, matAns.row, matAns.column);
         }
         else
@@ -392,7 +380,7 @@ void compute_matrix_page() {
             matAns.value = MEM_ALLOCATE(double *, 1);
             matAns.value[0] = MEM_ALLOCATE(double, 1);
             matAns.value[0][0] = get_determinant(matrix1, row1);
-            printf("> The determinant is\n%.2lf\n\n", matAns.value[0][0]);
+            printf("\n> The determinant is\n%.2lf\n\n", matAns.value[0][0]);
         }
         else
             unequal_dimension_error();
@@ -408,7 +396,7 @@ void compute_matrix_page() {
             compute_matrix_page();
         
         transpose_matrix(matrix1, row1, column1, &matAns.value, &matAns.row, &matAns.column);
-        printf("> The transposition is\n");
+        printf("\n> The transposition is\n");
         view_matrix(matAns.value, matAns.row, matAns.column);
         system("pause");
         break;
@@ -424,7 +412,7 @@ void compute_matrix_page() {
         if (row1 == column1) {
             // If matrix determinant is not 0, print the result. Else, print Det Equal Zero Error
             if (inverse_matrix(matrix1, row1, &matAns.value, &matAns.row, &matAns.column) != 1) {
-                printf("> The inverse is\n");
+                printf("\n> The inverse is\n");
                 view_matrix(matAns.value, matAns.row, matAns.column);
             }
             else
@@ -446,7 +434,7 @@ void compute_matrix_page() {
         // If matrix dimension is equal, print the result. Else, print Unequal Dimension Error
         if (row1 == column1) {
             get_adjoint(matrix1, row1, &matAns.value, &matAns.row, &matAns.column);
-            printf("> The adjoint is\n");
+            printf("\n> The adjoint is\n");
             view_matrix(matAns.value, matAns.row, matAns.column);
         }
         else
@@ -458,13 +446,11 @@ void compute_matrix_page() {
         main_menu_page();
         break;
     default:
-        printf("\n");
         invalid_choice_error();
         system("pause");
         compute_matrix_page();
     }
-    if (output_matrix(OUTPUT_FILE, OUTPUT_CSV_FILE, matAns.value, matAns.row, matAns.column) == 1) {
-        printf("\n");
+    if (output_matrix(OUTPUT_TXT_FILE, OUTPUT_CSV_FILE, matAns.value, matAns.row, matAns.column) == 1) {
         cannot_print_error();
         system("pause");
     }
@@ -475,12 +461,13 @@ void compute_matrix_page() {
 //  - Define Matrix
 //  - View Matrix
 //  - Select Matrix
+//  - Read Matrix
 //  - Print Matrix
 //  - Free Matrix
 //---------------------------------------------------------------
 // Define Matrix
 void define_matrix(double ***matrix, int *row, int *column) {
-    printf("Number of Rows: ");
+    printf("\nNumber of Rows: ");
     scanf("%d", row);
     printf("Number of Columns: ");
     scanf("%d", column);
@@ -517,7 +504,6 @@ int select_matrix(double ***matrix, int *row, int *column) {
     printf("[8] Go back\n");
     printf("\nChoice--> ");
     scanf("%d", &choice);
-    printf("\n");
     switch (choice) {
     case 1:
         *matrix = matA.value, *row = matA.row, *column = matA.column;
@@ -588,7 +574,8 @@ int read_matrix(const char *filename, const char *filename_csv, const char *deli
     *matrix = tempMatrix;
     *row = tempRow;
     *column = tempColumn;
-    fclose(in_file);
+    fclose(file);
+    fclose(file_csv);
     return 0;
 }
 
@@ -680,6 +667,15 @@ int output_matrix(const char *filename, const char *filename_csv, double **matri
     fclose(out_file);
     fclose(out_csv_file);
     return 0;
+}
+
+// Free Matrix
+void free_matrix(double **matrix, int row, int column) {
+    for (int i = 0; i < row; i++) {
+        double *ptr = matrix[i];
+        free(ptr);
+    }
+    row = 0, column = 0;
 }
 
 //--[Matrix Arithmetic]------------------------------------------
@@ -870,35 +866,35 @@ int inverse_matrix(double **matrix, int dimension, double ***matrixAns, int *row
 //---------------------------------------------------------------
 // Define Matrix Success
 void define_matrix_success_msg(char msg) {
-    printf("Matrix %c successfully defined!\n\n", msg);
+    printf("\nMatrix %c successfully defined!\n\n", msg);
 }
 
 // Invalid Choice Error
 void invalid_choice_error() {
-    printf("Please select a valid choice!\n\n");
+    printf("\nPlease select a valid choice!\n\n");
 }
 
 // Incompatible Dimension Error
 void incompatible_dimension_error() {
-    printf("Incompatible matrix dimension!\n\n");
+    printf("\nIncompatible matrix dimension!\n\n");
 }
 
 // Unequal Dimension Error
 void unequal_dimension_error() {
-    printf("Matrix dimension must be equal!\n\n");
+    printf("\nMatrix dimension must be equal!\n\n");
 }
 
 // Unequal Dimension Error
 void det_equal_zero_error() {
-    printf("Cannot find inverse of singular matrix!\n\n");
+    printf("\nCannot find inverse of singular matrix!\n\n");
 }
 
 // Cannot Read Error
 void cannot_read_error() {
-    printf("Error accessing input file!\n\n");
+    printf("\nError accessing input file!\n\n");
 }
 
 // Cannot Print Error
 void cannot_print_error() {
-    printf("Error printing result to a file!\n\n");
+    printf("\nError accessing output file!\n\n");
 }

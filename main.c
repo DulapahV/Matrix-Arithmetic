@@ -190,6 +190,8 @@ void define_matrix_page() {
                 system("pause");
                 define_matrix_page();
             }
+            printf("Read value:\n");
+            view_matrix(matA.value, matA.row, matA.column);
         }
         break;
     case 3:
@@ -207,6 +209,8 @@ void define_matrix_page() {
                 system("pause");
                 define_matrix_page();
             }
+            printf("Read value:\n");
+            view_matrix(matA.value, matA.row, matA.column);
         }
         break;
     case 4:
@@ -224,6 +228,8 @@ void define_matrix_page() {
                 system("pause");
                 define_matrix_page();
             }
+            printf("Read value:\n");
+            view_matrix(matA.value, matA.row, matA.column);
         }
         break;
     case 5:
@@ -241,6 +247,8 @@ void define_matrix_page() {
                 system("pause");
                 define_matrix_page();
             }
+            printf("Read value:\n");
+            view_matrix(matA.value, matA.row, matA.column);
         }
         break;
     case 6:
@@ -258,6 +266,8 @@ void define_matrix_page() {
                 system("pause");
                 define_matrix_page();
             }
+            printf("Read value:\n");
+            view_matrix(matA.value, matA.row, matA.column);
         }
         break;
     case 7:

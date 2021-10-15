@@ -18,7 +18,7 @@
 // - There should be only 1 input file type in the program's directory. Otherwise, the program will only process INPUT_TXT_FILE
 // - Both OUTPUT_TXT_FILE and OUTPUT_CSV_FILE must exist in the program's directory. If there is no OUTPUT_TXT_FILE, the program will also not output OUTPUT_CSV_FILE
 //   However, if there is no OUTPUT_CSV_FILE, the program will still output OUTPUT_TXT_FILE
-// - Maximum dimensions for reading matrix from a file is 100 x 100 with a maximum of 255 delimiter characters
+// - Maximum dimensions for reading matrix from a file is 100 x 100 with a maximum of 255 characters per delimiter
 #define INPUT_TXT_FILE "input.txt"
 #define INPUT_CSV_FILE "input.csv"
 #define OUTPUT_TXT_FILE "output.txt"

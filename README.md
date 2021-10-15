@@ -10,7 +10,7 @@ This README is separated into 3 parts:
 	 - [Defining matrix through terminal/command line and through file (*input.txt* or *input.csv*)](#defining-matrix-through-terminalcommand-line)
 	 - [Viewing stored matrix](#viewing-stored-matrix)
 	 - [Performing arithmetic](#performing-arithmetic)
-	 - [Looking at output files (*output.txt* and *output.csv*)](#looking-at-output-files) 
+	 - [Looking at output files (*output.txt* and *output.csv*)](#looking-at-output-files)
  - [Testing Scheme](#testing-scheme)
 
 # Project Description
@@ -36,7 +36,7 @@ This project aims to create a matrix computing program that runs in the terminal
 
 
 # Demo
-### Defining matrix through terminal/command line
+### Defining matrix through terminal/command line and through file (*input.txt* or *input.csv*)
 1. Select `Define Matrix`
 
 ![image](https://user-images.githubusercontent.com/71577909/137516772-a74e5b9a-f544-404f-a5c9-f946e4dd8da4.png)

@@ -86,7 +86,7 @@ We just specify the delimiter as a `,` and simply press enter.
 ![image](https://user-images.githubusercontent.com/71577909/137521209-aabd5fe7-b44e-4891-9562-a4487c46b74c.png)
 
 
-### Looking at output files
+### Looking at output files (*output.txt* and *output.csv*)
 In the `output.txt`, there will be an answer with proper matrix brackets and a generated latex code for the answer.
 
 ![image](https://user-images.githubusercontent.com/71577909/137522513-86dfe040-dbd7-4590-b420-6d5088fa8e94.png)

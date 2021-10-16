@@ -95,11 +95,9 @@ In the `output.txt`, there will be an answer with proper matrix brackets and a g
 
 ![image](https://user-images.githubusercontent.com/71577909/137522513-86dfe040-dbd7-4590-b420-6d5088fa8e94.png)
 
-In the `output.csv`, there will be a comma-separated answer.
+In the `output.csv`, there will be a comma-separated answer. The `output.csv` file is separated so that it can be imported into other programs right away.
 
 ![image](https://user-images.githubusercontent.com/71577909/137522612-0b0b6dcd-2a3c-49f1-8133-d625f9393e5b.png)
-
-The `output.csv` file is separated so that it can be imported into other programs right away.
 
 
 # Testing Scheme

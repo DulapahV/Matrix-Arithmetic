@@ -245,11 +245,13 @@ void compute_matrix_page() {
     printf("[1] Addition\n");
     printf("[2] Subtraction\n");
     printf("[3] Multiplication\n");
-    printf("[4] Determinant\n");
-    printf("[5] Transposition\n");
-    printf("[6] Inverse\n");
-    printf("[7] Adjoint\n");
-    printf("[8] Go back\n");
+    printf("[4] Scalar Multiplication\n");
+    printf("[5] Exponentiation\n");
+    printf("[6] Determinant\n");
+    printf("[7] Transposition\n");
+    printf("[8] Inverse\n");
+    printf("[9] Adjoint\n");
+    printf("[10] Go back\n");
     printf("\nChoice--> ");
     scanf("%d", &choice);
     switch (choice) {
@@ -315,6 +317,38 @@ void compute_matrix_page() {
         break;
     case 4:
         system("cls");
+        printf("> Select a matrix to scalar multiply\n");
+
+        // Prompt user to select a matrix. If user select invalid choice (-1) or choose to go back (-2), go back to Compute Matrix Page
+        if ((choice = select_matrix(&matrix1, &row1, &column1)) == 1 || choice == 2)
+            compute_matrix_page();
+        
+        double multiplier;
+        printf("\nMultiplier: ");
+        scanf("%lf", &multiplier);
+        scalar_multiply_matrix(matrix1, row1, column1, multiplier, &matAns.value, &matAns.row, &matAns.column);
+        printf("\n> The scalar multiplication is\n");
+        view_matrix(matAns.value, matAns.row, matAns.column);
+        system("pause");
+        break;
+    case 5:
+        system("cls");
+        printf("> Select a matrix to exponentiate\n");
+
+        // Prompt user to select a matrix. If user select invalid choice (-1) or choose to go back (-2), go back to Compute Matrix Page
+        if ((choice = select_matrix(&matrix1, &row1, &column1)) == 1 || choice == 2)
+            compute_matrix_page();
+        
+        double exponent;
+        printf("\nExponent: ");
+        scanf("%lf", &exponent);
+        exponentiation_matrix(matrix1, row1, column1, exponent, &matAns.value, &matAns.row, &matAns.column);
+        printf("\n> The exponentiation is\n");
+        view_matrix(matAns.value, matAns.row, matAns.column);
+        system("pause");
+        break;
+    case 6:
+        system("cls");
         printf("> Select a matrix to find determinant\n");
 
         // Prompt user to select a matrix. If user select invalid choice (-1) or choose to go back (-2), go back to Compute Matrix Page
@@ -334,7 +368,7 @@ void compute_matrix_page() {
         
         system("pause");
         break;
-    case 5:
+    case 7:
         system("cls");
         printf("> Select a matrix to transpose\n");
 
@@ -347,7 +381,7 @@ void compute_matrix_page() {
         view_matrix(matAns.value, matAns.row, matAns.column);
         system("pause");
         break;
-    case 6:
+    case 8:
         system("cls");
         printf("> Select a matrix to find inverse\n");
 
@@ -370,7 +404,7 @@ void compute_matrix_page() {
         
         system("pause");
         break;
-    case 7:
+    case 9:
         system("cls");
         printf("> Select a matrix to find adjoint\n");
 
@@ -389,7 +423,7 @@ void compute_matrix_page() {
         
         system("pause");
         break;
-    case 8:
+    case 10:
         main_menu_page();
         break;
     default:

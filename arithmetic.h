@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <math.h> // for exponentiation
 
 #define MEM_ALLOCATE(dataType, length) (dataType *)malloc((length) * sizeof(dataType))
 
@@ -6,6 +7,8 @@
 int add_matrix(double **matrix1, int row1, int column1, double **matrix2, int row2, int column2, double ***matrixAns, int *rowAns, int *columnAns);
 int subtract_matrix(double **matrix1, int row1, int column1, double **matrix2, int row2, int column2, double ***matrixAns, int *rowAns, int *columnAns);
 int multiply_matrix(double **matrix1, int row1, int column1, double **matrix2, int row2, int column2, double ***matrixAns, int *rowAns, int *columnAns);
+void scalar_multiply_matrix(double **matrix, int row, int column, double multiplier, double ***matrixAns, int *rowAns, int *columnAns);
+void exponentiation_matrix(double **matrix, int row, int column, double exponent, double ***matrixAns, int *rowAns, int *columnAns);
 double get_determinant(double **matrix, int dimension);
 void get_coFactor(double **matrix, double **matrixTemp, int posX, int posY, int dimension);
 void transpose_matrix(double **matrix, int row, int column, double ***matrixAns, int *rowAns, int *columnAns);
@@ -63,33 +66,36 @@ int multiply_matrix(double **matrix1, int row1, int column1, double **matrix2, i
                     tempAns[i][j] += matrix1[i][k] * matrix2[k][j];
             }
     }
-    else if (row1 == 1 && column1 == 1) { // Multiplying 1 x 1 matrix with n x m matrix
-        *rowAns = row2, *columnAns = column2;
-        tempAns = MEM_ALLOCATE(double *, row2);
-        for (int i = 0; i < row2; i++)
-            tempAns[i] = MEM_ALLOCATE(double, column2);
-        for (int i = 0; i < row2; i++)
-            for (int j = 0; j < column2; j++)
-                tempAns[i][j] = matrix1[0][0] * matrix2[i][j];
-    }
-    else if (row2 == 1 && column2 == 1) { // Multiplying n x m matrix with 1 x 1 matrix 
-        *rowAns = row1, *columnAns = column1;
-        tempAns = MEM_ALLOCATE(double *, row1);
-        for (int i = 0; i < row1; i++)
-            tempAns[i] = MEM_ALLOCATE(double, column1);
-        for (int i = 0; i < row1; i++)
-            for (int j = 0; j < column1; j++)
-                tempAns[i][j] = matrix1[i][j] * matrix2[0][0];
-    }
-    else if ((row1 == 1 && column1 == 1) && (row2 == 1 && column2 == 1)) { // Multiplying 1 x 1 matrix with 1 x 1 matrix 
-        *rowAns = row1, *columnAns = column1;
-        tempAns = MEM_ALLOCATE(double *, 1), tempAns[0] = MEM_ALLOCATE(double, 1);
-        tempAns[0][0] = matrix1[0][0] * matrix2[0][0];
-    }
     else
         return 1;
     *matrixAns = tempAns;
     return 0;
+}
+
+// Scalar Multiplication
+void scalar_multiply_matrix(double **matrix, int row, int column, double multiplier, double ***matrixAns, int *rowAns, int *columnAns) {
+    double **tempAns;
+    *rowAns = row, *columnAns = column;
+    tempAns = MEM_ALLOCATE(double *, row);
+    for (int i = 0; i < row; i++)
+        tempAns[i] = MEM_ALLOCATE(double, column);
+    for (int i = 0; i < row; i++)
+        for (int j = 0; j < column; j++)
+            tempAns[i][j] = matrix[i][j] * multiplier;
+    *matrixAns = tempAns;
+}
+
+// Exponentiation Matrix
+void exponentiation_matrix(double **matrix, int row, int column, double exponent, double ***matrixAns, int *rowAns, int *columnAns) {
+    double **tempAns;
+    *rowAns = row, *columnAns = column;
+    tempAns = MEM_ALLOCATE(double *, row);
+    for (int i = 0; i < row; i++)
+        tempAns[i] = MEM_ALLOCATE(double, column);
+    for (int i = 0; i < row; i++)
+        for (int j = 0; j < column; j++)
+            tempAns[i][j] = pow(matrix[i][j], exponent);
+    *matrixAns = tempAns;
 }
 
 // Get Determinant

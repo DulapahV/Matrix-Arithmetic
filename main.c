@@ -48,7 +48,7 @@ int main() {
 void main_menu_page() {
     int choice;
     system("cls");
-    printf("> What would you like to do\n");
+    printf("> What would you like to do?\n");
     printf("[1] Define Matrix\n");
     printf("[2] View Matrix\n");
     printf("[3] Compute Matrix\n");
@@ -241,7 +241,7 @@ void compute_matrix_page() {
     system("cls");
     double **matrix1, **matrix2;
     int choice, row1, column1, row2, column2;
-    printf("> What operation would you like to perform\n");
+    printf("> What operation would you like to perform?\n");
     printf("[1] Addition\n");
     printf("[2] Subtraction\n");
     printf("[3] Multiplication\n");
@@ -327,7 +327,7 @@ void compute_matrix_page() {
         printf("\nMultiplier: ");
         scanf("%lf", &multiplier);
         scalar_multiply_matrix(matrix1, row1, column1, multiplier, &matAns.value, &matAns.row, &matAns.column);
-        printf("\n> The scalar multiplication is\n");
+        printf("\n> The product is\n");
         view_matrix(matAns.value, matAns.row, matAns.column);
         system("pause");
         break;
@@ -343,7 +343,7 @@ void compute_matrix_page() {
         printf("\nExponent: ");
         scanf("%lf", &exponent);
         exponentiation_matrix(matrix1, row1, column1, exponent, &matAns.value, &matAns.row, &matAns.column);
-        printf("\n> The exponentiation is\n");
+        printf("\n> The result is\n");
         view_matrix(matAns.value, matAns.row, matAns.column);
         system("pause");
         break;

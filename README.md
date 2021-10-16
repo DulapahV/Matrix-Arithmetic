@@ -1,6 +1,3 @@
-
-
-
 # Matrix-Arithmetic
 An individual project for C Programing Lecture, KMITL Software Engineering, Year 1, Semester 1
 

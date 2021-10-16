@@ -55,7 +55,7 @@ To input through the terminal/command line, select the first option. Then specif
 
 To input through a file, select the second option. Make sure there is only 1 input file named `input.txt` or `input.csv` in the program's directory. Then specify the delimiter and the program will automatically preview the matrix it reads from as well as defining it.
 
-*Maximum dimensions for reading matrix from a file is 100 x 100 with a maximum of 255 characters per delimiter*
+**Maximum dimensions for reading matrix from a file is 100 x 100 with a maximum of 255 characters per delimiter (delimiter cannot contain `.` character as it will be determined as a decimal point instead)*
 
 Suppose we have a file containing comma-separated values
 

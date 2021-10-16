@@ -1,5 +1,6 @@
 
 
+
 # Matrix-Arithmetic
 An individual project for C Programing Lecture, KMITL Software Engineering, Year 1, Semester 1
 
@@ -46,7 +47,7 @@ This project aims to create a matrix computing program that runs in the terminal
 ### Defining matrix through terminal/command line and through file (*input.txt* or *input.csv*)
 1. Select `Define Matrix`
 
-![image](https://user-images.githubusercontent.com/71577909/137516772-a74e5b9a-f544-404f-a5c9-f946e4dd8da4.png)
+![image](https://user-images.githubusercontent.com/71577909/137595788-c4753f78-7b63-49bd-b62e-ee2c5236d20d.png)
 
 2. Select a matrix to define.
 
@@ -54,7 +55,7 @@ This project aims to create a matrix computing program that runs in the terminal
 
 To input through the terminal/command line, select the first option. Then specify `rows` and `columns` and `value` of your matrix.
 
-![image](https://user-images.githubusercontent.com/71577909/137517291-7037b65e-a25e-4663-b635-dca2372f8318.png)
+![image](https://user-images.githubusercontent.com/71577909/137595905-d4797eeb-1a7a-447c-9cf0-aba09a64453d.png)
 
 To input through a file, select the second option. Make sure there is only 1 input file named `input.txt` or `input.csv` in the program's directory. Then specify the delimiter and the program will automatically preview the matrix it reads from as well as defining it.
 
@@ -72,7 +73,7 @@ We just specify the delimiter as a `,` and simply press enter.
 ### Viewing stored matrix
 1. Select `View Matrix`
 
-![image](https://user-images.githubusercontent.com/71577909/137516772-a74e5b9a-f544-404f-a5c9-f946e4dd8da4.png)
+![image](https://user-images.githubusercontent.com/71577909/137595788-c4753f78-7b63-49bd-b62e-ee2c5236d20d.png)
 
 2. Select a matrix to view and the value of that matrix will appear.
 
@@ -82,11 +83,11 @@ We just specify the delimiter as a `,` and simply press enter.
 ### Performing arithmetic
 1. Select `Compute Matrix`
 
-![image](https://user-images.githubusercontent.com/71577909/137516772-a74e5b9a-f544-404f-a5c9-f946e4dd8da4.png)
+![image](https://user-images.githubusercontent.com/71577909/137595788-c4753f78-7b63-49bd-b62e-ee2c5236d20d.png)
 
 2. Select an operation you would like to perform.
 
-![image](https://user-images.githubusercontent.com/71577909/137595573-1a1c6592-b662-4f8e-adf2-ebab2c0939d4.png)
+![image](https://user-images.githubusercontent.com/71577909/137595820-60ae7521-b5d7-4696-aa7a-dbce8199747b.png)
 
 3. Suppose we select `Addition`, then we just select 2 matrixes to be added together and the result will appear. After pressing any key to continue, the result will be outputted into `output.txt` and `output.csv` which we will take a look [here](#looking-at-output-files).
 

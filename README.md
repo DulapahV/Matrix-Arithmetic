@@ -1,4 +1,5 @@
 
+
 # Matrix-Arithmetic
 An individual project for C Programing Lecture, KMITL Software Engineering, Year 1, Semester 1
 
@@ -85,7 +86,7 @@ We just specify the delimiter as a `,` and simply press enter.
 
 2. Select an operation you would like to perform.
 
-![image](https://user-images.githubusercontent.com/71577909/137521025-e821b81d-6276-4da2-84fd-266551231709.png)
+![image](https://user-images.githubusercontent.com/71577909/137595573-1a1c6592-b662-4f8e-adf2-ebab2c0939d4.png)
 
 3. Suppose we select `Addition`, then we just select 2 matrixes to be added together and the result will appear. After pressing any key to continue, the result will be outputted into `output.txt` and `output.csv` which we will take a look [here](#looking-at-output-files).
 

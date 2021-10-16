@@ -7,7 +7,7 @@ An individual project for C Programing Lecture, KMITL Software Engineering, Year
 This README is separated into 3 parts:
  - [Project Description](#project-description)
  - [Demo](#demo)
-	 - [Defining matrix through terminal/command line and through file (*input.txt* or *input.csv*)](#defining-matrix-through-terminalcommand-line)
+	 - [Defining matrix through terminal/command line and through file (*input.txt* or *input.csv*)](#defining-matrix-through-terminalcommand-line-and-through-file-inputtxt-or-inputcsv)
 	 - [Viewing stored matrix](#viewing-stored-matrix)
 	 - [Performing arithmetic](#performing-arithmetic)
 	 - [Looking at output files (*output.txt* and *output.csv*)](#looking-at-output-files)

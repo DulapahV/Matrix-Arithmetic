@@ -91,7 +91,7 @@ We just specify the delimiter as a `,` and simply press enter.
 
 
 ### Looking at output files
-In the `output.txt`, there will be an answer with proper matrix brackets and a generated latex code for the answer.
+In the `output.txt`, there will be an answer with proper matrix brackets and a generated LaTeX code for the answer.
 
 ![image](https://user-images.githubusercontent.com/71577909/137522513-86dfe040-dbd7-4590-b420-6d5088fa8e94.png)
 

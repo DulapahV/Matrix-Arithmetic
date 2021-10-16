@@ -23,6 +23,8 @@ This project aims to create a matrix computing program that runs in the terminal
 	 - Addition
 	 - Subtraction
 	 - Multiplication
+	 - Scalar Multiplication
+	 - Exponentiation
 	 - Determinant
 	 - Transposition
 	 - Inverse

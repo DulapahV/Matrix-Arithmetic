@@ -142,7 +142,7 @@ void define_matrix_page() {
                 define_matrix_page();
             }
             printf("Read value:\n");
-            view_matrix(matA.value, matA.row, matA.column);
+            view_matrix(matB.value, matB.row, matB.column);
         }
         break;
     case 3:
@@ -157,7 +157,7 @@ void define_matrix_page() {
                 define_matrix_page();
             }
             printf("Read value:\n");
-            view_matrix(matA.value, matA.row, matA.column);
+            view_matrix(matC.value, matC.row, matC.column);
         }
         break;
     case 4:
@@ -172,7 +172,7 @@ void define_matrix_page() {
                 define_matrix_page();
             }
             printf("Read value:\n");
-            view_matrix(matA.value, matA.row, matA.column);
+            view_matrix(matD.value, matD.row, matD.column);
         }
         break;
     case 5:
@@ -187,7 +187,7 @@ void define_matrix_page() {
                 define_matrix_page();
             }
             printf("Read value:\n");
-            view_matrix(matA.value, matA.row, matA.column);
+            view_matrix(matE.value, matE.row, matE.column);
         }
         break;
     case 6:
@@ -202,7 +202,7 @@ void define_matrix_page() {
                 define_matrix_page();
             }
             printf("Read value:\n");
-            view_matrix(matA.value, matA.row, matA.column);
+            view_matrix(matF.value, matF.row, matF.column);
         }
         break;
     case 7:

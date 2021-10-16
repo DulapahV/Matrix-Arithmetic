@@ -36,9 +36,9 @@ This project aims to create a matrix computing program that runs in the terminal
 
 3. Answer is automatically output in the `output.txt` file with proper matrix brackets and also generates LaTeX code for the user. The program also outputs answers in the `output.csv` file as a comma-separated value.
 
-4. Answer is automatically stored in 'Matrix Answer' so that it can be used to compute or perform further operations later on.
+4. Answer is automatically stored in `Matrix Answer` so that it can be used to compute or perform further operations later on.
 
-5. User can view each stored matrix value (max 7)
+5. User can view each stored matrix value
 
 
 # Demo
@@ -89,6 +89,8 @@ We just specify the delimiter as a `,` and simply press enter.
 
 3. Suppose we select `Addition`, then we just select 2 matrixes to be added together and the result will appear. After pressing any key to continue, the result will be outputted into `output.txt` and `output.csv` which we will take a look [here](#looking-at-output-files).
 
+**Answer is automatically stored in `Matrix Answer` so that it can be used to compute or perform further operations later on.*
+
 ![image](https://user-images.githubusercontent.com/71577909/137521209-aabd5fe7-b44e-4891-9562-a4487c46b74c.png)
 
 
@@ -103,56 +105,56 @@ In the `output.csv`, there will be a comma-separated answer. The `output.csv` fi
 
 
 # Testing Scheme
-Suppose *matrix A* is
+Suppose `matrix A` is
 
     4	7
     2	6
 
 ### First Test (Adding and Subtracting)
-Adding *matrix A* together must give out
+Adding `matrix A` together must give out
 
     8	14
     4	12
 
-And subtracting the *sum of matrix A* with *matrix A* must give out the original value of *matrix A*
+And subtracting the sum of `matrix A` with `matrix A` must give out the original value of `matrix A`
 
     4	7
     2	6
 
 ### Second Test (Multiplying and Inverse)
-Finding the *inverse of matrix A* must give out
+Finding the inverse of `matrix A` must give out
 
     0.60    -0.70
     -0.20   0.40
 
-And multiplying the the *inverse of matrix A* with *matrix A* must give out *identity matrix*
+And multiplying the the inverse of `matrix A` with `matrix A` must give out `identity matrix`
 
     1	0
     0	1
     
 ### Third Test (Determinant and Adjoint)
-Finding the determinant of *matrix A* must give out
+Finding the determinant of `matrix A` must give out
 
     10
 
-Finding adjoint of *matrix A* must give out
+Finding adjoint of `matrix A` must give out
 
     6	-7
     -2	4
 
-Multiplying *1/det(A)* with the adjoint of *matrix A* must give out the inverse of *matrix A*
+Multiplying `1/det(A)` with the adjoint of `matrix A` must give out the inverse of `matrix A`
 
     0.60    -0.70
     -0.20   0.40
 
 ### Fourth Test (Error Messages)
-Suppose *matrix B* is
+Suppose `matrix B` is
 
     1	2	3
     4	5	6
     7	8	9
 
-Adding/subtracting/multiplying *matrix A* with *matrix B* must give out *incompatible matrix dimension error*
+Adding/subtracting/multiplying `matrix A` with `matrix B` must give out *incompatible matrix dimension error*
 
     Incompatible matrix dimension!
 
@@ -160,7 +162,7 @@ Finding determinant/inverse of a matrix with unequal row and column must give ou
 
     Matrix dimension must be equal!
 
-Finding the inverse of *matrix B* must give out *det equal 0 error* because an inverse of a matrix with *det = 0* does not exist (*singular matrix*)
+Finding the inverse of `matrix B` must give out *det equal 0 error* because an inverse of a matrix with *det = 0* does not exist (*singular matrix*)
 
     Cannot find inverse of singular matrix!
 

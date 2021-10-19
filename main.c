@@ -121,8 +121,14 @@ void define_matrix_page() {
         else {
             printf("\nDelimiter: ");
             fgets(delimiter, 255, stdin);
-            if (read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matA.value, &matA.row, &matA.column) == 1) {
+            int readChk = read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matA.value, &matA.row, &matA.column);
+            if (readChk == 1) {
                 cannot_read_error();
+                system("pause");
+                define_matrix_page();
+            }
+            else if (readChk == -1) {
+                empty_input_file_error();
                 system("pause");
                 define_matrix_page();
             }
@@ -136,8 +142,14 @@ void define_matrix_page() {
         else {
             printf("\nDelimiter: ");
             fgets(delimiter, 255, stdin);
-            if (read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matB.value, &matB.row, &matB.column) == 1) {
+            int readChk = read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matB.value, &matB.row, &matB.column);
+            if (readChk == 1) {
                 cannot_read_error();
+                system("pause");
+                define_matrix_page();
+            }
+            else if (readChk == -1) {
+                empty_input_file_error();
                 system("pause");
                 define_matrix_page();
             }
@@ -151,8 +163,14 @@ void define_matrix_page() {
         else {
             printf("\nDelimiter: ");
             fgets(delimiter, 255, stdin);
-            if (read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matC.value, &matC.row, &matC.column) == 1) {
+            int readChk = read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matC.value, &matC.row, &matC.column);
+            if (readChk == 1) {
                 cannot_read_error();
+                system("pause");
+                define_matrix_page();
+            }
+            else if (readChk == -1) {
+                empty_input_file_error();
                 system("pause");
                 define_matrix_page();
             }
@@ -166,12 +184,17 @@ void define_matrix_page() {
         else {
             printf("\nDelimiter: ");
             fgets(delimiter, 255, stdin);
-            if (read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matD.value, &matD.row, &matD.column) == 1) {
+            int readChk = read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matE.value, &matE.row, &matE.column);
+            if (readChk == 1) {
                 cannot_read_error();
                 system("pause");
                 define_matrix_page();
             }
-            printf("Read value:\n");
+            else if (readChk == -1) {
+                empty_input_file_error();
+                system("pause");
+                define_matrix_page();
+            }
             view_matrix(matD.value, matD.row, matD.column);
         }
         break;
@@ -181,8 +204,14 @@ void define_matrix_page() {
         else {
             printf("\nDelimiter: ");
             fgets(delimiter, 255, stdin);
-            if (read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matE.value, &matE.row, &matE.column) == 1) {
+            int readChk = read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matE.value, &matE.row, &matE.column);
+            if (readChk == 1) {
                 cannot_read_error();
+                system("pause");
+                define_matrix_page();
+            }
+            else if (readChk == -1) {
+                empty_input_file_error();
                 system("pause");
                 define_matrix_page();
             }
@@ -196,8 +225,14 @@ void define_matrix_page() {
         else {
             printf("\nDelimiter: ");
             fgets(delimiter, 255, stdin);
-            if (read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matF.value, &matF.row, &matF.column) == 1) {
+            int readChk = read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matF.value, &matF.row, &matF.column);
+            if (readChk == 1) {
                 cannot_read_error();
+                system("pause");
+                define_matrix_page();
+            }
+            else if (readChk == -1) {
+                empty_input_file_error();
                 system("pause");
                 define_matrix_page();
             }

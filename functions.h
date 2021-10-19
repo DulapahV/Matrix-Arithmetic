@@ -8,7 +8,7 @@
 void define_matrix(double ***matrix, int *row, int *column);
 void view_matrix(double **matrix, int row, int column);
 int select_matrix(double ***matrix, int *row, int *column); // return 2 if user select 'Go Back', 1 if user select invalid choice, else 0
-int read_matrix(const char *filename, const char *filename_csv, const char *delimiter, double ***matrix, int *row, int *column); // return 1 if cannot read, else 0
+int read_matrix(const char *filename, const char *filename_csv, const char *delimiter, double ***matrix, int *row, int *column); // return 1 if cannot read, -1 if file is empty, else 0
 int output_matrix(const char *filename, const char *filename_csv, double **matrix, int row, int column); // return 1 if cannot print, else 0
 void free_matrix(double **matrix, int row, int column);
 
@@ -20,6 +20,7 @@ void unequal_dimension_error();
 void det_equal_zero_error();
 void cannot_read_error();
 void cannot_print_error();
+void empty_input_file_error();
 
 struct Matrix {
     double **value;
@@ -130,23 +131,27 @@ int read_matrix(const char *filename, const char *filename_csv, const char *deli
         }
         readRow++;
     }
-    int tempRow = 0, index = 0;
-    int tempColumn = readElementCount / readRow;
-    double **tempMatrix;
-    tempMatrix = MEM_ALLOCATE(double *, readRow);
-    for (int i = 0; i < readRow; i++)
-        tempMatrix[i] = MEM_ALLOCATE(double, tempColumn);
-    for (int i = 0; i < readRow; i++) {
-        for (int j = 0; j < tempColumn; j++)
-            tempMatrix[i][j] = readMatrix[tempRow][index++];
-        tempRow++;
-    }
-    *matrix = tempMatrix;
-    *row = tempRow;
-    *column = tempColumn;
     fclose(file);
     fclose(file_csv);
-    return 0;
+    if (readElementCount != 0) {
+        int tempRow = 0, index = 0;
+        int tempColumn = readElementCount / readRow;
+        double **tempMatrix;
+        tempMatrix = MEM_ALLOCATE(double *, readRow);
+        for (int i = 0; i < readRow; i++)
+            tempMatrix[i] = MEM_ALLOCATE(double, tempColumn);
+        for (int i = 0; i < readRow; i++) {
+            for (int j = 0; j < tempColumn; j++)
+                tempMatrix[i][j] = readMatrix[tempRow][index++];
+            tempRow++;
+        }
+        *matrix = tempMatrix;
+        *row = tempRow;
+        *column = tempColumn;
+        return 0;
+    }
+    else 
+        return -1;
 }
 
 // Print Matrix
@@ -282,4 +287,9 @@ void cannot_read_error() {
 // Cannot Print Error
 void cannot_print_error() {
     printf("\nError accessing output file!\n\n");
+}
+
+// Empty Input File Error
+void empty_input_file_error() {
+    printf("\nInput file is empty!\n\n");
 }

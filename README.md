@@ -165,6 +165,10 @@ Finding the inverse of `matrix B` must give out *det equal 0 error* because an i
 
     Cannot find inverse of singular matrix!
 
+Reading matrix from empty input file must give out *input file is empty error*
+
+	Input file is empty!
+
 Deleting `input.txt` or `input.csv` and reading matrix from it must give out *error accessing input file error*
 
 	Error accessing input file!

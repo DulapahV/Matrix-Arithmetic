@@ -184,7 +184,7 @@ void define_matrix_page() {
         else {
             printf("\nDelimiter: ");
             fgets(delimiter, 255, stdin);
-            int readChk = read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matE.value, &matE.row, &matE.column);
+            int readChk = read_matrix(INPUT_TXT_FILE, INPUT_CSV_FILE, delimiter, &matD.value, &matD.row, &matD.column);
             if (readChk == 1) {
                 cannot_read_error();
                 system("pause");
